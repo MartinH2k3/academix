@@ -1,4 +1,4 @@
-package com.academix.academix;
+package com.academix.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

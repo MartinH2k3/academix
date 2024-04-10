@@ -1,4 +1,4 @@
-package com.academix.academix;
+package com.academix.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
