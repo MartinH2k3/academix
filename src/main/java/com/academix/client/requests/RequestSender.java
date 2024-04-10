@@ -8,11 +8,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RequestSender {
-    private static final RequestSender instance = new RequestSender();
+    private static final RequestSender instance = null;
 
     private String domain;
+
     private RequestSender() {
-        domain ="http://localhost:8080/test";
+        domain ="http://localhost:8080";
     }
 
     public static RequestSender getInstance() {
@@ -22,19 +23,47 @@ public class RequestSender {
         return instance;
     }
 
-    public String sendRequest(String parameters) throws IOException {
-        URL url = new URL(domain);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+    public enum RequestMethod {
+        GET("GET"),
+        POST("POST"),
+        PUT("PUT"),
+        DELETE("DELETE");
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+        private final String method;
+
+        RequestMethod(String method) {
+            this.method = method;
         }
-        in.close();
-        conn.disconnect();
-        return content.toString();
+
+        public String getMethod() {
+            return method;
+        }
     }
+
+    private String getResponse(HttpURLConnection conn) throws IOException {
+        StringBuilder response = new StringBuilder();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                response.append(line);
+            }
+        }
+        return response.toString();
+    }
+
+    public String sendRequest(String request, RequestMethod method) {
+        HttpURLConnection conn = null;
+        try {
+            URL url = new URL(domain + request);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod(method.getMethod());
+            return getResponse(conn);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Error sending request";
+    }
+
 }
