@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
+         <children>
+            <Hyperlink fx:id="myFacultyHyperlink" onAction="#goToQuiz" text="My faculty" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="catalogHyperlink" onAction="#goToCatalog" text="Catalog of universities" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="accountSettingsHyperlink" onAction="#goToAccountSettings" text="Account settings" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="helpHyperlink" onAction="#goToHelp" text="Help" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="signOutHyperlink" onAction="#signOut" text="Sign out" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </HBox>
+      <ImageView fitHeight="198.0" fitWidth="284.0" layoutX="159.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addFacultyInformationButton" layoutX="110.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Add information about faculty" textFill="WHITE">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
