@@ -24,12 +24,26 @@ public class Auth {
         return "Login failed";
     }
 
-    private static void addStudent(){
-
+    private static void addStudent(Connection conn, String username){
+        String query = "INSERT INTO students (user_id) VALUES ((SELECT user_id FROM users WHERE username = ?))";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log required
+        }
     }
 
-    private static void addFacultyRepresentative(){
-
+    private static void addFacultyRepresentative(Connection conn, String username){
+        String query = "INSERT INTO faculty_representatives (user_id) VALUES ((SELECT user_id FROM users WHERE username = ?))";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log required
+        }
     }
 
     public static String register(String username, String password, String type){
@@ -40,6 +54,11 @@ public class Auth {
             pstmt.setString(2, Hasher.hashPassword(password));
             pstmt.setString(3, type);
             pstmt.executeUpdate();
+            if (type.equals("student")) {
+                addStudent(conn, username);
+            } else if (type.equals("faculty_representative")) {
+                addFacultyRepresentative(conn, username);
+            }
             return "Registration successful";
         } catch (Exception e) {
             e.printStackTrace(); // Log required

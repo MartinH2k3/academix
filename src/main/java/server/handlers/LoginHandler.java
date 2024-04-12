@@ -23,7 +23,7 @@ public class LoginHandler implements HttpHandler {
     }
 
     public void handle(HttpExchange exchange) throws IOException{
-        String response = "";
+        String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
             try {
