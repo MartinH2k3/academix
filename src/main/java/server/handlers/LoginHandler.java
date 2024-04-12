@@ -2,7 +2,7 @@ package server.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import server.database.Auth;
+import server.database.user.Auth;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,6 +15,10 @@ public class LoginHandler implements HttpHandler {
     private LoginHandler() {
     }
 
+    /**
+     * Used for creating a singleton instance of LoginHandler
+     * @return LoginHandler instance
+     */
     public static LoginHandler getInstance() {
         if (instance == null) {
             return new LoginHandler();
@@ -22,6 +26,14 @@ public class LoginHandler implements HttpHandler {
         return instance;
     }
 
+
+    /**
+     * Handle the login request. If parameters are correct, user is logged in.
+     * @param exchange HttpExchange (username, password)
+     * @return String
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handle(HttpExchange exchange) throws IOException{
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {

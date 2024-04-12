@@ -1,5 +1,6 @@
-package server.database;
+package server.database.user;
 
+import server.database.DatabaseConnector;
 import server.database.security.Hasher;
 
 import java.sql.Connection;

@@ -38,6 +38,9 @@ CREATE TABLE "users" (
     "username" VARCHAR(20) NOT NULL UNIQUE,
     "password_hash" CHAR(64) NOT NULL,
     "email" VARCHAR(320) UNIQUE,
+    "first_name" VARCHAR(40),
+    "last_name" VARCHAR(40),
+    "phone_number" VARCHAR(15),
     "type" VARCHAR(20) NOT NULL
 );
 
@@ -49,18 +52,13 @@ CREATE TABLE "admins" (
 CREATE TABLE "faculty_representatives" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "user_id" UUID REFERENCES "users"("user_id"),
-    "first_name" VARCHAR(40),
-    "last_name" VARCHAR(40),
     "verified" BOOLEAN,
     "faculty_id" UUID REFERENCES "faculties"("faculty_id")
 );
 
 CREATE TABLE "students" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    "user_id" UUID REFERENCES "users"("user_id"),
-    "first_name" VARCHAR(40),
-    "last_name" VARCHAR(40),
-    "phone_number" VARCHAR(15)
+    "user_id" UUID REFERENCES "users"("user_id")
 );
 
 CREATE TABLE "helpline_question" (
