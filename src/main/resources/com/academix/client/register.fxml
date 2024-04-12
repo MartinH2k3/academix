@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="178.0" fitWidth="297.0" layoutX="164.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" layoutX="222.0" layoutY="204.0" prefHeight="190.0" prefWidth="180.0" spacing="5.0">
+         <children>
+            <Text fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" wrappingWidth="168.46794509887695">
+               <font>
+                  <Font name="Avenir Black" size="9.0" />
+               </font>
+            </Text>
+            <TextField fx:id="usernameTextfield" text="username">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordPasswordField" text="password">
+               <font>
+                  <Font name="Avenir Book Oblique" size="12.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="confirmPasswordField" text="password">
+               <font>
+                  <Font name="Avenir Book Oblique" size="12.0" />
+               </font>
+            </PasswordField>
+            <CheckBox mnemonicParsing="false" text="school Employee" />
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="16.0" prefWidth="149.0" style="-fx-background-color: #3b5e87;" text="Register" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="goToLoginHyperlink" onAction="#goToQuiz" text="Already have an account? Log in!" textAlignment="CENTER" textFill="#545450">
+               <font>
+                  <Font name="Avenir Book" size="9.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+   </children>
+</Pane>
