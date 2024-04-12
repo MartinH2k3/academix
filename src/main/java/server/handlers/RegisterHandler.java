@@ -38,8 +38,7 @@ public class RegisterHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            Auth.register(params.get("username"), params.get("password"), params.get("type"));
-            response = "User registered successfully";
+            response = Auth.register(params.get("username"), params.get("password"), params.get("type"));
         }
         else {
             response = "Wrong request method";

@@ -39,8 +39,7 @@ public class LoginHandler implements HttpHandler {
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
             try {
-                Auth.login(params.get("username"), params.get("password"));
-                response = "User logged in successfully";
+                response = Auth.login(params.get("username"), params.get("password"));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

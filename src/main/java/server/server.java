@@ -3,6 +3,7 @@ package server;
 import com.sun.net.httpserver.HttpServer;
 import server.handlers.AccountInfoHandler;
 import server.handlers.LoginHandler;
+import server.handlers.PasswordResetHandler;
 import server.handlers.RegisterHandler;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/register", RegisterHandler.getInstance());
         server.createContext("/login", LoginHandler.getInstance());
         server.createContext("/account/update", AccountInfoHandler.getInstance());
+        server.createContext("/account/reset_password", PasswordResetHandler.getInstance());
         server.setExecutor(null); // creates a default executor
         server.start();
     }

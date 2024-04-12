@@ -44,23 +44,19 @@ public class AccountInfoHandler implements HttpHandler {
             username = params.get("username");
 
             if (params.containsKey("first_name")) {
-                AccountInfoUpdate.updateFirstName(username, params.get("first_name"));
-                response += "First name updated\n";
+                response += AccountInfoUpdate.updateFirstName(username, params.get("first_name"));
             }
 
             if (params.containsKey("last_name")) {
-                AccountInfoUpdate.updateLastName(username, params.get("last_name"));
-                response += "Last name updated\n";
+                response += AccountInfoUpdate.updateLastName(username, params.get("last_name"));
             }
 
             if (params.containsKey("email")) {
-                AccountInfoUpdate.updateEmail(username, params.get("email"));
-                response += "Email updated\n";
+                response += AccountInfoUpdate.updateEmail(username, params.get("email"));
             }
 
             if (params.containsKey("phone_number")) {
-                AccountInfoUpdate.updatePhoneNumber(username, params.get("phone_number"));
-                response += "Phone number updated\n";
+                response += AccountInfoUpdate.updatePhoneNumber(username, params.get("phone_number"));
             }
 
             if (response.equals("")) {

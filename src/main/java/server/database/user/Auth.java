@@ -66,4 +66,21 @@ public class Auth {
         }
         return "Registration failed";
     }
+
+    public static String resetPassword(String username, String oldPassword, String newPassword){
+        String query = "UPDATE users SET password_hash = ? WHERE username = ? AND password_hash = ?";
+        try (Connection conn = DatabaseConnector.connect()) {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, Hasher.hashPassword(newPassword));
+            pstmt.setString(2, username);
+            pstmt.setString(3, Hasher.hashPassword(oldPassword));
+            if (pstmt.executeUpdate() > 0){
+                return "Password reset successful";
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log required
+        }
+        return "Password reset failed";
+    }
 }

@@ -41,7 +41,7 @@ CREATE TABLE "users" (
     "first_name" VARCHAR(40),
     "last_name" VARCHAR(40),
     "phone_number" VARCHAR(15),
-    "type" VARCHAR(20) NOT NULL
+    "type" VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE "admins" (
