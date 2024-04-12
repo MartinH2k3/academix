@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public class Hasher {
     public static String hashPassword(String password) {
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedhash = digest.digest(password.getBytes());
 
             StringBuilder hexString = new StringBuilder();

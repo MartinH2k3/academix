@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class RequestSender {
     private static final RequestSender instance = null;
@@ -23,22 +24,6 @@ public class RequestSender {
         return instance;
     }
 
-    public enum RequestMethod {
-        GET("GET"),
-        POST("POST"),
-        PUT("PUT"),
-        DELETE("DELETE");
-
-        private final String method;
-
-        RequestMethod(String method) {
-            this.method = method;
-        }
-
-        public String getMethod() {
-            return method;
-        }
-    }
 
     private String getResponse(HttpURLConnection conn) throws IOException {
         StringBuilder response = new StringBuilder();
@@ -51,12 +36,12 @@ public class RequestSender {
         return response.toString();
     }
 
-    public String sendRequest(String request, RequestMethod method) {
+    public String sendRequest(String request, String requestMethod) {
         HttpURLConnection conn = null;
         try {
             URL url = new URL(domain + request);
             conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod(method.getMethod());
+            conn.setRequestMethod(requestMethod.toUpperCase(Locale.ROOT));
             return getResponse(conn);
         } catch (MalformedURLException e) {
             e.printStackTrace();

@@ -1,5 +1,7 @@
 BEGIN;
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Drop existing tables
 DROP TABLE IF EXISTS "faculty_representatives" CASCADE;
 DROP TABLE IF EXISTS "faculties" CASCADE;
@@ -12,20 +14,15 @@ DROP TABLE IF EXISTS "quiz_results" CASCADE;
 DROP TABLE IF EXISTS "school_results" CASCADE;
 DROP TABLE IF EXISTS "universities" CASCADE;
 
--- Create ENUM types, cause that's the Postgres way
-CREATE TYPE user_type AS ENUM ('admin', 'student', 'faculty representative');
-CREATE TYPE question_type AS ENUM ('accessrequest', 'bugfix', 'general');
-CREATE TYPE question_status AS ENUM ('answered', 'unanswered');
-
 -- Create tables
 CREATE TABLE "universities" (
-    "university_id" UUID PRIMARY KEY,
+    "university_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR(100) NOT NULL,
     "website_uri" VARCHAR(500)
 );
 
 CREATE TABLE "faculties" (
-    "faculty_id" UUID PRIMARY KEY,
+    "faculty_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "parent_university_id" UUID REFERENCES "universities"("university_id"),
     "name" VARCHAR(100) NOT NULL,
     "description" TEXT,
@@ -37,19 +34,21 @@ CREATE TABLE "faculties" (
 );
 
 CREATE TABLE "users" (
-    "user_id" UUID PRIMARY KEY,
+    "user_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "username" VARCHAR(20) NOT NULL UNIQUE,
+    "password_hash" CHAR(64) NOT NULL,
     "email" VARCHAR(320) UNIQUE,
-    "password_hash" CHAR(20) NOT NULL,
-    "type" user_type NOT NULL
+    "type" VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE "admins" (
-    "user_id" UUID PRIMARY KEY REFERENCES "users"("user_id")
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "user_id" UUID REFERENCES "users"("user_id")
 );
 
 CREATE TABLE "faculty_representatives" (
-    "user_id" UUID PRIMARY KEY REFERENCES "users"("user_id"),
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "user_id" UUID REFERENCES "users"("user_id"),
     "first_name" VARCHAR(40),
     "last_name" VARCHAR(40),
     "verified" BOOLEAN,
@@ -57,22 +56,24 @@ CREATE TABLE "faculty_representatives" (
 );
 
 CREATE TABLE "students" (
-    "user_id" UUID PRIMARY KEY REFERENCES "users"("user_id"),
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "user_id" UUID REFERENCES "users"("user_id"),
     "first_name" VARCHAR(40),
     "last_name" VARCHAR(40),
     "phone_number" VARCHAR(15)
 );
 
 CREATE TABLE "helpline_question" (
-    "question_id" UUID PRIMARY KEY,
+    "question_id" BIGSERIAL PRIMARY KEY,
     "asked_by" UUID REFERENCES "users"("user_id"),
     "text" VARCHAR(500) NOT NULL,
-    "type" question_type NOT NULL,
-    "status" question_status NOT NULL
+    "type" VARCHAR(30) NOT NULL,
+    "status" VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE "helpline_answer" (
-    "question_id" UUID PRIMARY KEY REFERENCES "helpline_question"("question_id"),
+    "answer_id" BIGSERIAL PRIMARY KEY,
+    "question_id" BIGINT REFERENCES "helpline_question"("question_id"),
     "responded_by" UUID REFERENCES "users"("user_id"),
     "response" VARCHAR(500) NOT NULL
 );
