@@ -77,6 +77,11 @@ public class HomeStudentController {
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadQuizPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToCatalog(ActionEvent actionEvent) {

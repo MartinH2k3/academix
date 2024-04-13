@@ -56,6 +56,14 @@ public class MainApplication extends Application {
         accountSettingsController.setMainApp(this); // Pass reference to MainApplication to RegisterController
         root.setCenter(accountset);
     }
+    public void loadQuizPane() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("quiz_student.fxml"));
+        Parent quiz = loader.load();
+        QuizController quizController = loader.getController();
+        quizController.initialize();
+        quizController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(quiz);
+    }
 
     public static void main(String[] args) {
         launch(args);
