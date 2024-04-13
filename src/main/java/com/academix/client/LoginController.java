@@ -38,20 +38,21 @@ public class LoginController {
         // Implement the login logic here
     }
 
-    @FXML
-    private void goToRegisterHyperlink() {
+
+    public void login(ActionEvent actionEvent) {
         try {
-            mainApplication.loadRegisterPane();
+            mainApplication.loadHomeStudentPane();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void login(ActionEvent actionEvent) {
-    }
-
     public void switchToRegister(ActionEvent actionEvent) {
-        goToRegisterHyperlink();
+        try {
+            mainApplication.loadRegisterPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

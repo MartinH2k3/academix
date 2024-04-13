@@ -35,14 +35,6 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLoginHyperlink;
 
-    @FXML
-    private void goToLoginHyperlink() {
-        try {
-            mainApplication.loadLoginPane();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void initialize() {
@@ -55,7 +47,11 @@ public class RegisterController {
     }
 
     public void switchToLogin(ActionEvent actionEvent) {
-        goToLoginHyperlink();
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

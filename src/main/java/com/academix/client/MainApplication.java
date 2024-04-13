@@ -37,10 +37,24 @@ public class MainApplication extends Application {
     }
     public void loadLoginPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Parent registerPane = loader.load();
+        Parent loginPane = loader.load();
         LoginController loginController = loader.getController();
         loginController.setMainApp(this); // Pass reference to MainApplication to RegisterController
-        root.setCenter(registerPane);
+        root.setCenter(loginPane);
+    }
+    public void loadHomeStudentPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_student.fxml"));
+        Parent homeStudent = loader.load();
+        HomeStudentController homeStudentController = loader.getController();
+        homeStudentController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(homeStudent);
+    }
+    public void loadAccountSettingsPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_student.fxml"));
+        Parent accountset = loader.load();
+        AccountSettingsController accountSettingsController = loader.getController();
+        accountSettingsController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(accountset);
     }
 
     public static void main(String[] args) {
