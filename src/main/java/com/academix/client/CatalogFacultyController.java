@@ -5,18 +5,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class CatalogStudentController {
+public class CatalogFacultyController {
     private MainApplication mainApplication;
-    @FXML
-    private Hyperlink pastResultHyperlink;
 
     @FXML
-    private Hyperlink takeQuizHyperlink;
+    private Hyperlink myFacultyHyperlink;
 
     @FXML
     private Hyperlink catalogHyperlink;
@@ -30,11 +30,6 @@ public class CatalogStudentController {
     @FXML
     private Hyperlink signOutHyperlink;
 
-    @FXML
-    private ScrollBar scrollBar;
-
-    @FXML
-    private Label label1;
 
     @FXML
     private Text takeALookText;
@@ -43,31 +38,24 @@ public class CatalogStudentController {
     private Button SelectButton1;
 
     @FXML
-    private TextField usernameTextfield;
+    private TextField searchTextfield;
 
     @FXML
     private ImageView imageView;
-
-    @FXML
-    private Label label2;
 
     @FXML
     private Text takeALookText1;
 
     @FXML
     private Button SelectButton2;
-    public void goToPastResults(ActionEvent actionEvent) {
+
+    @FXML
+    void goToCatalog() {
+        // Implement action here
     }
 
-    public void goToQuiz(ActionEvent actionEvent) {
-        try {
-            mainApplication.loadQuizPane();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void goToCatalog(ActionEvent actionEvent) {
+    @FXML
+    void goToAccountSettings() {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
@@ -75,18 +63,13 @@ public class CatalogStudentController {
         }
     }
 
-    public void goToAccountSettings(ActionEvent actionEvent) {
-        try {
-            mainApplication.loadAccountSettingsStudentPane();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FXML
+    void goToHelp() {
+        // Implement action here
     }
 
-    public void goToHelp(ActionEvent actionEvent) {
-    }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    void signOut() {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
@@ -94,7 +77,10 @@ public class CatalogStudentController {
         }
     }
 
-    public void setMainApp(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
+    void goToMyFaculty() {
+
+    }
+    public void setMainApplication(MainApplication mainApplication){
+        this.mainApplication=mainApplication;
     }
 }

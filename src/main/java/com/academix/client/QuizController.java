@@ -6,13 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class QuizController {
     private final Color WHITE = Color.WHITE;
@@ -119,7 +115,7 @@ public class QuizController {
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsPane();
+            mainApplication.loadAccountSettingsStudentPane();
         } catch (Exception e) {
             e.printStackTrace();
         }
