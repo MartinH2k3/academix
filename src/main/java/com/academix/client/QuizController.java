@@ -102,21 +102,38 @@ public class QuizController {
       circle.setFill(col);
     }
     public void goToPastResults(ActionEvent actionEvent) {
+
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
+
     }
 
     public void goToCatalog(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadCatalogStudentPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToAccountSettings(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadAccountSettingsPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToHelp(ActionEvent actionEvent) {
     }
 
     public void signOut(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

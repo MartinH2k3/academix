@@ -62,13 +62,21 @@ public class AccountSettingsController {
     // Event handler for the "Take quiz" hyperlink
     @FXML
     private void goToQuiz() {
-        // Implement the logic to navigate to the quiz page
+        try {
+            mainApplication.loadQuizPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Event handler for the "Catalog of universities" hyperlink
     @FXML
     private void goToCatalog() {
-        // Implement the logic to navigate to the catalog page
+        try {
+            mainApplication.loadCatalogStudentPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Event handler for the "Account settings" hyperlink
@@ -86,7 +94,11 @@ public class AccountSettingsController {
     // Event handler for the "Sign out" hyperlink
     @FXML
     private void signOut() {
-        // Implement the logic to sign out the user
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Event handler for the "Save" button
