@@ -1,35 +1,36 @@
-package server.handlers;
+package server.handlers.account;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.user.Auth;
+import server.handlers.util.ParamParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class LoginHandler implements HttpHandler {
-    public static final LoginHandler instance = null;
-
-    private LoginHandler() {
-    }
-
+public class RegisterHandler implements HttpHandler {
+    public static final RegisterHandler instance = null;
     /**
-     * Used for creating a singleton instance of LoginHandler
-     * @return LoginHandler instance
+     * RegisterHandler constructor
      */
-    public static LoginHandler getInstance() {
+    private RegisterHandler() {
+    }
+    /**
+     * Get instance of RegisterHandler
+     * @return RegisterHandler instance
+     */
+    public static RegisterHandler getInstance() {
         if (instance == null) {
-            return new LoginHandler();
+            return new RegisterHandler();
         }
         return instance;
     }
 
-
     /**
-     * Handle the login request. If parameters are correct, user is logged in.
-     * @param exchange HttpExchange (username, password)
+     * Handle the registration request
+     * @param exchange HttpExchange (username, password, type)
      * @return String
      * @throws IOException
      * @throws SQLException
@@ -38,11 +39,7 @@ public class LoginHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            try {
-                response = Auth.login(params.get("username"), params.get("password"));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            response = Auth.register(params.get("username"), params.get("password"), params.get("type"));
         }
         else {
             response = "Wrong request method";

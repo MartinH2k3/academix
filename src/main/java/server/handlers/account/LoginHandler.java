@@ -1,35 +1,36 @@
-package server.handlers;
+package server.handlers.account;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.user.Auth;
+import server.handlers.util.ParamParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class RegisterHandler implements HttpHandler {
-    public static final RegisterHandler instance = null;
-    /**
-     * RegisterHandler constructor
-     */
-    private RegisterHandler() {
+public class LoginHandler implements HttpHandler {
+    public static final LoginHandler instance = null;
+
+    private LoginHandler() {
     }
+
     /**
-     * Get instance of RegisterHandler
-     * @return RegisterHandler instance
+     * Used for creating a singleton instance of LoginHandler
+     * @return LoginHandler instance
      */
-    public static RegisterHandler getInstance() {
+    public static LoginHandler getInstance() {
         if (instance == null) {
-            return new RegisterHandler();
+            return new LoginHandler();
         }
         return instance;
     }
 
+
     /**
-     * Handle the registration request
-     * @param exchange HttpExchange (username, password, type)
+     * Handle the login request. If parameters are correct, user is logged in.
+     * @param exchange HttpExchange (username, password)
      * @return String
      * @throws IOException
      * @throws SQLException
@@ -38,7 +39,11 @@ public class RegisterHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = Auth.register(params.get("username"), params.get("password"), params.get("type"));
+            try {
+                response = Auth.login(params.get("username"), params.get("password"));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
             response = "Wrong request method";

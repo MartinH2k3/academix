@@ -1,13 +1,12 @@
-package server.handlers;
+package server.handlers.account;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.user.AccountInfoUpdate;
-import server.database.user.Auth;
+import server.handlers.util.ParamParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.sql.SQLException;
 import java.util.Map;
 
 public class AccountInfoHandler implements HttpHandler {
@@ -23,12 +22,18 @@ public class AccountInfoHandler implements HttpHandler {
         return instance;
     }
 
+    /**
+     * Handle the account update request. It updates the user's account information, which consists of
+     * first name, last name, email, or phone number. All parameters are optional.
+     * @param exchange HttpExchange (username, first_name, last_name, email, phone_number)
+     * @return String
+     * @throws IOException
+     */
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         String username;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) { // PUT more correct, but POST, so it's more uniform
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            // possible parameters: first_name, last_name, email, phone_number
             // check what parameters are present and call corresponding method
             response = "";
 

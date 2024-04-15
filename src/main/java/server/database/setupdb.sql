@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS "faculty_representatives" CASCADE;
 DROP TABLE IF EXISTS "faculties" CASCADE;
 DROP TABLE IF EXISTS "users" CASCADE;
 DROP TABLE IF EXISTS "admins" CASCADE;
-DROP TABLE IF EXISTS "helpline_question" CASCADE;
-DROP TABLE IF EXISTS "helpline_answer" CASCADE;
+DROP TABLE IF EXISTS "helpline_questions" CASCADE;
+DROP TABLE IF EXISTS "helpline_answers" CASCADE;
 DROP TABLE IF EXISTS "students" CASCADE;
 DROP TABLE IF EXISTS "quiz_results" CASCADE;
 DROP TABLE IF EXISTS "school_results" CASCADE;
@@ -61,19 +61,23 @@ CREATE TABLE "students" (
     "user_id" UUID REFERENCES "users"("user_id")
 );
 
-CREATE TABLE "helpline_question" (
+CREATE TABLE "helpline_questions" (
     "question_id" BIGSERIAL PRIMARY KEY,
-    "asked_by" UUID REFERENCES "users"("user_id"),
+    "asked_by" UUID REFERENCES "users"("user_id") NOT NULL,
     "text" VARCHAR(500) NOT NULL,
-    "type" VARCHAR(30) NOT NULL,
     "status" VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE "helpline_answer" (
+CREATE TABLE "helpline_answers" (
     "answer_id" BIGSERIAL PRIMARY KEY,
-    "question_id" BIGINT REFERENCES "helpline_question"("question_id"),
-    "responded_by" UUID REFERENCES "users"("user_id"),
+    "question_id" BIGINT REFERENCES "helpline_questions"("question_id"),
     "response" VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE "requests" (
+    "request_id" BIGSERIAL PRIMARY KEY,
+    "user_id" UUID REFERENCES "users"("user_id"),
+    "status" VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE "quiz_results" (
@@ -94,3 +98,4 @@ CREATE TABLE "school_results" (
 
 -- Commit transaction
 COMMIT;
+

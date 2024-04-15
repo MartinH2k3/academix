@@ -1,14 +1,15 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
-import server.handlers.AccountInfoHandler;
-import server.handlers.LoginHandler;
-import server.handlers.PasswordResetHandler;
-import server.handlers.RegisterHandler;
+import server.handlers.HelplineAnswerHandler;
+import server.handlers.HelplineQuestionHandler;
+import server.handlers.account.AccountInfoHandler;
+import server.handlers.account.LoginHandler;
+import server.handlers.account.PasswordResetHandler;
+import server.handlers.account.RegisterHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
 
 public class server {
 public static void main(String[] args) throws IOException {
@@ -17,6 +18,8 @@ public static void main(String[] args) throws IOException {
         server.createContext("/login", LoginHandler.getInstance());
         server.createContext("/account/update", AccountInfoHandler.getInstance());
         server.createContext("/account/reset_password", PasswordResetHandler.getInstance());
+        server.createContext("/submit_question", HelplineQuestionHandler.getInstance());
+        server.createContext("/answer_question", HelplineAnswerHandler.getInstance());
         server.setExecutor(null); // creates a default executor
         server.start();
     }

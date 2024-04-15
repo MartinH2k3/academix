@@ -1,4 +1,4 @@
-package server.handlers;
+package server.handlers.util;
 
 import java.util.HashMap;
 import java.util.Map;

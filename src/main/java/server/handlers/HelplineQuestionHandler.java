@@ -2,21 +2,23 @@ package server.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import server.database.user.Auth;
+import common.Base64EncoderDecoder;
+import server.database.support.Helpline;
+import server.handlers.util.ParamParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class PasswordResetHandler implements HttpHandler {
-    private static PasswordResetHandler instance;
+public class HelplineQuestionHandler implements HttpHandler {
+    private static HelplineQuestionHandler instance = null;
 
-    private PasswordResetHandler() {
+    private HelplineQuestionHandler() {
     }
 
-    public static PasswordResetHandler getInstance() {
+    public static HelplineQuestionHandler getInstance() {
         if (instance == null) {
-            instance = new PasswordResetHandler();
+            instance = new HelplineQuestionHandler();
         }
         return instance;
     }
@@ -25,7 +27,8 @@ public class PasswordResetHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = Auth.resetPassword(params.get("username"), params.get("old_password"), params.get("new_password"));
+            String question = Base64EncoderDecoder.decode(params.get("question"));
+            response = Helpline.submitQuestion(params.get("username"), question);
         } else {
             response = "Wrong request method";
         }
