@@ -4,16 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class HomeStudentController {
+public class CatalogStudentController {
     private MainApplication mainApplication;
-
-    @FXML
-    private HBox navigationBar;
-
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -33,46 +31,31 @@ public class HomeStudentController {
     private Hyperlink signOutHyperlink;
 
     @FXML
+    private ScrollBar scrollBar;
+
+    @FXML
+    private Label label1;
+
+    @FXML
     private Text takeALookText;
 
     @FXML
-    private Pane facultyPane1;
+    private Button SelectButton1;
 
     @FXML
-    private Pane facultyPane2;
+    private TextField usernameTextfield;
 
     @FXML
-    private Pane facultyPane3;
+    private ImageView imageView;
 
     @FXML
-    private Text belongText;
+    private Label label2;
 
     @FXML
-    private Text facultyText1;
+    private Text takeALookText1;
 
     @FXML
-    private Text uniText1;
-
-    @FXML
-    private Text facultyText2;
-
-    @FXML
-    private Text uniText2;
-
-    @FXML
-    private Text facultyText3;
-
-    @FXML
-    private Text uniText3;
-
-    @FXML
-    private Button takeQuizButton;
-
-    @FXML
-    private void initialize() {
-        // Initialization code
-    }
-
+    private Button SelectButton2;
     public void goToPastResults(ActionEvent actionEvent) {
     }
 
@@ -90,7 +73,6 @@ public class HomeStudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void goToAccountSettings(ActionEvent actionEvent) {
@@ -111,8 +93,8 @@ public class HomeStudentController {
             e.printStackTrace();
         }
     }
-    public void setMainApp(MainApplication mainApplication){
+
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
-    // Add methods for handling actions/events here
 }

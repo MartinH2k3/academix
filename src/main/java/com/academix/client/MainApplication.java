@@ -1,7 +1,5 @@
 package com.academix.client;
 
-import com.academix.client.LoginController;
-import com.academix.client.RegisterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,6 +40,13 @@ public class MainApplication extends Application {
         loginController.setMainApp(this); // Pass reference to MainApplication to RegisterController
         root.setCenter(loginPane);
     }
+    public void loadCatalogStudentPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("catalog_of_universities_student.fxml"));
+        Parent catalog = loader.load();
+        CatalogStudentController catalogStudentController = loader.getController();
+        catalogStudentController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(catalog);
+    }
     public void loadHomeStudentPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home_student.fxml"));
         Parent homeStudent = loader.load();
@@ -49,12 +54,27 @@ public class MainApplication extends Application {
         homeStudentController.setMainApp(this); // Pass reference to MainApplication to RegisterController
         root.setCenter(homeStudent);
     }
-    public void loadAccountSettingsPane() throws Exception {
+    public void loadAccountSettingsStudentPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_student.fxml"));
         Parent accountset = loader.load();
-        AccountSettingsController accountSettingsController = loader.getController();
-        accountSettingsController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        AccountSettingsStudentController accountSettingsStudentController = loader.getController();
+        accountSettingsStudentController.setMainApp(this); // Pass reference to MainApplication to RegisterController
         root.setCenter(accountset);
+    }
+    public void loadAccountSettingsFacultyPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_faculty.fxml"));
+        Parent accountset = loader.load();
+        AccountSettingsFacultyController accountSettingsFacultyController = loader.getController();
+        accountSettingsFacultyController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(accountset);
+    }
+    public void loadQuizPane() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("quiz_student.fxml"));
+        Parent quiz = loader.load();
+        QuizController quizController = loader.getController();
+        quizController.initialize();
+        quizController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(quiz);
     }
 
     public static void main(String[] args) {

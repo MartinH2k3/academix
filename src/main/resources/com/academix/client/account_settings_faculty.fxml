@@ -40,22 +40,22 @@
             </Hyperlink>
          </children>
       </HBox>
-      <TextField fx:id="usernameTextfield" layoutX="50.0" layoutY="142.0" prefHeight="29.0" prefWidth="257.0" text="First name">
+      <TextField fx:id="firstNameTextfield" layoutX="50.0" layoutY="142.0" prefHeight="29.0" prefWidth="257.0" promptText="First name">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameTextfield1" layoutX="313.0" layoutY="142.0" prefHeight="29.0" prefWidth="257.0" text="Last name">
+      <TextField fx:id="lastNameTextfield" layoutX="313.0" layoutY="142.0" prefHeight="29.0" prefWidth="257.0" promptText="Last name">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameTextfield2" layoutX="50.0" layoutY="181.0" prefHeight="29.0" prefWidth="257.0" text="Phone number">
+      <TextField fx:id="phoneNumberTextfield" layoutX="50.0" layoutY="181.0" prefHeight="29.0" prefWidth="257.0" promptText="Phone number">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameTextfield11" layoutX="313.0" layoutY="181.0" prefHeight="29.0" prefWidth="257.0" text="Email">
+      <TextField fx:id="emailTextfield" layoutX="313.0" layoutY="181.0" prefHeight="29.0" prefWidth="257.0" promptText="Email">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
@@ -66,17 +66,17 @@
             <Font name="Avenir Book" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameTextfield3" layoutX="54.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" text="Current password">
+      <TextField fx:id="currentPasswordField" layoutX="54.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" promptText="Current password">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameTextfield12" layoutX="234.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" text="New password">
+      <TextField fx:id="newPasswordField" layoutX="234.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" promptText="New password">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameTextfield21" layoutX="409.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" text="Repeat New Password">
+      <TextField fx:id="repeatNewPasswordField" layoutX="409.0" layoutY="266.0" prefHeight="29.0" prefWidth="160.0" promptText="Repeat New Password">
          <font>
             <Font name="Avenir Book" size="12.0" />
          </font>
@@ -87,12 +87,12 @@
             <Font name="Avenir Book" size="14.0" />
          </font>
       </Text>
-      <Button fx:id="takeQuizButton" layoutX="458.0" layoutY="312.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
+      <Button fx:id="saveButton" layoutX="458.0" layoutY="312.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="takeQuizButton1" layoutX="339.0" layoutY="312.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="339.0" layoutY="312.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font>
