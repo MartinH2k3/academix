@@ -19,16 +19,16 @@ public class Requests {
         }
     }
 
-    public static String answerRequest(String request_id, Boolean approve){
+    public static String answerRequest(Long request_id, Boolean approve){
         String query = "UPDATE requests SET status = ? WHERE request_id = ?";
         try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, approve ? "approved" : "rejected");
-            pstmt.setString(2, request_id);
+            pstmt.setLong(2, request_id);
             pstmt.executeUpdate();
             String query2 = "UPDATE faculty_representatives SET verified = ? WHERE user_id = (SELECT user_id FROM requests WHERE request_id = ?)";
             PreparedStatement pstmt2 = conn.prepareStatement(query2);
             pstmt2.setBoolean(1, approve);
-            pstmt2.setString(2, request_id);
+            pstmt2.setLong(2, request_id);
             pstmt2.executeUpdate();
             return "Request answered";
         } catch (SQLException e) {

@@ -26,9 +26,7 @@ CREATE TABLE "faculties" (
     "parent_university_id" UUID REFERENCES "universities"("university_id"),
     "name" VARCHAR(100) NOT NULL,
     "description" TEXT,
-    "attribute1" INT DEFAULT 0,
-    "attribute2" INT DEFAULT 0,
-    "attribute3" INT DEFAULT 0,
+    "field" VARCHAR(20),
     "website_uri" VARCHAR(500),
     "title_image_uri" VARCHAR(500)
 );

@@ -9,7 +9,7 @@ public class ConnectionTest {
     public static void main(String[] args) {
         RequestSender requestSender = RequestSender.getInstance();
         // register faculty representative
-        // requestSender.sendRequest("/register?username=karol1&password=password&type=facultyRepresentative", "POST");
+        // System.out.println(requestSender.sendRequest("/register?username=karol1&password=password&type=faculty_representative", "POST"));
 
         // register student
         // requestSender.sendRequest("/register?username=karol2&password=password&type=student", "POST");
@@ -27,6 +27,9 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/submit_question?username=karolko&question="+ Base64EncoderDecoder.encode("What & Why Jesus Chris?:\n?"), "POST"));
 
         // answer question
-        System.out.println(requestSender.sendRequest("/answer_question?question_id=9&answer="+ Base64EncoderDecoder.encode("Because he is the son of God"), "POST"));
+        // System.out.println(requestSender.sendRequest("/answer_question?question_id=9&answer="+ Base64EncoderDecoder.encode("Because he is the son of God"), "POST"));
+
+        // approve faculty representative
+        // System.out.println(requestSender.sendRequest("/answer_request?request_id=1&decision=accepted", "POST"));
     }
 }
