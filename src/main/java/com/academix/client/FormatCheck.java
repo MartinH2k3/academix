@@ -98,4 +98,17 @@ public class FormatCheck {
         return matcher.matches();
     }
 
+    /**
+     * Checks if a string is a number using Integer.parseInt.
+     * @param number the string to check
+     * @return true if the string is a number, false otherwise
+     */
+    public static boolean isNumber(String number) {
+        try {
+            Integer.parseInt(number); // not necessarily regex, but still belongs here, since it checks the format
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
