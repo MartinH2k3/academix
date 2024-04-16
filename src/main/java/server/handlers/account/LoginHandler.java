@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class LoginHandler implements HttpHandler {
-    public static final LoginHandler instance = null;
+    public static LoginHandler instance = null;
 
     private LoginHandler() {
     }
@@ -22,7 +22,7 @@ public class LoginHandler implements HttpHandler {
      */
     public static LoginHandler getInstance() {
         if (instance == null) {
-            return new LoginHandler();
+            instance = new LoginHandler();
         }
         return instance;
     }
@@ -33,7 +33,6 @@ public class LoginHandler implements HttpHandler {
      * @param exchange HttpExchange (username, password)
      * @return String
      * @throws IOException
-     * @throws SQLException
      */
     public void handle(HttpExchange exchange) throws IOException{
         String response;

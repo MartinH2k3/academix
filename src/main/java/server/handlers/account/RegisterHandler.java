@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class RegisterHandler implements HttpHandler {
-    public static final RegisterHandler instance = null;
+    public static RegisterHandler instance = null;
     /**
      * RegisterHandler constructor
      */
@@ -23,7 +23,7 @@ public class RegisterHandler implements HttpHandler {
      */
     public static RegisterHandler getInstance() {
         if (instance == null) {
-            return new RegisterHandler();
+            instance = new RegisterHandler();
         }
         return instance;
     }
@@ -31,9 +31,9 @@ public class RegisterHandler implements HttpHandler {
     /**
      * Handle the registration request
      * @param exchange HttpExchange (username, password, type)
-     * @return String
+     * @return String response
      * @throws IOException
-     * @throws SQLException
+     * @throws SQLException if there is a problem with a query
      */
     public void handle(HttpExchange exchange) throws IOException{
         String response;

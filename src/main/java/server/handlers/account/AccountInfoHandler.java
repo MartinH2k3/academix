@@ -10,14 +10,14 @@ import java.io.OutputStream;
 import java.util.Map;
 
 public class AccountInfoHandler implements HttpHandler {
-    public static final AccountInfoHandler instance = null;
+    public static AccountInfoHandler instance = null;
 
     private AccountInfoHandler() {
     }
 
     public static AccountInfoHandler getInstance() {
         if (instance == null) {
-            return new AccountInfoHandler();
+            instance = new AccountInfoHandler();
         }
         return instance;
     }

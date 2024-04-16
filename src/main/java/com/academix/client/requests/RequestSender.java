@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.Locale;
 
 public class RequestSender {
-    private static final RequestSender instance = null;
+    private static RequestSender instance = null;
 
     private String domain;
 
@@ -19,7 +19,7 @@ public class RequestSender {
 
     public static RequestSender getInstance() {
         if (instance == null) {
-            return new RequestSender();
+            instance = new RequestSender();
         }
         return instance;
     }

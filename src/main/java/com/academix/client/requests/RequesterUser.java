@@ -2,9 +2,6 @@ package com.academix.client.requests;
 
 import common.Base64EncoderDecoder;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 public class RequesterUser {
     private String username;
     private RequestSender requestSender;

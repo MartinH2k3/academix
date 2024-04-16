@@ -1,2 +1,6 @@
-password change
-requests to admin
+admin accept request
+create faculty
+quiz
+submit quiz
+evaluate quiz
+return faculty
