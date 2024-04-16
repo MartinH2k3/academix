@@ -5,10 +5,19 @@ import common.Base64EncoderDecoder;
 public class RequesterUser {
     private String username;
     private RequestSender requestSender;
+    private static RequesterUser requesterUser = null;
 
-    public RequesterUser(String username) {
+    private RequesterUser(String username) {
         this.username = username;
         this.requestSender = RequestSender.getInstance();
+    }
+
+    public RequesterUser getInstance(String username) {
+        if (requesterUser == null) {
+            requesterUser = new RequesterUser(username);
+        }
+        this.username = username;
+        return requesterUser;
     }
 
     public void sendQuestion(String question) {
