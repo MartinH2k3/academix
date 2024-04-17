@@ -1,7 +1,10 @@
 package server.handlers;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.Base64EncoderDecoder;
+import common.dto.FacultyDTO;
 import server.database.faculty.FacultyCreator;
 import server.handlers.util.ParamParser;
 
@@ -26,7 +29,10 @@ public class FacultyCreationHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = FacultyCreator.addFaculty(params.get("username"), params.get("university_name"), params.get("faculty_name"), params.get("description"), params.get("field"), params.get("minimal_grade"), params.get("website_url"), params.get("title_image_url"));
+            String json = Base64EncoderDecoder.decode(params.get("faculty"));
+            Gson gson = new Gson();
+            FacultyDTO facultyDTO = gson.fromJson(json, FacultyDTO.class);
+            response = FacultyCreator.addFaculty(params.get("username"), facultyDTO.university_name, facultyDTO.faculty_name, facultyDTO.description, facultyDTO.field, facultyDTO.minimal_grade, facultyDTO.website_url, facultyDTO.title_image_url);
         } else {
             response = "Wrong request method";
         }
@@ -35,5 +41,4 @@ public class FacultyCreationHandler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
-
 }

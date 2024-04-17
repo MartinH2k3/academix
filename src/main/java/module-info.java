@@ -8,4 +8,8 @@ module com.academix.academix {
 
     opens com.academix.client to javafx.fxml;
     exports com.academix.client;
+
+    opens common to com.google.gson;
+    exports common.dto;
+
 }

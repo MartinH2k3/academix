@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ConnectionTest {
     public static void main(String[] args) {
-        RequestSender requestSender = RequestSender.getInstance();
+        // RequestSender requestSender = RequestSender.getInstance();
         // register faculty representative
         // System.out.println(requestSender.sendRequest("/register?username=karol1&password=password&type=faculty_representative", "POST"));
 
@@ -33,6 +33,8 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/answer_request?request_id=1&decision=accepted", "POST"));
 
         // create a faculty
+        RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
+        requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
         // System.out.println(requestSender.sendRequest("/create_faculty?username=karol1&faculty_name=" + URLEncoder.encode("Faculty of Computer Science", StandardCharsets.UTF_8) + "&university_name=" + URLEncoder.encode("University of Warsaw", StandardCharsets.UTF_8) + "&description=have+to+change+this+with+64+encoding&field=informatics&minimal_grade=1.38&website_url=alsoEncoding&title_image_url=alsoEncoding", "POST"));
     }
 }
