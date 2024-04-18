@@ -1,8 +1,5 @@
-admin accept request
-create faculty
-    DTO for faculty
-    add faculty id to the faculty representative
 quiz
 submit quiz
+admin - list of questions
 evaluate quiz
 return faculty

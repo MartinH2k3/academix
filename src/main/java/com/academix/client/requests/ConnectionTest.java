@@ -18,7 +18,7 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/login?username=karol1&password=password", "POST"));
 
         // update account info /account/update/{username}?x=y... would be more fitting, but without using Spring (or something similar), this is more scalable
-        // requestSender.sendRequest("/account/update?username=karol1&password=password&email=bob@bob.com&first_name=Karol&last_name=Kowalski&phone_number=123456789", "POST");
+        // requestSender.sendRequest("/account/update?username=karol1&email=bob@bob.com&first_name=Karol&last_name=Kowalski&phone_number=123456789", "POST");
 
         // reset password
         // System.out.println(requestSender.sendRequest("/account/reset_password?username=karolko&old_password=pass&new_password=password", "POST"));
@@ -35,6 +35,6 @@ public class ConnectionTest {
         // create a faculty
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
-        // System.out.println(requestSender.sendRequest("/create_faculty?username=karol1&faculty_name=" + URLEncoder.encode("Faculty of Computer Science", StandardCharsets.UTF_8) + "&university_name=" + URLEncoder.encode("University of Warsaw", StandardCharsets.UTF_8) + "&description=have+to+change+this+with+64+encoding&field=informatics&minimal_grade=1.38&website_url=alsoEncoding&title_image_url=alsoEncoding", "POST"));
+
     }
 }

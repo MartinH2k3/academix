@@ -80,18 +80,12 @@ CREATE TABLE "requests" (
 
 CREATE TABLE "quiz_results" (
     "test_id" BIGSERIAL PRIMARY KEY,
-    "user_id" UUID NOT NULL REFERENCES "users"("user_id"),
-    "attribute1" INT DEFAULT 0,
-    "attribute2" INT DEFAULT 0,
-    "attribute3" INT DEFAULT 0
+    "user_id" UUID NOT NULL REFERENCES "users"("user_id")
 );
 
 CREATE TABLE "school_results" (
     "school_result_id" BIGSERIAL PRIMARY KEY,
-    "user_id" UUID NOT NULL REFERENCES "users"("user_id"),
-    "attribute1" INT DEFAULT 0,
-    "attribute2" INT DEFAULT 0,
-    "attribute3" INT DEFAULT 0
+    "user_id" UUID NOT NULL REFERENCES "users"("user_id")
 );
 
 -- Commit transaction

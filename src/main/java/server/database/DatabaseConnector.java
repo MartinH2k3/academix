@@ -6,6 +6,11 @@ import java.util.Properties;
 public class DatabaseConnector {
     private static Connection connection = null;
 
+    /**
+     * Connect to the database
+     * @return Connection object
+     * @throws SQLException
+     */
     public static final Connection connect() throws SQLException {
         if (connection == null || connection.isClosed()) {
             String url = "jdbc:postgresql://localhost:5432/academix?user=postgres";

@@ -7,6 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Requests {
+    /**
+     * Create an entry for the request to become a faculty representative
+     * @param username Username of the user requesting to become a faculty representative
+     * @return Success or failure message
+     */
     public static String submitFacultyRepRequest(String username){
         String query = "INSERT INTO requests (user_id, status) VALUES ((SELECT user_id FROM users WHERE username = ?), 'pending')";
         try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -19,6 +24,12 @@ public class Requests {
         }
     }
 
+    /**
+     * Approves the request to become a faculty representative
+     * @param request_id
+     * @param approve
+     * @return
+     */
     public static String answerRequest(Long request_id, Boolean approve){
         String query = "UPDATE requests SET status = ? WHERE request_id = ?";
         try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
