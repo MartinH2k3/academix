@@ -1,10 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
-import server.handlers.AcceptRejectHandler;
-import server.handlers.FacultyCreationHandler;
-import server.handlers.HelplineAnswerHandler;
-import server.handlers.HelplineQuestionHandler;
+import server.handlers.*;
 import server.handlers.account.AccountInfoHandler;
 import server.handlers.account.LoginHandler;
 import server.handlers.account.PasswordResetHandler;
@@ -24,6 +21,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/answer_question", HelplineAnswerHandler.getInstance());
         server.createContext("/answer_request", AcceptRejectHandler.getInstance());
         server.createContext("/create_faculty", FacultyCreationHandler.getInstance());
+        server.createContext("/pending_questions", PendingQuestionsHandler.getInstance());
         server.setExecutor(null); // creates a default executor
         server.start();
     }

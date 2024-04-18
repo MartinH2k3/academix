@@ -29,6 +29,7 @@ public class AcceptRejectHandler implements HttpHandler {
             response = Requests.answerRequest(Long.parseLong(params.get("request_id")), params.get("decision").equalsIgnoreCase("accepted"));
         } else {
             response = "Wrong request method";
+            // TODO log here
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

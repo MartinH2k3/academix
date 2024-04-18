@@ -7,7 +7,9 @@ import java.nio.charset.StandardCharsets;
 
 public class ConnectionTest {
     public static void main(String[] args) {
-        // RequestSender requestSender = RequestSender.getInstance();
+        RequesterUser requesterUser = RequesterUser.getInstance();
+        RequesterAdmin requesterAdmin = RequesterAdmin.getInstance();
+        RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         // register faculty representative
         // System.out.println(requestSender.sendRequest("/register?username=karol1&password=password&type=faculty_representative", "POST"));
 
@@ -24,8 +26,11 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/account/reset_password?username=karolko&old_password=pass&new_password=password", "POST"));
 
         // submit question
-        // System.out.println(requestSender.sendRequest("/submit_question?username=karolko&question="+ Base64EncoderDecoder.encode("What & Why Jesus Chris?:\n?"), "POST"));
-
+        requesterUser.sendQuestion("karol1", "Why did Jesus die?");
+        requesterUser.sendQuestion("karol1", "Why did Jesus die again?");
+        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again?");
+        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again and again?");
+        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again and again and again?");
         // answer question
         // System.out.println(requestSender.sendRequest("/answer_question?question_id=9&answer="+ Base64EncoderDecoder.encode("Because he is the son of God"), "POST"));
 
@@ -33,8 +38,9 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/answer_request?request_id=1&decision=accepted", "POST"));
 
         // create a faculty
-        RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
-        requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
+        // requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
 
+        // get pending questions
+        requesterAdmin.getPendingQuestions();
     }
 }

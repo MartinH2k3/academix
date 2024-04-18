@@ -31,6 +31,7 @@ public class HelplineQuestionHandler implements HttpHandler {
             response = Helpline.submitQuestion(params.get("username"), question);
         } else {
             response = "Wrong request method";
+            // TODO log here
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

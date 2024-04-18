@@ -3,27 +3,36 @@ package com.academix.client.requests;
 import common.Base64EncoderDecoder;
 
 public class RequesterUser {
-    private String username;
     private RequestSender requestSender;
     private static RequesterUser requesterUser = null;
 
-    private RequesterUser(String username) {
-        this.username = username;
+    private RequesterUser() {
         this.requestSender = RequestSender.getInstance();
     }
 
-    public RequesterUser getInstance(String username) {
+    public static RequesterUser getInstance() {
         if (requesterUser == null) {
-            requesterUser = new RequesterUser(username);
+            requesterUser = new RequesterUser();
         }
-        this.username = username;
         return requesterUser;
     }
 
+    /**
+     * registers the user
+     * @param username
+     * @param password
+     * @return response from the server, status of the registration
+     */
     public String register(String username, String password) {
         return requestSender.sendRequest("/register?username=" + username + "&password=" + password, "POST");
     }
 
+    /**
+     * logs in the user
+     * @param username
+     * @param password
+     * @return response from the server, status of the login
+     */
     public String login(String username, String password) {
         return requestSender.sendRequest("/login?username=" + username + "&password=" + password, "GET");
     }
@@ -39,7 +48,22 @@ public class RequesterUser {
         return requestSender.sendRequest("/account/update?username=" + username + "&email=" + email + "&first_name=" + firstName + "&last_name=" + lastName + "&phone_number=" + phoneNumber, "POST");
     }
 
-    public String sendQuestion(String question) {
+    /**
+     * @param username to know whose password to reset
+     * @param oldPassword
+     * @param newPassword
+     * @return response, confirming whether the password was reset
+     */
+    public String resetPassword(String username, String oldPassword, String newPassword) {
+        return requestSender.sendRequest("/account/reset_password?username=" + username + "&old_password=" + oldPassword + "&new_password=" + newPassword, "POST");
+    }
+
+    /**
+     * sends a question to the helpline, which will later be answered by the admin
+     * @param question to be sent
+     * @return response from the server, confirming whether the question was sent
+     */
+    public String sendQuestion(String username, String question) {
         question = Base64EncoderDecoder.encode(question);
         return requestSender.sendRequest("/submit_question?username=" + username + "&question=" + question, "POST");
     }

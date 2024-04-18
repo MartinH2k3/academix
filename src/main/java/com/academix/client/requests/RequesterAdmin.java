@@ -1,30 +1,52 @@
 package com.academix.client.requests;
 
+import com.google.gson.Gson;
+import common.Base64EncoderDecoder;
+
+import java.util.Map;
+
 public class RequesterAdmin {
-    private RequesterAdmin requesterAdmin = null;
+    private static RequesterAdmin requesterAdmin = null;
     private RequestSender requestSender;
 
     private RequesterAdmin() {
         requestSender = RequestSender.getInstance();
     }
 
-    public RequesterAdmin getInstance() {
+    public static RequesterAdmin getInstance() {
         if (requesterAdmin == null) {
             requesterAdmin = new RequesterAdmin();
         }
         return requesterAdmin;
     }
 
+    /**
+     * Sends a request for all pending questions, that haven't been answered by an admin yet
+     * @return a map of pending questions
+     */
+    public Map<Long, String> getPendingQuestions() {
+        String response =  requestSender.sendRequest("/pending_questions", "GET");
+        String json = Base64EncoderDecoder.decode(response);
+        Gson gson = new Gson();
+        return gson.fromJson(json, Map.class);
+    }
+
+    /**
+     * Evaluates a request, either accepting or rejecting it
+     * @param requestId the id of the request
+     * @param decision the decision to be made
+     * @return the response from the server
+     */
     private String evaluateRequest(Long requestId, String decision) {
         return requestSender.sendRequest("/answer_request?" + "request_id=" + requestId + "&decision=" + decision, "POST");
     }
 
-    public void acceptRequest(Long requestId) {
-        evaluateRequest(requestId, "accepted");
+    public String acceptRequest(Long requestId) {
+        return evaluateRequest(requestId, "accepted");
     }
 
-    public void rejectRequest(Long requestId) {
-        evaluateRequest(requestId, "rejected");
+    public String rejectRequest(Long requestId) {
+        return evaluateRequest(requestId, "rejected");
     }
 
 }

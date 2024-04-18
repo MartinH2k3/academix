@@ -32,6 +32,7 @@ public class HelplineAnswerHandler implements HttpHandler {
             response = Helpline.answerQuestion(Long.parseLong(params.get("question_id")), answer);
         } else {
             response = "Wrong request method";
+            // TODO log here
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

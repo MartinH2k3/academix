@@ -35,6 +35,7 @@ public class FacultyCreationHandler implements HttpHandler {
             response = FacultyCreator.addFaculty(params.get("username"), facultyDTO.university_name, facultyDTO.faculty_name, facultyDTO.description, facultyDTO.field, facultyDTO.minimal_grade, facultyDTO.website_url, facultyDTO.title_image_url);
         } else {
             response = "Wrong request method";
+            // TODO log here
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();
