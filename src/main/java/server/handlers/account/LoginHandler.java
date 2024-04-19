@@ -1,14 +1,15 @@
 package server.handlers.account;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.LoginCredentialsDTO;
 import server.database.user.Auth;
-import server.handlers.util.ParamParser;
+import server.handlers.util.HttpStreamManager;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class LoginHandler implements HttpHandler {
     public static LoginHandler instance = null;
@@ -37,9 +38,11 @@ public class LoginHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException{
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
+            String json = HttpStreamManager.readRequestBody(exchange);
+            Gson gson = new Gson();
+            LoginCredentialsDTO dto = gson.fromJson(json, LoginCredentialsDTO.class);
             try {
-                response = Auth.login(params.get("username"), params.get("password"));
+                response = Auth.login(dto.username, dto.password);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

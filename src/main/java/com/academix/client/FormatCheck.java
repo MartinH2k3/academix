@@ -6,19 +6,23 @@ import java.util.regex.Matcher;
 public class FormatCheck {
 
     // Email patter from https://www.freeformatter.com/
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[-a-z0-9~!$%^&*_=+}{\\'?]+(\\.[-a-z0-9~!$%^&*_=+}{\\'?]+)*@([a-z0-9_][-a-z0-9_]*(\\.[-a-z0-9_]+)*\\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,5})?$");
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[-a-z0-9~!$%^&*_=+}{'?]+(\\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\\.[-a-z0-9_]+)*\\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,5})?$");
     // Shortest phone number is 7 digits in Saint Helena and 15 digits is the limit according to the current standard
     private static final Pattern PHONE_PATTERN = Pattern.compile("^\\+\\d{7,15}$");
     // We decided 20 characters is enough when planning the database
-    private static final Pattern USERNAME_PATTERN = Pattern.compile("^[a-zA-Z0-9_]{3,20}$");
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("^\\w{3,20}$");
     // 40 is the longest first name according to an unverified research, using \p{L} would be more accurate, but this is safer
     private static final Pattern FIRST_NAME_PATTERN = Pattern.compile("^\\p{L}{1,40}$");
     // 40 is the longest last name according to an unverified research
     private static final Pattern LAST_NAME_PATTERN = Pattern.compile("^\\p{L}{1,40}$");
     // 61 was the longest university name in slovakia, 100 is a safe limit
-    private static final Pattern UNIVERSITY_NAME_PATTERN = Pattern.compile("^\\w{1,100}$");
+    private static final Pattern UNIVERSITY_NAME_PATTERN = Pattern.compile("^\\w[\\w\s]{1,99}$");
     // For faculty, 100 is a safe limit as well
-    private static final Pattern FACULTY_NAME_PATTERN = Pattern.compile("^\\w{1,100}$");
+    private static final Pattern FACULTY_NAME_PATTERN = Pattern.compile("^\\w[\\w\s]{1,99}$");
+    // Grade is a number between 1 and 5 and has two decimal places
+    private static final Pattern GRADE_PATTERN = Pattern.compile("^([1-5](\\.\\d{1,2})?)$");
+    // Regex for URL. http or https protocol, followed by a domain name, with path, with optional file at the end
+    private static final Pattern URL_PATTERN = Pattern.compile("^(http|https)://[a-zA-Z0-9.-]+\\.[a-z]+(/[a-zA-Z0-9#]+/?)*(/\\w+\\.\\w+)?$");
 
 
     /**
@@ -52,6 +56,16 @@ public class FormatCheck {
         if (username == null) return false;
         Matcher matcher = USERNAME_PATTERN.matcher(username);
         return matcher.matches();
+    }
+
+    /**
+     * Validates a password using Pattern and Matcher.
+     * @param password the password to validate
+     * @return true if the password is valid according to the PASSWORD_PATTERN, false otherwise
+     */
+    public static boolean isValidPassword(String password) {
+        if (password == null) return false;
+        return password.length() >= 8;
     }
 
     /**
@@ -103,12 +117,64 @@ public class FormatCheck {
      * @param number the string to check
      * @return true if the string is a number, false otherwise
      */
-    public static boolean isNumber(String number) {
+    public static boolean isWholeNumber(String number) {
         try {
             Integer.parseInt(number); // not necessarily regex, but still belongs here, since it checks the format
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    /**
+     * Checks if a string is a number using Double.parseDouble.
+     * @param number the string to check
+     * @return true if the string is a number, false otherwise
+     */
+    public static boolean isNumber(String number){
+        try {
+            Double.parseDouble(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Validates if a grade is a number between 1 and 5 with 2 decimals using Pattern and Matcher.
+     * @param grade the grade to validate
+     * @return true if the grade is valid according to the GRADE_PATTERN, false otherwise
+     */
+    public static boolean isValidGrade(String grade) {
+        if (grade == null) return false;
+        Matcher matcher = GRADE_PATTERN.matcher(grade);
+        return matcher.matches();
+    }
+
+    /**
+     * Validates a URL using Pattern and Matcher.
+     * @param url the URL to validate
+     * @return true if the URL is valid according to the URL_PATTERN, false otherwise
+     */
+    public static boolean isValidUrl(String url) {
+        if (url == null) return false;
+        Matcher matcher = URL_PATTERN.matcher(url);
+        return matcher.matches();
+    }
+
+    /**
+     * Checks if a field is one of these: informatics, biology, mathematics, physics, medicine, veterinary medicine, law, business, marketing.
+     * @param field the field to check
+     * @return true if the field is a valid field of study, false otherwise
+     */
+    public static boolean isValidField(String field) {
+        if (field == null) return false;
+        String[] validFields = {"informatics", "biology", "mathematics", "physics", "medicine", "veterinary_medicine", "law", "business", "marketing"};
+        for (String validField : validFields) {
+            if (field.equalsIgnoreCase(validField)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

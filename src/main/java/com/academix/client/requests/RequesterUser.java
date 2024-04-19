@@ -1,6 +1,10 @@
 package com.academix.client.requests;
 
-import common.Base64EncoderDecoder;
+import com.academix.client.FormatCheck;
+import com.google.gson.Gson;
+import common.dto.AccountInfoDTO;
+import common.dto.ChangePasswordDTO;
+import common.dto.LoginCredentialsDTO;
 
 public class RequesterUser {
     private RequestSender requestSender;
@@ -19,12 +23,23 @@ public class RequesterUser {
 
     /**
      * registers the user
-     * @param username
-     * @param password
+     * @param username has to be unique
+     * @param password has to be at least 6 characters long
      * @return response from the server, status of the registration
      */
-    public String register(String username, String password) {
-        return requestSender.sendRequest("/register?username=" + username + "&password=" + password, "POST");
+    public String register(String username, String password, String type) {
+        if (!FormatCheck.isValidUsername(username)) {
+            return "Error: Invalid username.";
+        }
+        if (!FormatCheck.isValidPassword(password)) {
+            return "Error: Password too short.";
+        }
+        LoginCredentialsDTO dto = new LoginCredentialsDTO();
+        dto.username = username;
+        dto.password = password;
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        return requestSender.sendRequest("/register?type=" + type, json, "POST");
     }
 
     /**
@@ -34,18 +49,44 @@ public class RequesterUser {
      * @return response from the server, status of the login
      */
     public String login(String username, String password) {
-        return requestSender.sendRequest("/login?username=" + username + "&password=" + password, "GET");
+        LoginCredentialsDTO dto = new LoginCredentialsDTO();
+        dto.username = username;
+        dto.password = password;
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        return requestSender.sendRequest("/login", json, "GET");
     }
 
     /**
+     * Changes information about the user. Add null for the fields that are not to be updated.
      * @param username to know whose information to update
-     * @param email
-     * @param firstName
-     * @param lastName
-     * @return
+     * @param email part of the body
+     * @param firstName part of the body
+     * @param lastName part of the body
+     * @param phoneNumber part of the body
+     * @return response from the server, confirming whether the account was updated
      */
-    public String updateAccount(String username, String email, String firstName, String lastName, String phoneNumber) {
-        return requestSender.sendRequest("/account/update?username=" + username + "&email=" + email + "&first_name=" + firstName + "&last_name=" + lastName + "&phone_number=" + phoneNumber, "POST");
+    public String updateAccountInfo(String username, String email, String firstName, String lastName, String phoneNumber) {
+        AccountInfoDTO dto = new AccountInfoDTO();
+        if (email != null && !FormatCheck.isValidEmail(email)) {
+            return "Error: Invalid email.";
+        }
+        if (firstName != null && !FormatCheck.isValidFirstName(firstName)) {
+            return "Error: Invalid first name.";
+        }
+        if (lastName != null && !FormatCheck.isValidLastName(lastName)) {
+            return "Error: Invalid last name.";
+        }
+        if (phoneNumber != null && !FormatCheck.isValidPhoneNumber(phoneNumber)) {
+            return "Error: Invalid phone number.";
+        }
+        dto.email = email;
+        dto.firstName = firstName;
+        dto.lastName = lastName;
+        dto.phoneNumber = phoneNumber;
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        return requestSender.sendRequest("/account/update?username=" + username, json, "POST");
     }
 
     /**
@@ -55,7 +96,13 @@ public class RequesterUser {
      * @return response, confirming whether the password was reset
      */
     public String resetPassword(String username, String oldPassword, String newPassword) {
-        return requestSender.sendRequest("/account/reset_password?username=" + username + "&old_password=" + oldPassword + "&new_password=" + newPassword, "POST");
+        ChangePasswordDTO dto = new ChangePasswordDTO();
+        dto.username = username;
+        dto.oldPassword = oldPassword;
+        dto.newPassword = newPassword;
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        return requestSender.sendRequest("/account/reset_password", json,"POST");
     }
 
     /**
@@ -64,7 +111,6 @@ public class RequesterUser {
      * @return response from the server, confirming whether the question was sent
      */
     public String sendQuestion(String username, String question) {
-        question = Base64EncoderDecoder.encode(question);
-        return requestSender.sendRequest("/submit_question?username=" + username + "&question=" + question, "POST");
+        return requestSender.sendRequest("/submit_question?username=" + username, question, "POST");
     }
 }

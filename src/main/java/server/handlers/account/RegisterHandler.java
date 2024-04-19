@@ -1,8 +1,11 @@
 package server.handlers.account;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.LoginCredentialsDTO;
 import server.database.user.Auth;
+import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
 
 import java.io.IOException;
@@ -38,8 +41,11 @@ public class RegisterHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException{
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
+            String json = HttpStreamManager.readRequestBody(exchange);
+            Gson gson = new Gson();
+            LoginCredentialsDTO dto = gson.fromJson(json, LoginCredentialsDTO.class);
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = Auth.register(params.get("username"), params.get("password"), params.get("type"));
+            response = Auth.register(dto.username, dto.password, params.get("type"));
         }
         else {
             response = "Wrong request method";

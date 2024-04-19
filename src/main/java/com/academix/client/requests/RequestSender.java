@@ -60,7 +60,6 @@ public class RequestSender {
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(requestMethod.toUpperCase(Locale.ROOT));
             conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Type", "application/json");
             try (OutputStream os = conn.getOutputStream(); OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
                 osw.write(body); // Write the body of the request to the output stream
                 osw.flush(); // Ensure all data is sent

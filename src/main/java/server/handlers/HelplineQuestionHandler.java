@@ -2,8 +2,8 @@ package server.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import common.Base64EncoderDecoder;
 import server.database.support.Helpline;
+import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class HelplineQuestionHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            String question = Base64EncoderDecoder.decode(params.get("question"));
+            String question = HttpStreamManager.readRequestBody(exchange);
             response = Helpline.submitQuestion(params.get("username"), question);
         } else {
             response = "Wrong request method";

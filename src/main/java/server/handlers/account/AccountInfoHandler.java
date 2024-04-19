@@ -1,8 +1,11 @@
 package server.handlers.account;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.AccountInfoDTO;
 import server.database.user.AccountInfoUpdate;
+import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
 
 import java.io.IOException;
@@ -34,6 +37,9 @@ public class AccountInfoHandler implements HttpHandler {
         String username;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) { // PUT more correct, but POST, so it's more uniform
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
+            String input = HttpStreamManager.readRequestBody(exchange);
+            Gson gson = new Gson();
+            AccountInfoDTO dto = gson.fromJson(input, AccountInfoDTO.class);
             // check what parameters are present and call corresponding method
             response = "";
 
@@ -48,20 +54,20 @@ public class AccountInfoHandler implements HttpHandler {
 
             username = params.get("username");
 
-            if (params.containsKey("first_name")) {
-                response += AccountInfoUpdate.updateFirstName(username, params.get("first_name"));
+            if (dto.email != null) {
+                response += AccountInfoUpdate.updateEmail(username, dto.email);
             }
 
-            if (params.containsKey("last_name")) {
-                response += AccountInfoUpdate.updateLastName(username, params.get("last_name"));
+            if (dto.firstName != null) {
+                response += AccountInfoUpdate.updateFirstName(username, dto.firstName);
             }
 
-            if (params.containsKey("email")) {
-                response += AccountInfoUpdate.updateEmail(username, params.get("email"));
+            if (dto.lastName != null) {
+                response += AccountInfoUpdate.updateLastName(username, dto.lastName);
             }
 
-            if (params.containsKey("phone_number")) {
-                response += AccountInfoUpdate.updatePhoneNumber(username, params.get("phone_number"));
+            if (dto.phoneNumber != null) {
+                response += AccountInfoUpdate.updatePhoneNumber(username, dto.phoneNumber);
             }
 
             if (response.equals("")) {

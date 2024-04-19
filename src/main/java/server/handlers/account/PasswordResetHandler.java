@@ -1,13 +1,14 @@
 package server.handlers.account;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.ChangePasswordDTO;
 import server.database.user.Auth;
-import server.handlers.util.ParamParser;
+import server.handlers.util.HttpStreamManager;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Map;
 
 public class PasswordResetHandler implements HttpHandler {
     private static PasswordResetHandler instance = null;
@@ -31,8 +32,10 @@ public class PasswordResetHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = Auth.resetPassword(params.get("username"), params.get("old_password"), params.get("new_password"));
+            String json = HttpStreamManager.readRequestBody(exchange);
+            Gson gson = new Gson();
+            ChangePasswordDTO dto = gson.fromJson(json, ChangePasswordDTO.class);
+            response = Auth.resetPassword(dto.username, dto.oldPassword, dto.newPassword);
         } else {
             response = "Wrong request method";
         }

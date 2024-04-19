@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class RequesterAdmin {
     private static RequesterAdmin requesterAdmin = null;
-    private RequestSender requestSender;
+    private final RequestSender requestSender;
 
     private RequesterAdmin() {
         requestSender = RequestSender.getInstance();
@@ -47,6 +47,10 @@ public class RequesterAdmin {
 
     public String rejectRequest(Long requestId) {
         return evaluateRequest(requestId, "rejected");
+    }
+
+    public String answerQuestion(Long questionId, String answer) {
+        return requestSender.sendRequest("/answer_question?question_id=" + questionId, answer, "POST");
     }
 
 }

@@ -1,43 +1,39 @@
 package com.academix.client.requests;
 
-import common.Base64EncoderDecoder;
-
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 public class ConnectionTest {
     public static void main(String[] args) {
         RequesterUser requesterUser = RequesterUser.getInstance();
         RequesterAdmin requesterAdmin = RequesterAdmin.getInstance();
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         // register faculty representative
-        // System.out.println(requestSender.sendRequest("/register?username=karol1&password=password&type=faculty_representative", "POST"));
+        // System.out.println(requesterUser.register("bobert14", "password", "faculty_representative"));
 
         // register student
-        // requestSender.sendRequest("/register?username=karol2&password=password&type=student", "POST");
+        // System.out.println(requesterUser.register("shmosby", "password", "student"));
 
         // login
-        // System.out.println(requestSender.sendRequest("/login?username=karol1&password=password", "POST"));
+        // System.out.println(requesterUser.login("shmosby", "password"));
 
-        // update account info /account/update/{username}?x=y... would be more fitting, but without using Spring (or something similar), this is more scalable
-        // requestSender.sendRequest("/account/update?username=karol1&email=bob@bob.com&first_name=Karol&last_name=Kowalski&phone_number=123456789", "POST");
+        // update account info /account/{username}/update?x=y... would be more fitting, but without using Spring (or something similar), this is more scalable
+        // System.out.println(requesterUser.updateAccountInfo("shmosby", "email", "firstname", "lastname", "phone_number"));
 
         // reset password
-        // System.out.println(requestSender.sendRequest("/account/reset_password?username=karolko&old_password=pass&new_password=password", "POST"));
+        // System.out.println(requesterUser.resetPassword("shmosby", "password", "new_password"));
+        // System.out.println(requesterUser.resetPassword("shmosby", "new_password", "password"));
 
         // submit question
-        // requesterUser.sendQuestion("karol1", "Why did Jesus die?");
+        // System.out.println(requesterUser.sendQuestion("shmosby", "What is the meaning of life?"));
 
         // answer question
-        // System.out.println(requestSender.sendRequest("/answer_question?question_id=9&answer="+ Base64EncoderDecoder.encode("Because he is the son of God"), "POST"));
+        // System.out.println(requesterAdmin.answerQuestion(1L, "He died for our sins"));
 
         // approve faculty representative
-        // System.out.println(requestSender.sendRequest("/answer_request?request_id=1&decision=accepted", "POST"));
+        // System.out.println(requesterAdmin.acceptRequest(2L));
 
         // create a faculty
-        requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
+        // System.out.println(requesterFaculty.createFaculty("bobert14", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Yeah, its a school. Get over it", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
 
         // get pending questions
-        // requesterAdmin.getPendingQuestions();
+        // System.out.println(requesterAdmin.getPendingQuestions());
     }
 }
