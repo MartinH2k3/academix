@@ -31,6 +31,6 @@ public class RequesterFaculty {
 
         Gson gson = new Gson();
         String json = gson.toJson(facultyDTO);
-        return requestSender.sendRequest("/create_faculty?username=" + username + "&faculty=" + Base64EncoderDecoder.encode(json), "POST");
+        return requestSender.sendRequest("/create_faculty?username=" + username, json, "POST");
     }
 }

@@ -26,11 +26,8 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/account/reset_password?username=karolko&old_password=pass&new_password=password", "POST"));
 
         // submit question
-        requesterUser.sendQuestion("karol1", "Why did Jesus die?");
-        requesterUser.sendQuestion("karol1", "Why did Jesus die again?");
-        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again?");
-        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again and again?");
-        requesterUser.sendQuestion("karol1", "Why did Jesus die again and again and again and again?");
+        // requesterUser.sendQuestion("karol1", "Why did Jesus die?");
+
         // answer question
         // System.out.println(requestSender.sendRequest("/answer_question?question_id=9&answer="+ Base64EncoderDecoder.encode("Because he is the son of God"), "POST"));
 
@@ -38,9 +35,9 @@ public class ConnectionTest {
         // System.out.println(requestSender.sendRequest("/answer_request?request_id=1&decision=accepted", "POST"));
 
         // create a faculty
-        // requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
+        requesterFaculty.createFaculty("karol1", "University of Warsaw", "Faculty of Computer Science", "I think this should be good enough", "informatics", "1.38", "http://bob.com", "http://robert.com/image.jpg");
 
         // get pending questions
-        requesterAdmin.getPendingQuestions();
+        // requesterAdmin.getPendingQuestions();
     }
 }

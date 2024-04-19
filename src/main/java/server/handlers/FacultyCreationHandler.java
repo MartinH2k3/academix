@@ -8,7 +8,9 @@ import common.dto.FacultyDTO;
 import server.database.faculty.FacultyCreator;
 import server.handlers.util.ParamParser;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
@@ -28,10 +30,19 @@ public class FacultyCreationHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
+            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder json = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                json.append(line);
+            }
+            br.close();
+            isr.close();
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            String json = Base64EncoderDecoder.decode(params.get("faculty"));
+//            String json = Base64EncoderDecoder.decode(params.get("faculty"));
             Gson gson = new Gson();
-            FacultyDTO facultyDTO = gson.fromJson(json, FacultyDTO.class);
+            FacultyDTO facultyDTO = gson.fromJson(json.toString(), FacultyDTO.class);
             response = FacultyCreator.addFaculty(params.get("username"), facultyDTO.university_name, facultyDTO.faculty_name, facultyDTO.description, facultyDTO.field, facultyDTO.minimal_grade, facultyDTO.website_url, facultyDTO.title_image_url);
         } else {
             response = "Wrong request method";
