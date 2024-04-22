@@ -1,5 +1,6 @@
-package com.academix.client;
+package com.academix.client.controllers;
 
+import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

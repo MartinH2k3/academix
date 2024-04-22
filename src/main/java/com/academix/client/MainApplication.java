@@ -1,5 +1,6 @@
 package com.academix.client;
 
+import com.academix.client.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -76,6 +77,28 @@ public class MainApplication extends Application {
         quizController.setMainApp(this); // Pass reference to MainApplication to RegisterController
         root.setCenter(quiz);
     }
+    public void loadHomeFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_faculty.fxml"));
+        Parent home = loader.load();
+        HomeFacultyConstroller homeFacultyConstroller = loader.getController();
+        homeFacultyConstroller.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(home);
+    }
+    public void loadMyFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("my_faculty.fxml"));
+        Parent quiz = loader.load();
+        MyFacultyController myFacultyController = loader.getController();
+        myFacultyController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(quiz);
+    }
+    public void loadCatalogFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("catalog_of_universities_faculty.fxml"));
+        Parent catalog = loader.load();
+        CatalogFacultyController catalogFacultyController = loader.getController();
+        catalogFacultyController.setMainApp(this); // Pass reference to MainApplication to RegisterController
+        root.setCenter(catalog);
+    }
+
 
     public static void main(String[] args) {
         launch(args);
