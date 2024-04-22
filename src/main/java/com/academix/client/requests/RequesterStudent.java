@@ -1,6 +1,7 @@
 package com.academix.client.requests;
 
 import com.google.gson.Gson;
+import common.dto.FacultyDTO;
 
 import java.util.Map;
 
@@ -23,5 +24,11 @@ public class RequesterStudent {
         String json = requestSender.sendRequest("/quiz", "GET");
         Gson gson = new Gson();
         return gson.fromJson(json, Map.class);
+    }
+
+    public FacultyDTO facultyBasedOnQuiz(String field, String grade) {
+        String json = requestSender.sendRequest("/quiz_result?field=" + field + "&grade=" + grade, "GET");
+        Gson gson = new Gson();
+        return gson.fromJson(json, FacultyDTO.class);
     }
 }

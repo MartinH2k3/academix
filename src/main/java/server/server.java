@@ -1,6 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
+import server.handlers.QuizEvaluationHandler;
 import server.handlers.QuizHandler;
 import server.handlers.account.AccountInfoHandler;
 import server.handlers.account.LoginHandler;
@@ -31,7 +32,7 @@ public static void main(String[] args) throws IOException {
 
         // TODO: add the following handlers
         server.createContext("/quiz", QuizHandler.getInstance());
-        //server.createContext("/submit_quiz", QuizSubmissionHandler.getInstance());
+        server.createContext("/quiz_result", QuizEvaluationHandler.getInstance());
         server.createContext("/faculties", GetFacultiesHandler.getInstance());
         server.setExecutor(null); // creates a default executor
         server.start();
