@@ -2,9 +2,15 @@ package com.academix.client.requests;
 
 import com.academix.client.FormatCheck;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import common.Base64EncoderDecoder;
 import common.dto.AccountInfoDTO;
 import common.dto.ChangePasswordDTO;
+import common.dto.FacultyDTO;
 import common.dto.LoginCredentialsDTO;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class RequesterUser {
     private RequestSender requestSender;
@@ -112,5 +118,12 @@ public class RequesterUser {
      */
     public String sendQuestion(String username, String question) {
         return requestSender.sendRequest("/submit_question?username=" + username, question, "POST");
+    }
+
+    public List<FacultyDTO> get_faculties() {
+        String response = requestSender.sendRequest("/faculties", "GET");
+        Gson gson = new Gson();
+        Type facultyListType = new TypeToken<List<FacultyDTO>>(){}.getType();
+        return gson.fromJson(response, facultyListType);
     }
 }
