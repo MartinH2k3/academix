@@ -1,5 +1,6 @@
-package com.academix.client;
+package com.academix.client.controllers;
 
+import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,13 +52,13 @@ public class CatalogFacultyController {
 
     @FXML
     void goToCatalog() {
-        // Implement action here
+
     }
 
     @FXML
     void goToAccountSettings() {
         try {
-            mainApplication.loadCatalogStudentPane();
+            mainApplication.loadAccountSettingsFacultyPane();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,10 +78,15 @@ public class CatalogFacultyController {
         }
     }
 
+    @FXML
     void goToMyFaculty() {
 
     }
-    public void setMainApplication(MainApplication mainApplication){
-        this.mainApplication=mainApplication;
+
+    public void setMainApp(MainApplication mainApplication) {
+        this.mainApplication = mainApplication;
+    }
+
+    public void schoolInfo(ActionEvent actionEvent) {
     }
 }

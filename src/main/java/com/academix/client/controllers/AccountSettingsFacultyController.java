@@ -1,4 +1,6 @@
-package com.academix.client;
+package com.academix.client.controllers;
+
+import com.academix.client.MainApplication;
 
 public class AccountSettingsFacultyController {
     private MainApplication mainApplication;

@@ -1,17 +1,20 @@
-package com.academix.client;
+package com.academix.client.controllers;
 
+import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class CatalogStudentController {
+public class HomeStudentController {
     private MainApplication mainApplication;
+
+    @FXML
+    private HBox navigationBar;
+
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -31,31 +34,46 @@ public class CatalogStudentController {
     private Hyperlink signOutHyperlink;
 
     @FXML
-    private ScrollBar scrollBar;
-
-    @FXML
-    private Label label1;
-
-    @FXML
     private Text takeALookText;
 
     @FXML
-    private Button SelectButton1;
+    private Pane facultyPane1;
 
     @FXML
-    private TextField usernameTextfield;
+    private Pane facultyPane2;
 
     @FXML
-    private ImageView imageView;
+    private Pane facultyPane3;
 
     @FXML
-    private Label label2;
+    private Text belongText;
 
     @FXML
-    private Text takeALookText1;
+    private Text facultyText1;
 
     @FXML
-    private Button SelectButton2;
+    private Text uniText1;
+
+    @FXML
+    private Text facultyText2;
+
+    @FXML
+    private Text uniText2;
+
+    @FXML
+    private Text facultyText3;
+
+    @FXML
+    private Text uniText3;
+
+    @FXML
+    private Button takeQuizButton;
+
+    @FXML
+    private void initialize() {
+        // Initialization code
+    }
+
     public void goToPastResults(ActionEvent actionEvent) {
     }
 
@@ -73,6 +91,7 @@ public class CatalogStudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void goToAccountSettings(ActionEvent actionEvent) {
@@ -93,8 +112,8 @@ public class CatalogStudentController {
             e.printStackTrace();
         }
     }
-
-    public void setMainApp(MainApplication mainApplication) {
+    public void setMainApp(MainApplication mainApplication){
         this.mainApplication = mainApplication;
     }
+    // Add methods for handling actions/events here
 }

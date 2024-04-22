@@ -7,4 +7,6 @@ module com.academix.academix {
 
     opens com.academix.client to javafx.fxml;
     exports com.academix.client;
+    exports com.academix.client.controllers;
+    opens com.academix.client.controllers to javafx.fxml;
 }

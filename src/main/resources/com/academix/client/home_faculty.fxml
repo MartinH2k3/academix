@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeFacultyConstroller">
    <children>
       <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
          <children>
-            <Hyperlink fx:id="myFacultyHyperlink" onAction="#goToQuiz" text="My faculty" textAlignment="CENTER" textFill="WHITE">
+            <Hyperlink fx:id="myFacultyHyperlink" onAction="#goToMyFaculty" text="My faculty" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
@@ -44,7 +44,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="addFacultyInformationButton" layoutX="110.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Add information about faculty" textFill="WHITE">
+      <Button fx:id="addFacultyInformationButton" layoutX="110.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToMyFaculty" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Add information about faculty" textFill="WHITE">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font>
