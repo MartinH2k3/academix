@@ -3,6 +3,7 @@ package server.database.user;
 import server.database.DatabaseConnector;
 import server.database.security.Hasher;
 import server.database.support.Requests;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.setString(2, passwordHash);
             if (pstmt.executeQuery().next()) {
+                Logging.getInstance().logLogin(username);
                 return "Login successful";
             }
             else {
