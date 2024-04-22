@@ -1,0 +1,50 @@
+{
+    "question1": {
+      "question": "How much do you like informatics?",
+      "field": "informatics"
+    },
+    "question2": {
+        "question": "How much do you like mathematics?",
+        "field": "mathematics"
+    },
+    "question3": {
+        "question": "How much do you like physics?",
+        "field": "physics"
+    },
+    "question4": {
+        "question": "How much do you like medicine?",
+        "field": "medicine"
+    },
+    "question5": {
+        "question": "How much do you like biology?",
+        "field": "biology"
+    },
+    "question6": {
+        "question": "How much do you like law?",
+        "field": "law"
+    },
+    "question7": {
+        "question": "How much do you like veterinary medicine?",
+        "field": "veterinary_medicine"
+    },
+    "question8": {
+        "question": "How much do you like business?",
+        "field": "business"
+    },
+    "question9": {
+        "question": "How much do you like marketing?",
+        "field": "marketing"
+    },
+    "question10": {
+      "question": "How much do you like psychology?",
+      "field": "psychology"
+    },
+    "question11": {
+        "question": "How much do you like sociology?",
+        "field": "sociology"
+    },
+    "question12": {
+        "question": "How much do you like economics?",
+        "field": "economics"
+    }
+}

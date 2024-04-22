@@ -169,7 +169,7 @@ public class FormatCheck {
      */
     public static boolean isValidField(String field) {
         if (field == null) return false;
-        String[] validFields = {"informatics", "biology", "mathematics", "physics", "medicine", "veterinary_medicine", "law", "business", "marketing"};
+        String[] validFields = {"informatics", "biology", "mathematics", "physics", "medicine", "veterinary_medicine", "economics", "psychology", "sociology", "law", "business", "marketing"};
         for (String validField : validFields) {
             if (field.equalsIgnoreCase(validField)) {
                 return true;

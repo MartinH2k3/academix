@@ -4,7 +4,10 @@ import server.database.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Requests {
     /**
@@ -46,5 +49,20 @@ public class Requests {
             e.printStackTrace(); // Log required
             return "Request answer failed";
         }
+    }
+
+    public static Map<Long, String> getRequests(){
+       String query = "SELECT request_id, username FROM requests JOIN users ON requests.user_id = users.user_id WHERE status = 'pending'";
+    try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+          ResultSet rs = pstmt.executeQuery();
+          Map<Long, String> requests = new HashMap<>();
+          while (rs.next()) {
+            requests.put(rs.getLong("request_id"), rs.getString("username"));
+          }
+          return requests;
+    } catch (SQLException e) {
+          e.printStackTrace(); // Log required
+          return null;
+         }
     }
 }

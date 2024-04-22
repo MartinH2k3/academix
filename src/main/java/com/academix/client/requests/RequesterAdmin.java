@@ -1,7 +1,6 @@
 package com.academix.client.requests;
 
 import com.google.gson.Gson;
-import common.Base64EncoderDecoder;
 
 import java.util.Map;
 
@@ -22,13 +21,22 @@ public class RequesterAdmin {
 
     /**
      * Sends a request for all pending questions, that haven't been answered by an admin yet
-     * @return a map of pending questions
+     * @return a map of pending questions with their id and the question
      */
     public Map<Long, String> getPendingQuestions() {
         String response =  requestSender.sendRequest("/pending_questions", "GET");
-        String json = Base64EncoderDecoder.decode(response);
         Gson gson = new Gson();
-        return gson.fromJson(json, Map.class);
+        return gson.fromJson(response, Map.class);
+    }
+
+    /**
+     * Sends a request for all pending requests, that haven't been answered by an admin yet
+     * @return a map of pending requests with their ids and the username of the user that made the request
+     */
+    public Map<Long, String> getPendingRequests() {
+        String response = requestSender.sendRequest("/pending_requests", "GET");
+        Gson gson = new Gson();
+        return gson.fromJson(response, Map.class);
     }
 
     /**

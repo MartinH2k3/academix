@@ -1,10 +1,7 @@
-package server.handlers;
+package server.handlers.support;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import common.dto.FacultyDTO;
-import server.database.faculty.FacultyCreator;
 import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
 
@@ -12,15 +9,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class FacultyCreationHandler implements HttpHandler {
-    private static FacultyCreationHandler instance = null;
+import server.database.support.Helpline;
 
-    private FacultyCreationHandler() {
+public class HelplineAnswerHandler implements HttpHandler {
+    private static HelplineAnswerHandler instance;
+
+    private HelplineAnswerHandler() {
     }
 
-    public static FacultyCreationHandler getInstance() {
+    public static HelplineAnswerHandler getInstance() {
         if (instance == null) {
-            instance = new FacultyCreationHandler();
+            instance = new HelplineAnswerHandler();
         }
         return instance;
     }
@@ -29,10 +28,8 @@ public class FacultyCreationHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            String json = HttpStreamManager.readRequestBody(exchange);
-            Gson gson = new Gson();
-            FacultyDTO facultyDTO = gson.fromJson(json, FacultyDTO.class);
-            response = FacultyCreator.addFaculty(params.get("username"), facultyDTO.university_name, facultyDTO.faculty_name, facultyDTO.description, facultyDTO.field, facultyDTO.minimal_grade, facultyDTO.website_url, facultyDTO.title_image_url);
+            String answer = HttpStreamManager.readRequestBody(exchange);
+            response = Helpline.answerQuestion(Long.parseLong(params.get("question_id")), answer);
         } else {
             response = "Wrong request method";
             // TODO log here

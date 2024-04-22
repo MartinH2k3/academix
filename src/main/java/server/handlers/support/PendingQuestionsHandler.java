@@ -1,25 +1,23 @@
-package server.handlers.faculty;
+package server.handlers.support;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import common.dto.FacultyDTO;
+import server.database.support.Helpline;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
+import java.util.Map;
 
-import server.database.faculty.FacultyGetter;
+public class PendingQuestionsHandler implements HttpHandler {
+    private static PendingQuestionsHandler instance = null;
 
-public class GetFacultiesHandler implements HttpHandler {
-    private static GetFacultiesHandler instance = null;
-
-    private GetFacultiesHandler() {
+    private PendingQuestionsHandler() {
     }
 
-    public static GetFacultiesHandler getInstance() {
+    public static PendingQuestionsHandler getInstance() {
         if (instance == null) {
-            instance = new GetFacultiesHandler();
+            instance = new PendingQuestionsHandler();
         }
         return instance;
     }
@@ -27,9 +25,9 @@ public class GetFacultiesHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("GET")) {
-            List<FacultyDTO> faculties = FacultyGetter.getAllFaculties();
+            Map<Long, String> questions = Helpline.getQuestions();
             Gson gson = new Gson();
-            response = gson.toJson(faculties);
+            response = gson.toJson(questions);
         } else {
             response = "Wrong request method";
             // TODO log here

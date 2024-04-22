@@ -3,7 +3,6 @@ package com.academix.client.requests;
 import com.academix.client.FormatCheck;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import common.Base64EncoderDecoder;
 import common.dto.AccountInfoDTO;
 import common.dto.ChangePasswordDTO;
 import common.dto.FacultyDTO;

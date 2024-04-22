@@ -1,32 +1,33 @@
-package server.handlers;
+package server.handlers.support;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.support.Requests;
-import server.handlers.util.ParamParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class AcceptRejectHandler implements HttpHandler {
-    private static AcceptRejectHandler instance = null;
+public class PendingRequestsHandler implements HttpHandler {
+    private static PendingRequestsHandler instance = null;
 
-    private AcceptRejectHandler() {
+    private PendingRequestsHandler() {
     }
 
-    public static AcceptRejectHandler getInstance() {
+    public static PendingRequestsHandler getInstance() {
         if (instance == null) {
-            instance = new AcceptRejectHandler();
+            instance = new PendingRequestsHandler();
         }
         return instance;
     }
 
     public void handle(HttpExchange exchange) throws IOException {
         String response;
-        if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            response = Requests.answerRequest(Long.parseLong(params.get("request_id")), params.get("decision").equalsIgnoreCase("accepted"));
+        if (exchange.getRequestMethod().equalsIgnoreCase("GET")) {
+            Map<Long, String> requests = Requests.getRequests();
+            Gson gson = new Gson();
+            response = gson.toJson(requests);
         } else {
             response = "Wrong request method";
             // TODO log here

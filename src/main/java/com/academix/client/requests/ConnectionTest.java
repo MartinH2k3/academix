@@ -5,6 +5,7 @@ public class ConnectionTest {
         RequesterUser requesterUser = RequesterUser.getInstance();
         RequesterAdmin requesterAdmin = RequesterAdmin.getInstance();
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
+        RequesterStudent requesterStudent = RequesterStudent.getInstance();
         // register faculty representative
         // System.out.println(requesterUser.register("bobert14", "password", "faculty_representative"));
 
@@ -35,5 +36,14 @@ public class ConnectionTest {
 
         // get pending questions
         // System.out.println(requesterAdmin.getPendingQuestions());
+
+        // get pending requests
+        // System.out.println(requesterAdmin.getPendingRequests());
+
+        // get all faculties
+        // System.out.println(requesterUser.get_faculties());
+
+        // get quiz
+        // System.out.println(requesterStudent.getQuiz());
     }
 }
