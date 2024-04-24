@@ -78,12 +78,12 @@
             <Font name="Avenir Book" size="14.0" />
          </font>
       </Text>
-      <Button fx:id="takeQuizButton" layoutX="448.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
+      <Button fx:id="saveButton" layoutX="448.0" layoutY="302.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="takeQuizButton1" layoutX="329.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="329.0" layoutY="302.0" mnemonicParsing="false" onAction="#goBack" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font>

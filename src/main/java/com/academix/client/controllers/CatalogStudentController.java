@@ -85,7 +85,7 @@ public class CatalogStudentController {
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsStudentPane();
+            mainApplication.loadAccountSettingsStudentPane("catalog");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
