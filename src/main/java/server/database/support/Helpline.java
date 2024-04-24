@@ -1,6 +1,7 @@
 package server.database.support;
 
 import server.database.DatabaseConnector;
+import server.logging.Logging;
 
 import java.math.BigInteger;
 import java.sql.Connection;
@@ -25,8 +26,9 @@ public class Helpline {
             pstmt.executeUpdate();
             return "Question submitted";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
-            return "Question submission failed";
+            String message = "Question submission failed";
+            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            return message;
         }
     }
 
@@ -48,8 +50,9 @@ public class Helpline {
             pstmt2.executeUpdate();
             return "Answer submitted";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
-            return "Answer submission failed";
+            String message = "Answer submission failed";
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            return message;
         }
     }
 

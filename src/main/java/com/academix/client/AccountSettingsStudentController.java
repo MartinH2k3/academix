@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import server.logging.Logging;
 
 public class AccountSettingsStudentController {
     private MainApplication mainApplication;
@@ -56,7 +57,11 @@ public class AccountSettingsStudentController {
     // Event handler for the "Past results" hyperlink
     @FXML
     private void goToPastResults() {
-        // Implement the logic to navigate to the past results page
+        try{
+            mainApplication.loadHomeStudentPane();
+        }catch(Exception e){
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     // Event handler for the "Take quiz" hyperlink
@@ -65,7 +70,7 @@ public class AccountSettingsStudentController {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -75,7 +80,7 @@ public class AccountSettingsStudentController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -97,7 +102,7 @@ public class AccountSettingsStudentController {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

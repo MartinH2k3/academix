@@ -1,6 +1,7 @@
 package server.database.user;
 
 import server.database.DatabaseConnector;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Email updated";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri aktualizácii emailu používateľa došlo k chybe");
         }
         return "Email update failed";
     }

@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import server.logging.Logging;
 
 public class CatalogFacultyController {
     private MainApplication mainApplication;
@@ -59,7 +60,7 @@ public class CatalogFacultyController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -73,7 +74,7 @@ public class CatalogFacultyController {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

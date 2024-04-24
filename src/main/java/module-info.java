@@ -4,6 +4,9 @@ module com.academix.academix {
     requires java.sql;
     requires jdk.httpserver;
     requires com.google.gson;
+    requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j.core;
+    requires jdk.compiler;
 
 
     opens com.academix.client to javafx.fxml;

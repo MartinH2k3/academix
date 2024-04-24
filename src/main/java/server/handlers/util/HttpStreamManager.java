@@ -1,6 +1,7 @@
 package server.handlers.util;
 
 import com.sun.net.httpserver.HttpExchange;
+import server.logging.Logging;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class HttpStreamManager {
             br.close();
             return json.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Pri načítavaní tela requestu prišlo k chybe.");
             return null;
         }
     }

@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import server.logging.Logging;
 
 public class QuizController {
     private final Color WHITE = Color.WHITE;
@@ -109,7 +110,7 @@ public class QuizController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -117,7 +118,7 @@ public class QuizController {
         try {
             mainApplication.loadAccountSettingsStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -128,7 +129,7 @@ public class QuizController {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

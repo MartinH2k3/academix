@@ -3,6 +3,7 @@ package server.database.user;
 import server.database.DatabaseConnector;
 import server.database.security.Hasher;
 import server.database.support.Requests;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,14 +25,17 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.setString(2, passwordHash);
             if (pstmt.executeQuery().next()) {
+                Logging.getInstance().logLogin(username);
                 return "Login successful";
             }
             else {
-                return "Incorrect username or password";
+                String message = "Incorrect username or password";
+                Logging.getInstance().logServerWarning(message);
+                return message;
             }
         }
         catch (Exception e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e,"Pri prihlasovaní používateľa" + username + " došlo k chybe");
             }
         return "Login failed";
     }
@@ -48,7 +52,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
         }
     }
 

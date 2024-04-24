@@ -1,5 +1,7 @@
 package com.academix.client.requests;
 
+import server.logging.Logging;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -42,9 +44,9 @@ public class RequestSender {
             conn.setRequestMethod(requestMethod.toUpperCase(Locale.ROOT));
             return getResponse(conn);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e,"Chyba pri parsovaní URL.");
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Pri posielaní requestu došlo k chybe.");
         } finally {
             if (conn != null) {
                 conn.disconnect();
@@ -66,9 +68,9 @@ public class RequestSender {
             }
             return getResponse(conn);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e,"Chyba pri parsovaní URL.");
         } catch (IOException e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Pri posielaní requestu došlo k chybe.");
         } finally {
             if (conn != null) {
                 conn.disconnect();
