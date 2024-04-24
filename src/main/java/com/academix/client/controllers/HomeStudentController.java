@@ -96,7 +96,7 @@ public class HomeStudentController {
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsStudentPane();
+            mainApplication.loadAccountSettingsStudentPane("home");
         } catch (Exception e) {
             e.printStackTrace();
         }

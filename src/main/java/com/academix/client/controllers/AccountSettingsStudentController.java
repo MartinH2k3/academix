@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 public class AccountSettingsStudentController {
     private MainApplication mainApplication;
+    private String back;
 
 
     @FXML
@@ -50,10 +51,10 @@ public class AccountSettingsStudentController {
     private Hyperlink signOutHyperlink;
 
     @FXML
-    private Button takeQuizButton;
+    private Button backButton;
 
     @FXML
-    private Button takeQuizButton1;
+    private Button saveButton;
     // Event handler for the "Past results" hyperlink
     @FXML
     private void goToPastResults() {
@@ -111,10 +112,42 @@ public class AccountSettingsStudentController {
     // Event handler for the "Back" button
     @FXML
     private void goBack() {
-        // Implement the logic to navigate back to the previous page
+        switch (back) {
+            case "help" -> {
+                try {
+                    mainApplication.loadHelpStudent();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            case "catalog" -> {
+                try {
+                    mainApplication.loadCatalogFaculty();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            case "quiz" -> {
+                try {
+                    mainApplication.loadQuizPane();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            default -> {
+                try {
+                    mainApplication.loadHomeStudentPane();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
-
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
+    }
+
+    public void setBack(String back) {
+        this.back = back;
     }
 }
