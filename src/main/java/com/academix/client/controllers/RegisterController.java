@@ -97,13 +97,13 @@ public class RegisterController {
             try {
                 mainApplication.loadHomeFaculty();
             } catch (Exception e) {
-                e.printStackTrace();
+                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
             }
         }else {
             try {
                 mainApplication.loadHomeStudentPane();
             } catch (Exception e) {
-                e.printStackTrace();
+                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
             }
         }
     }
