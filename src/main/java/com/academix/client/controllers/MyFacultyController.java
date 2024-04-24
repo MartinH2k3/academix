@@ -1,4 +1,6 @@
-package com.academix.client;
+package com.academix.client.controllers;
+import com.academix.client.MainApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -8,6 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
 public class MyFacultyController {
+    private MainApplication mainApplication;
     @FXML
     private TextField facultyTextfield;
 
@@ -119,14 +122,15 @@ public class MyFacultyController {
     @FXML
     private TextField averageTextfield;
 
-    @FXML
-    void goToQuiz() {
-        // Implement action here
-    }
+
 
     @FXML
     void goToAccountSettings() {
-        // Implement action here
+        try {
+            mainApplication.loadAccountSettingsFacultyPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -136,11 +140,35 @@ public class MyFacultyController {
 
     @FXML
     void goToCatalog() {
-        // Implement action here
+        try {
+            mainApplication.loadCatalogFaculty();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void signOut() {
-        // Implement action here
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMainApp(MainApplication mainApplication) {
+        this.mainApplication = mainApplication;
+    }
+
+    public void save(ActionEvent actionEvent) {
+    }
+
+    public void back(ActionEvent actionEvent) {
+    }
+
+    public void addContact(ActionEvent actionEvent) {
+    }
+
+    public void goToMyFaculty(ActionEvent actionEvent) {
     }
 }
