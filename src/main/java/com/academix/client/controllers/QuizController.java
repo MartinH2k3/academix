@@ -131,7 +131,7 @@ public class QuizController {
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsStudentPane();
+            mainApplication.loadAccountSettingsStudentPane("quiz");
         } catch (Exception e) {
             e.printStackTrace();
         }

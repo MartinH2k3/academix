@@ -71,11 +71,12 @@ public class MainApplication extends Application {
         primaryStage.setHeight(homeStudent.getPrefHeight());
         root.setCenter(homeStudent);
     }
-    public void loadAccountSettingsStudentPane() throws Exception {
+    public void loadAccountSettingsStudentPane(String back) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_student.fxml"));
         Pane accountset = loader.load();
         AccountSettingsStudentController accountSettingsStudentController = loader.getController();
         accountSettingsStudentController.setMainApp(this);
+        accountSettingsStudentController.setBack(back);
         primaryStage.setWidth(accountset.getPrefWidth());
         primaryStage.setHeight(accountset.getPrefHeight());
         root.setCenter(accountset);
@@ -126,9 +127,12 @@ public class MainApplication extends Application {
         primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
-
+    public void loadHelpStudent() {
+    }
 
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }

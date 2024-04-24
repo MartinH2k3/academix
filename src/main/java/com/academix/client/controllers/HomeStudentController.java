@@ -97,7 +97,7 @@ public class HomeStudentController {
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsStudentPane();
+            mainApplication.loadAccountSettingsStudentPane("home");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
