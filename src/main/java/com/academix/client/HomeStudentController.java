@@ -7,6 +7,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import server.logging.Logging;
 
 public class HomeStudentController {
     private MainApplication mainApplication;
@@ -80,7 +81,7 @@ public class HomeStudentController {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -88,7 +89,7 @@ public class HomeStudentController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
 
     }
@@ -97,7 +98,7 @@ public class HomeStudentController {
         try {
             mainApplication.loadAccountSettingsStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -108,7 +109,7 @@ public class HomeStudentController {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
     public void setMainApp(MainApplication mainApplication){

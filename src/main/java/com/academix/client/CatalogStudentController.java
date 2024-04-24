@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import server.logging.Logging;
 
 public class CatalogStudentController {
     private MainApplication mainApplication;
@@ -56,14 +57,20 @@ public class CatalogStudentController {
 
     @FXML
     private Button SelectButton2;
+
     public void goToPastResults(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadHomeStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -71,7 +78,7 @@ public class CatalogStudentController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -79,7 +86,7 @@ public class CatalogStudentController {
         try {
             mainApplication.loadAccountSettingsStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -90,7 +97,7 @@ public class CatalogStudentController {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

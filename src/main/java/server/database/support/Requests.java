@@ -1,6 +1,7 @@
 package server.database.support;
 
 import server.database.DatabaseConnector;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,8 +20,9 @@ public class Requests {
             pstmt.executeUpdate();
             return "Request submitted";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
-            return "Request submission failed";
+            String message = "Request submission failed";
+            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            return message;
         }
     }
 
@@ -43,8 +45,9 @@ public class Requests {
             pstmt2.executeUpdate();
             return "Request answered";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
-            return "Request answer failed";
+            String message = "Request answer failed";
+            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            return message;
         }
     }
 }

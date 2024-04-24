@@ -1,6 +1,7 @@
 package server.database.faculty;
 
 import server.database.DatabaseConnector;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class FacultyCreator {
                 return rs.getBoolean("verified");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Používateľ nie je zamestanec fakulty.");
         }
         return false;
     }
@@ -41,7 +42,9 @@ public class FacultyCreator {
      */
     public static String addFaculty(String username, String university_name, String faculty_name, String description, String field, String minimal_grade, String website_url, String title_image_url) {
         if (!facultyMiddleware(username)) {
-            return "User is not a verified faculty representative";
+            String message = "User is not a verified faculty representative";
+            Logging.getInstance().logServerWarning(message);
+            return message;
         }
 
         if (!universityExists(university_name)) {
