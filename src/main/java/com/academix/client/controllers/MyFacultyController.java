@@ -150,6 +150,7 @@ public class MyFacultyController {
     @FXML
     void signOut() {
         try {
+            mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             e.printStackTrace();

@@ -46,6 +46,7 @@ public class HomeFacultyConstroller {
 
     public void signOut(ActionEvent actionEvent) {
         try {
+            mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             e.printStackTrace();

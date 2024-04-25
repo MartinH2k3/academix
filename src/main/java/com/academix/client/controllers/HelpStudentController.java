@@ -95,6 +95,7 @@ public class HelpStudentController {
     @FXML
     void signOut(ActionEvent event) {
         try {
+            mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
