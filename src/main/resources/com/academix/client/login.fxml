@@ -6,31 +6,32 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.LoginController">
+
+<AnchorPane prefHeight="492.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-aligment: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.LoginController">
    <children>
-      <ImageView fitHeight="178.0" fitWidth="297.0" layoutX="164.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@logo.png" />
-         </image>
-      </ImageView>
-      <VBox alignment="CENTER" layoutX="222.0" layoutY="204.0" prefHeight="174.0" prefWidth="180.0" spacing="5.0">
+      <VBox alignment="CENTER" layoutX="168.0" layoutY="91.0" prefHeight="174.0" prefWidth="180.0" spacing="5.0" AnchorPane.bottomAnchor="91.19999999999999" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="91.0">
          <children>
+            <ImageView fitHeight="178.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
             <Text fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="168.46794509887695">
                <font>
                   <Font name="Avenir Black" size="9.0" />
                </font>
             </Text>
-            <TextField fx:id="usernameTextfield" promptText="username">
+            <TextField fx:id="usernameTextfield" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="170.0" promptText="username">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" promptText="password">
+            <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="170.0" promptText="password">
                <font>
                   <Font name="Avenir Book Oblique" size="12.0" />
                </font>
@@ -48,4 +49,4 @@
          </children>
       </VBox>
    </children>
-</Pane>
+</AnchorPane>

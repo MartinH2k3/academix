@@ -7,14 +7,123 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.CatalogFacultyController">
-   <children>
-      <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
+
+<BorderPane prefHeight="451.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.CatalogFacultyController">
+   <center>
+      <AnchorPane prefHeight="398.0" prefWidth="606.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <HBox alignment="TOP_CENTER" layoutX="62.0" layoutY="14.0" prefHeight="27.0" prefWidth="479.0" AnchorPane.leftAnchor="62.400000000000034" AnchorPane.rightAnchor="65.19999999999999">
+               <children>
+                  <TextField fx:id="searchTextfield" maxWidth="750.0" prefHeight="2.0" prefWidth="426.0" promptText="Search" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Avenir Book" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fx:id="searchImage" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@search.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" layoutX="-4.0" layoutY="40.8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="610.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0">
+               <children>
+                  <HBox maxWidth="1000.0" prefHeight="24.0" prefWidth="410.0">
+                     <children>
+                        <Text fx:id="takeALookText" strokeType="OUTSIDE" strokeWidth="0.0" text="skola 1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="1000.0" prefHeight="55.0" prefWidth="479.0">
+                     <children>
+                        <Label fx:id="shortDescription" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
+                           <font>
+                              <Font name="Avenir Book" size="12.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="1000.0" prefHeight="25.0" prefWidth="410.0">
+                     <children>
+                        <Text fx:id="takeALookText1" strokeType="OUTSIDE" strokeWidth="0.0" text="skola 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="1000.0" prefHeight="53.0" prefWidth="479.0">
+                     <children>
+                        <Label fx:id="shortDescription1" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="SelectButton2" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
+                           <font>
+                              <Font name="Avenir Book" size="12.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="448.0">
+                     <children>
+                        <ImageView fx:id="PreviousPageImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#goToPreviousPage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@back.png" />
+                           </image>
+                        </ImageView>
+                        <TextField prefHeight="26.0" prefWidth="90.0" text="1" />
+                        <ImageView fx:id="nextPageImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#goToNextPage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@next.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="100.0" right="100.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
             <Hyperlink fx:id="myFacultyHyperlink" onAction="#goToMyFaculty" text="My faculty" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -43,43 +152,5 @@
             </Hyperlink>
          </children>
       </HBox>
-      <Label layoutX="92.0" layoutY="121.0" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
-      <Text fx:id="takeALookText" layoutX="269.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="skola 1">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="SelectButton1" layoutX="404.0" layoutY="134.0" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="149.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
-         <font>
-            <Font name="Avenir Book" size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <TextField fx:id="searchTextfield" layoutX="89.0" layoutY="50.0" prefHeight="25.0" prefWidth="425.0">
-         <font>
-            <Font name="Avenir Book" size="12.0" />
-         </font>
-      </TextField>
-      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="514.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@search.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="89.0" layoutY="211.0" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
-      <Text fx:id="takeALookText1" layoutX="266.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="skola 2">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="SelectButton2" layoutX="401.0" layoutY="224.0" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="149.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
-         <font>
-            <Font name="Avenir Book" size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-   </children>
-</Pane>
+   </top>
+</BorderPane>

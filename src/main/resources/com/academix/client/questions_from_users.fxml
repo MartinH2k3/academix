@@ -5,14 +5,17 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
+
+<BorderPane prefHeight="226.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
             <Hyperlink fx:id="quizHyperlink1" onAction="#goToQuiz" text="requests" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -41,31 +44,73 @@
             </Hyperlink>
          </children>
       </HBox>
-      <VBox layoutX="66.0" layoutY="64.0" prefHeight="288.0" prefWidth="469.0">
-         <children>
-            <HBox prefHeight="25.0" prefWidth="237.0">
+   </top>
+   <center>
+      <ScrollPane maxWidth="750.0" prefHeight="182.0" prefWidth="482.0">
+         <content>
+            <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="178.0" prefWidth="750.0">
                <children>
-                  <CheckBox fx:id="checkbox" mnemonicParsing="false" prefHeight="30.0" prefWidth="25.0" />
-                  <Label fx:id="requestLabel" alignment="CENTER" prefHeight="30.0" prefWidth="313.0" text="title">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Button fx:id="answerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #3b5e87;" text="answer" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE" />
+                  <VBox alignment="TOP_CENTER" layoutX="-2.0" maxWidth="750.0" prefHeight="138.0" prefWidth="700.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                     <children>
+                        <HBox alignment="CENTER" maxWidth="750.0" prefHeight="26.0" prefWidth="480.0">
+                           <children>
+                              <CheckBox fx:id="checkbox" mnemonicParsing="false" prefHeight="30.0" prefWidth="25.0" />
+                              <Label fx:id="requestLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="310.0" text="title" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="answerButton" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="answer" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="750.0" prefHeight="26.0" prefWidth="480.0">
+                           <children>
+                              <CheckBox fx:id="checkbox1" mnemonicParsing="false" prefHeight="30.0" prefWidth="25.0" />
+                              <Label fx:id="requestLabel1" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="310.0" text="title" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="answerButton1" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="answer" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" maxWidth="750.0" prefHeight="44.0" prefWidth="490.0">
+                           <children>
+                              <Button fx:id="MarkallButton11" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="Mark All" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="unmarkAllButton1" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="Unmark All" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="deleteMarkedButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-         </children>
-      </VBox>
-      <Button fx:id="deleteMarkedButton" layoutX="482.0" layoutY="352.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE" />
-      <Button fx:id="unmarkAllButton1" layoutX="389.0" layoutY="352.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #3b5e87;" text="Unmark All" textFill="WHITE" />
-      <Button fx:id="MarkallButton11" layoutX="308.0" layoutY="352.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #3b5e87;" text="Mark All" textFill="WHITE" />
-   </children>
-</Pane>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

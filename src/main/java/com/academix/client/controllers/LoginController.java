@@ -37,11 +37,6 @@ public class LoginController {
 
     @FXML
     private void login() {
-        // Implement the login logic here
-    }
-
-
-    public void login(ActionEvent actionEvent) {
         try {
             mainApplication.loadHomeStudentPane();
         } catch (Exception e) {
