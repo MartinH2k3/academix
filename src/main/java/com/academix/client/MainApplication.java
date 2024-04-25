@@ -127,7 +127,14 @@ public class MainApplication extends Application {
         primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
-    public void loadHelpStudent() {
+    public void loadHelpStudent() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("help_student.fxml"));
+        Pane helpStudent = loader.load();
+        HelpStudentController helpStudentController = loader.getController();
+        helpStudentController.setMainApp(this);
+        primaryStage.setWidth(helpStudent.getPrefWidth());
+        primaryStage.setHeight(helpStudent.getPrefHeight());
+        root.setCenter(helpStudent);
     }
 
     public static void main(String[] args) {
