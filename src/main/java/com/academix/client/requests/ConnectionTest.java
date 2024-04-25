@@ -47,6 +47,6 @@ public class ConnectionTest {
         // System.out.println(requesterStudent.getQuiz());
 
         // get university based on quiz
-        System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
+        // System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
     }
 }
