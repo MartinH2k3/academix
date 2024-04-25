@@ -3,10 +3,7 @@ package com.academix.client.requests;
 import com.academix.client.FormatCheck;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import common.dto.AccountInfoDTO;
-import common.dto.ChangePasswordDTO;
-import common.dto.FacultyDTO;
-import common.dto.LoginCredentialsDTO;
+import common.dto.*;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -115,8 +112,14 @@ public class RequesterUser {
      * @param question to be sent
      * @return response from the server, confirming whether the question was sent
      */
-    public String sendQuestion(String username, String question) {
-        return requestSender.sendRequest("/submit_question?username=" + username, question, "POST");
+    public String sendQuestion(String username,String subject ,String question) {
+        QuestionDTO dto = new QuestionDTO();
+        dto.username = username;
+        dto.subject = username;
+        dto.question = username;
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        return requestSender.sendRequest("/submit_question?username=" + username, json, "POST");
     }
 
     public List<FacultyDTO> get_faculties() {

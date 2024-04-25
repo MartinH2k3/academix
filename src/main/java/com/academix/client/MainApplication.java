@@ -17,6 +17,7 @@ public class MainApplication extends Application {
 
     private BorderPane root;
     private Stage primaryStage;
+    public String logged_in_user;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

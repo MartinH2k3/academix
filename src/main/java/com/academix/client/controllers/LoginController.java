@@ -45,7 +45,8 @@ public class LoginController {
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
         }
         String response = RequesterUser.getInstance().login(username, password);
-        if (response.equals("success")) {
+        if (response.equals("Login successful")) {
+            mainApplication.logged_in_user = username;
             return true;
         } else {
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
