@@ -112,14 +112,14 @@ public class RequesterUser {
      * @param question to be sent
      * @return response from the server, confirming whether the question was sent
      */
-    public String sendQuestion(String username,String subject ,String question) {
+    public String sendQuestion(String username, String subject, String question) {
         QuestionDTO dto = new QuestionDTO();
         dto.username = username;
-        dto.subject = username;
-        dto.question = username;
+        dto.subject = subject;
+        dto.question = question;
         Gson gson = new Gson();
         String json = gson.toJson(dto);
-        return requestSender.sendRequest("/submit_question?username=" + username, json, "POST");
+        return requestSender.sendRequest("/submit_question", json, "POST");
     }
 
     /**
