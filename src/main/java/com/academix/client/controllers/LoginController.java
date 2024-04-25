@@ -33,6 +33,9 @@ public class LoginController {
     @FXML
     private void initialize() {
         // You can add initialization logic here if needed
+//        passwordField.setPromptText("Heslo");
+//        usernameTextfield.setPromptText("Pouzivatelske meno");
+//        goToRegisterHyperlink.setText("Nie ste zaregistorvany? Registrujte sa.");
     }
 
     @FXML
