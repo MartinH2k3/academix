@@ -26,6 +26,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/pending_questions", PendingQuestionsHandler.getInstance());
         server.createContext("/submit_question", HelplineQuestionHandler.getInstance());
         server.createContext("/answer_question", HelplineAnswerHandler.getInstance());
+        server.createContext("/question_responses", HelplineResponseHandler.getInstance());
         server.createContext("/pending_requests", PendingRequestsHandler.getInstance());
         server.createContext("/answer_request", AcceptRejectHandler.getInstance());
         server.createContext("/create_faculty", FacultyCreationHandler.getInstance());

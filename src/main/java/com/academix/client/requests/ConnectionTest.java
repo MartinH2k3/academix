@@ -1,5 +1,9 @@
 package com.academix.client.requests;
 
+import common.dto.QnADTO;
+
+import java.util.List;
+
 public class ConnectionTest {
     public static void main(String[] args) {
         RequesterUser requesterUser = RequesterUser.getInstance();
@@ -28,6 +32,13 @@ public class ConnectionTest {
         // answer question
         // System.out.println(requesterAdmin.answerQuestion(1L, "He died for our sins"));
 
+        // get answers for requests
+        List<QnADTO> answers = requesterUser.getResponses("karol1");
+        if (answers != null) {
+            for (QnADTO answer : answers) {
+                System.out.println(answer.question + " " + answer.answer);
+            }
+        }
         // approve faculty representative
         // System.out.println(requesterAdmin.acceptRequest(2L));
 
@@ -47,6 +58,6 @@ public class ConnectionTest {
         // System.out.println(requesterStudent.getQuiz());
 
         // get university based on quiz
-        System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
+        // System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
     }
 }

@@ -122,8 +122,35 @@ public class RequesterUser {
         return requestSender.sendRequest("/submit_question?username=" + username, json, "POST");
     }
 
+    /**
+     * gets all answers for questions posed by the user
+     */
+    public List<QnADTO> getResponses(String username) {
+        String json = requestSender.sendRequest("/question_responses?username=" + username, "GET");
+        Gson gson = new Gson();
+        Type qnaListType = new TypeToken<List<QnADTO>>(){}.getType();
+        return gson.fromJson(json, qnaListType);
+    }
+
+    /**
+     * gets all faculties from the server
+     * @return list of faculties
+     */
     public List<FacultyDTO> get_faculties() {
         String response = requestSender.sendRequest("/faculties", "GET");
+        Gson gson = new Gson();
+        Type facultyListType = new TypeToken<List<FacultyDTO>>(){}.getType();
+        return gson.fromJson(response, facultyListType);
+    }
+
+    /**
+     * gets faculties from the server, but with pagination
+     * @param page
+     * @param page_size
+     * @return list of faculties
+     */
+    public List<FacultyDTO> get_faculties(int page, int page_size) {
+        String response = requestSender.sendRequest("/faculties?page=" + page + "&page_size=" + page_size, "GET");
         Gson gson = new Gson();
         Type facultyListType = new TypeToken<List<FacultyDTO>>(){}.getType();
         return gson.fromJson(response, facultyListType);
