@@ -4,12 +4,17 @@ import com.academix.client.controllers.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 
@@ -33,6 +38,32 @@ public class MainApplication extends Application {
         primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
         primaryStage.show();
         this.primaryStage = primaryStage;
+        // Create a label for the notification message
+        Label notificationLabel = new Label("Wrong password!");
+
+        // Create a button to dismiss the notification
+        Button okButton = new Button("OK");
+
+
+        // Create a layout to hold the notification label and button
+        VBox vbox = new VBox(10);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.getChildren().addAll(notificationLabel, okButton);
+
+        // Create a scene and set it on the stage
+        Scene scene = new Scene(vbox, 250, 150);
+
+        // Create a new stage for the notification
+        Stage notificationStage = new Stage();
+        okButton.setOnAction(e -> notificationStage.close());
+        notificationStage.setScene(scene);
+        notificationStage.setTitle("Wrong Password Notification");
+
+        // Set the stage style to undecorated (no window decorations)
+        notificationStage.initStyle(StageStyle.UNDECORATED);
+
+        // Show the stage
+        notificationStage.show();
     }
 
     public void loadRegisterPane() throws Exception {

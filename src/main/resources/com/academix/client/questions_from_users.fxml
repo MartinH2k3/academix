@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="226.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
