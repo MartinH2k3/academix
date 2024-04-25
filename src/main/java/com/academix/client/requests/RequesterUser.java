@@ -3,10 +3,7 @@ package com.academix.client.requests;
 import com.academix.client.FormatCheck;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import common.dto.AccountInfoDTO;
-import common.dto.ChangePasswordDTO;
-import common.dto.FacultyDTO;
-import common.dto.LoginCredentialsDTO;
+import common.dto.*;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -117,6 +114,16 @@ public class RequesterUser {
      */
     public String sendQuestion(String username, String question) {
         return requestSender.sendRequest("/submit_question?username=" + username, question, "POST");
+    }
+
+    /**
+     * gets all answers for questions posed by the user
+     */
+    public List<QnADTO> getResponses(String username) {
+        String json = requestSender.sendRequest("/question_responses?username=" + username, "GET");
+        Gson gson = new Gson();
+        Type qnaListType = new TypeToken<List<QnADTO>>(){}.getType();
+        return gson.fromJson(json, qnaListType);
     }
 
     /**

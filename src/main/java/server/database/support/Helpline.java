@@ -1,5 +1,6 @@
 package server.database.support;
 
+import common.dto.QnADTO;
 import server.database.DatabaseConnector;
 import server.logging.Logging;
 
@@ -8,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Helpline {
@@ -69,6 +72,26 @@ public class Helpline {
                 questions.put(rs.getLong("question_id"), rs.getString("text"));
             }
             return questions;
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log required
+            return null;
+        }
+    }
+
+    /**
+     * Get all answers for the questions by the user
+     */
+    public static List<QnADTO> getAnswers(String username){
+        String query = "SELECT helpline_questions.text, helpline_answers.response FROM helpline_questions JOIN helpline_answers ON helpline_questions.question_id = helpline_answers.question_id WHERE helpline_questions.asked_by = (SELECT user_id FROM users WHERE username = ?)";
+        try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            List<QnADTO> answers = new ArrayList<>();
+            while (rs.next()){
+                QnADTO qna = new QnADTO(rs.getString("text"), rs.getString("response"));
+                answers.add(qna);
+            }
+            return answers;
         } catch (SQLException e) {
             e.printStackTrace(); // Log required
             return null;
