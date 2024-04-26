@@ -40,12 +40,6 @@ public class AccountSettingsFacultyController {
     private TextField repeatNewPasswordField;
 
     @FXML
-    private Hyperlink pastResultHyperlink;
-
-    @FXML
-    private Hyperlink takeQuizHyperlink;
-
-    @FXML
     private Hyperlink catalogHyperlink;
 
     @FXML
