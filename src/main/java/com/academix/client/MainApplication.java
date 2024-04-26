@@ -34,7 +34,7 @@ public class MainApplication extends Application {
         root.setCenter(loginPane);
 
 
-        primaryStage.setTitle("Main Application");
+        primaryStage.setTitle("Academix");
         primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
         primaryStage.show();
     }
