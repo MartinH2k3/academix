@@ -13,10 +13,14 @@ import com.academix.client.controllers.QuizController;
 import com.academix.client.controllers.RegisterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
+import java.util.Objects;
 
 public class MainApplication extends Application {
 
@@ -26,24 +30,33 @@ public class MainApplication extends Application {
     public String loggedInUser;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Pane loginPane = loader.load();
-        LoginController loginController = loader.getController();
-        loginController.setMainApp(this);
+    public void start(Stage primaryStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Pane loginPane = loader.load();
+            LoginController loginController = loader.getController();
+            loginController.setMainApp(this);
 
-        root = new BorderPane();
-        root.setCenter(loginPane);
+            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/academix/client/A_icon.jpg")));
+
+            // Set the loaded icon image as the icon for the primary stage
+            primaryStage.getIcons().add(icon);
+
+            root = new BorderPane();
+            root.setCenter(loginPane);
 
 
-        primaryStage.setTitle("Academix");
-        primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
-        primaryStage.show();
+            primaryStage.setTitle("Academix");
+            primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
+            primaryStage.show();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void loadRegisterPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
-        Pane registerPane = loader.load();
+        Parent registerPane = loader.load();
         RegisterController registerController = loader.getController();
         registerController.setMainApp(this);
         root.setCenter(registerPane);
@@ -51,7 +64,7 @@ public class MainApplication extends Application {
 
     public void loadLoginPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Pane loginPane = loader.load();
+        Parent loginPane = loader.load();
         LoginController loginController = loader.getController();
         loginController.setMainApp(this);
         root.setCenter(loginPane);
@@ -59,7 +72,7 @@ public class MainApplication extends Application {
 
     public void loadCatalogStudentPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("catalog_of_universities_student.fxml"));
-        Pane catalog = loader.load();
+        Parent catalog = loader.load();
         CatalogStudentController catalogStudentController = loader.getController();
         catalogStudentController.setMainApp(this);
         root.setCenter(catalog);
@@ -67,7 +80,7 @@ public class MainApplication extends Application {
 
     public void loadHomeStudentPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home_student.fxml"));
-        Pane homeStudent = loader.load();
+        Parent homeStudent = loader.load();
         HomeStudentController homeStudentController = loader.getController();
         homeStudentController.setMainApp(this);
         root.setCenter(homeStudent);
@@ -75,7 +88,7 @@ public class MainApplication extends Application {
 
     public void loadAccountSettingsStudentPane(String back) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_student.fxml"));
-        Pane accountset = loader.load();
+        Parent accountset = loader.load();
         AccountSettingsStudentController accountSettingsStudentController = loader.getController();
         accountSettingsStudentController.setMainApp(this);
         accountSettingsStudentController.setBack(back);
@@ -93,7 +106,7 @@ public class MainApplication extends Application {
 
     public void loadQuizPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("quiz_student.fxml"));
-        Pane quiz = loader.load();
+        Parent quiz = loader.load();
         QuizController quizController = loader.getController();
         quizController.initialize();
         quizController.setMainApp(this);
@@ -102,7 +115,7 @@ public class MainApplication extends Application {
 
     public void loadHomeFaculty() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home_faculty.fxml"));
-        Pane home = loader.load();
+        Parent home = loader.load();
         HomeFacultyConstroller homeFacultyConstroller = loader.getController();
         homeFacultyConstroller.setMainApp(this);
         root.setCenter(home);
@@ -110,7 +123,7 @@ public class MainApplication extends Application {
 
     public void loadMyFaculty() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("my_faculty.fxml"));
-        Pane MyFaculty = loader.load();
+        Parent MyFaculty = loader.load();
         MyFacultyController myFacultyController = loader.getController();
         myFacultyController.setMainApp(this);
         root.setCenter(MyFaculty);
@@ -118,7 +131,7 @@ public class MainApplication extends Application {
 
     public void loadCatalogFaculty() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("catalog_of_universities_faculty.fxml"));
-        Pane catalog = loader.load();
+        Parent catalog = loader.load();
         CatalogFacultyController catalogFacultyController = loader.getController();
         catalogFacultyController.setMainApp(this);
         root.setCenter(catalog);
@@ -126,18 +139,26 @@ public class MainApplication extends Application {
 
     public void loadHelpStudent() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("help_student.fxml"));
-        Pane helpStudent = loader.load();
+        Parent helpStudent = loader.load();
         HelpStudentController helpStudentController = loader.getController();
         helpStudentController.setMainApp(this);
         root.setCenter(helpStudent);
     }
 
-    public void loadHelpFaculty() {
+    public void loadHelpFaculty() throws Exception{
     }
 
+    public void loadHomeAdmin() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_admin.fxml"));
+        Parent helpStudent = loader.load();
+        HelpStudentController helpStudentController = loader.getController();
+        helpStudentController.setMainApp(this);
+        root.setCenter(helpStudent);
+    }
     public static void main(String[] args) {
         launch(args);
     }
+
 
 
 }

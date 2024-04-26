@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.UserTypeEnum;
 import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +41,7 @@ public class LoginController {
         }
         String response = RequesterUser.getInstance().login(username, password);
         if (response != null) {
-            mainApplication.logged_in_user = username;
+            mainApplication.loggedInUser = username;
             return response;
         } else {
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
@@ -52,10 +53,24 @@ public class LoginController {
     private void login() {
         String userType = loginCheck();
         if (userType != null){
-            try {
-                mainApplication.loadHomeStudentPane();
-            } catch (Exception e) {
-                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+            if (UserTypeEnum.ADMIN.toString().equals(userType.toUpperCase())) {
+                try {
+                    mainApplication.loadHomeAdmin();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }else if(UserTypeEnum.FACULTY_REPRESENTATIVE.toString().equals(userType.toUpperCase())) {
+                try {
+                    mainApplication.loadHomeFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }else {
+                try {
+                    mainApplication.loadHomeStudentPane();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
             }
         }
     }
@@ -70,6 +85,12 @@ public class LoginController {
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
+    }
+    @FXML
+    private void skLanguage() {
+    }
+    @FXML
+    private void enLanguage() {
     }
 
     // You can add more methods and fields as needed
