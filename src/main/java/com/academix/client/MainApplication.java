@@ -39,32 +39,6 @@ public class MainApplication extends Application {
         primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
         primaryStage.show();
         this.primaryStage = primaryStage;
-        // Create a label for the notification message
-        Label notificationLabel = new Label("Wrong password!");
-
-        // Create a button to dismiss the notification
-        Button okButton = new Button("OK");
-
-
-        // Create a layout to hold the notification label and button
-        VBox vbox = new VBox(10);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(notificationLabel, okButton);
-
-        // Create a scene and set it on the stage
-        Scene scene = new Scene(vbox, 250, 150);
-
-        // Create a new stage for the notification
-        Stage notificationStage = new Stage();
-        okButton.setOnAction(e -> notificationStage.close());
-        notificationStage.setScene(scene);
-        notificationStage.setTitle("Wrong Password Notification");
-
-        // Set the stage style to undecorated (no window decorations)
-        notificationStage.initStyle(StageStyle.UNDECORATED);
-
-        // Show the stage
-        notificationStage.show();
     }
 
     public void loadRegisterPane() throws Exception {
@@ -72,8 +46,6 @@ public class MainApplication extends Application {
         Pane registerPane = loader.load();
         RegisterController registerController = loader.getController();
         registerController.setMainApp(this);
-        primaryStage.setWidth(registerPane.getPrefWidth());
-        primaryStage.setHeight(registerPane.getPrefHeight());
         root.setCenter(registerPane);
     }
     public void loadLoginPane() throws Exception {
@@ -81,8 +53,6 @@ public class MainApplication extends Application {
         Pane loginPane = loader.load();
         LoginController loginController = loader.getController();
         loginController.setMainApp(this);
-        primaryStage.setWidth(loginPane.getPrefWidth());
-        primaryStage.setHeight(loginPane.getPrefHeight());
         root.setCenter(loginPane);
     }
     public void loadCatalogStudentPane() throws Exception {
@@ -90,8 +60,6 @@ public class MainApplication extends Application {
         Pane catalog = loader.load();
         CatalogStudentController catalogStudentController = loader.getController();
         catalogStudentController.setMainApp(this);
-        primaryStage.setWidth(catalog.getPrefWidth());
-        primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
     public void loadHomeStudentPane() throws Exception {
@@ -99,8 +67,6 @@ public class MainApplication extends Application {
         Pane homeStudent = loader.load();
         HomeStudentController homeStudentController = loader.getController();
         homeStudentController.setMainApp(this);
-        primaryStage.setWidth(homeStudent.getPrefWidth());
-        primaryStage.setHeight(homeStudent.getPrefHeight());
         root.setCenter(homeStudent);
     }
     public void loadAccountSettingsStudentPane(String back) throws Exception {
@@ -109,8 +75,6 @@ public class MainApplication extends Application {
         AccountSettingsStudentController accountSettingsStudentController = loader.getController();
         accountSettingsStudentController.setMainApp(this);
         accountSettingsStudentController.setBack(back);
-        primaryStage.setWidth(accountset.getPrefWidth());
-        primaryStage.setHeight(accountset.getPrefHeight());
         root.setCenter(accountset);
     }
     public void loadAccountSettingsFacultyPane() throws Exception {
@@ -118,8 +82,6 @@ public class MainApplication extends Application {
         Pane accountset = loader.load();
         AccountSettingsFacultyController accountSettingsFacultyController = loader.getController();
         accountSettingsFacultyController.setMainApp(this);
-        primaryStage.setWidth(accountset.getPrefWidth());
-        primaryStage.setHeight(accountset.getPrefHeight());
         root.setCenter(accountset);
     }
     public void loadQuizPane() throws Exception{
@@ -128,8 +90,6 @@ public class MainApplication extends Application {
         QuizController quizController = loader.getController();
         quizController.initialize();
         quizController.setMainApp(this);
-        primaryStage.setWidth(quiz.getPrefWidth());
-        primaryStage.setHeight(quiz.getPrefHeight());
         root.setCenter(quiz);
     }
     public void loadHomeFaculty() throws Exception{
@@ -137,8 +97,6 @@ public class MainApplication extends Application {
         Pane home = loader.load();
         HomeFacultyConstroller homeFacultyConstroller = loader.getController();
         homeFacultyConstroller.setMainApp(this);
-        primaryStage.setWidth(home.getPrefWidth());
-        primaryStage.setHeight(home.getPrefHeight());
         root.setCenter(home);
     }
     public void loadMyFaculty() throws Exception{
@@ -146,8 +104,6 @@ public class MainApplication extends Application {
         Pane MyFaculty = loader.load();
         MyFacultyController myFacultyController = loader.getController();
         myFacultyController.setMainApp(this);
-        primaryStage.setWidth(MyFaculty.getPrefWidth());
-        primaryStage.setHeight(MyFaculty.getPrefHeight());
         root.setCenter(MyFaculty);
     }
     public void loadCatalogFaculty() throws Exception{
@@ -155,8 +111,6 @@ public class MainApplication extends Application {
         Pane catalog = loader.load();
         CatalogFacultyController catalogFacultyController = loader.getController();
         catalogFacultyController.setMainApp(this);
-        primaryStage.setWidth(catalog.getPrefWidth());
-        primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
     public void loadHelpStudent() throws Exception {
@@ -164,8 +118,6 @@ public class MainApplication extends Application {
         Pane helpStudent = loader.load();
         HelpStudentController helpStudentController = loader.getController();
         helpStudentController.setMainApp(this);
-        primaryStage.setWidth(helpStudent.getPrefWidth());
-        primaryStage.setHeight(helpStudent.getPrefHeight());
         root.setCenter(helpStudent);
     }
 
