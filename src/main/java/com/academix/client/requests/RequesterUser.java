@@ -49,7 +49,7 @@ public class RequesterUser {
      * logs in the user
      * @param username
      * @param password
-     * @return response from the server, status of the login
+     * @return user type "student", "admin", "faculty_representative" or an error message in case of invalid log in
      */
     public String login(String username, String password) {
         LoginCredentialsDTO dto = new LoginCredentialsDTO();

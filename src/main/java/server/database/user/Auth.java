@@ -18,15 +18,16 @@ public class Auth {
      * @return String status of the login
      */
     public static String login(String username, String password) throws SQLException {
-        String query = "SELECT * FROM users WHERE username = ? AND password_hash = ?";
+        String query = "SELECT type FROM users WHERE username = ? AND password_hash = ?";
         try (Connection conn = DatabaseConnector.connect()){
             PreparedStatement pstmt = conn.prepareStatement(query);
             var passwordHash = Hasher.hashPassword(password);
             pstmt.setString(1, username);
             pstmt.setString(2, passwordHash);
-            if (pstmt.executeQuery().next()) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
                 Logging.getInstance().logLogin(username);
-                return "Login successful";
+                return rs.getString("type");
             }
             else {
                 String message = "Incorrect username or password";

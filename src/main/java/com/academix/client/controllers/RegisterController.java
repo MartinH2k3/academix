@@ -17,18 +17,6 @@ import server.logging.Logging;
 
 public class RegisterController {
     private MainApplication mainApplication;
-    @FXML
-    private Polygon invalidPasswordBubble;
-    @FXML
-    private Polygon invalidConfirmPasswordBubble;
-    @FXML
-    private Polygon invalidUsernameBubble;
-    @FXML
-    private Text invalidPasswordText;
-    @FXML
-    private Text invalidConfirmPasswordText;
-    @FXML
-    private Text invalidUsernameText;
 
     @FXML
     private TextField usernameTextfield;
@@ -66,29 +54,11 @@ public class RegisterController {
         this.mainApplication = mainApplication;
     }
 
+    @FXML
     public void register(ActionEvent actionEvent) {
-        hidePasswordBubble(null);
-        hideUsernameBubble(null);
-        hideConfirmPasswordBubble(null);
         String username = usernameTextfield.getText();
         String password = passwordPasswordField.getText();
 
-        if (!FormatCheck.isValidUsername(username)){
-            invalidUsernameBubble.setVisible(true);
-            invalidUsernameText.setVisible(true);
-            return;
-        }
-        if(passwordPasswordField.getCharacters().isEmpty()){
-            invalidPasswordBubble.setVisible(true);
-            invalidPasswordText.setVisible(true);
-            return;
-        }
-
-        if(!confirmPasswordField.getText().equals(passwordPasswordField.getText())){
-            invalidConfirmPasswordBubble.setVisible(true);
-            invalidConfirmPasswordText.setVisible(true);
-            return;
-        }
         String response;
         if (schoolEmployeeCheckbox.isSelected()){
             try {
@@ -111,21 +81,6 @@ public class RegisterController {
         }
     }
 
-    public void hideUsernameBubble(MouseEvent mouseEvent) {
-        invalidUsernameBubble.setVisible(false);
-        invalidUsernameText.setVisible(false);
-
-    }
-
-    public void hidePasswordBubble(MouseEvent mouseEvent) {
-        invalidPasswordBubble.setVisible(false);
-        invalidPasswordText.setVisible(false);
-    }
-
-    public void hideConfirmPasswordBubble(MouseEvent mouseEvent) {
-        invalidConfirmPasswordBubble.setVisible(false);
-        invalidConfirmPasswordText.setVisible(false);
-    }
 
     // You can add more methods and fields as needed
 }
