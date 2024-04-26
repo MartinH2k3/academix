@@ -1,8 +1,6 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
-import com.academix.client.requests.RequesterStudent;
-import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

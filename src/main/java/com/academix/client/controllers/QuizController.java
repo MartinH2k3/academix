@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import server.logging.Logging;
 
 
 public class QuizController {
@@ -125,7 +126,7 @@ public class QuizController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -133,7 +134,7 @@ public class QuizController {
         try {
             mainApplication.loadAccountSettingsStudentPane("quiz");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -145,7 +146,7 @@ public class QuizController {
             mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

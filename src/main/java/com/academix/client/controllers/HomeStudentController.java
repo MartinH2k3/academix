@@ -117,5 +117,4 @@ public class HomeStudentController {
     public void setMainApp(MainApplication mainApplication){
         this.mainApplication = mainApplication;
     }
-    // Add methods for handling actions/events here
 }
