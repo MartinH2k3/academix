@@ -54,7 +54,7 @@
       <Text fx:id="invalidPasswordText" layoutX="169.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid password can not be empty." visible="false" wrappingWidth="282.0" />
       <Polygon fx:id="invalidConfirmPasswordBubble" fill="WHITE" layoutX="250.0" layoutY="265.0" onMouseEntered="#hideConfirmPasswordBubble" points="206.0, -2.543131586207892E-6, 206.0, -41.00001907348633, -86.4000244140625, -41.00000762939453, -86.4000244140625, 0.0, -64.0, 0.0, -45.5999755859375, 36.600006103515625, -27.20001220703125, 0.0" scaleY="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Text fx:id="invalidConfirmPasswordText" layoutX="170.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password do not match." visible="false" wrappingWidth="282.0" />
-      <Button fx:id="skToggleButton" layoutX="483.0" layoutY="383.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
-      <Button fx:id="enToggleButton" layoutX="531.0" layoutY="383.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
+      <Button fx:id="skToggleButton" layoutX="498.0" layoutY="383.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
+      <Button fx:id="enToggleButton" layoutX="532.0" layoutY="383.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
    </children>
 </Pane>

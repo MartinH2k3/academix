@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeStudentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeStudentController">
    <children>
       <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
          <children>
@@ -100,5 +97,7 @@
             <Font name="Avenir Book" size="13.0" />
          </font>
       </Button>
+      <Button fx:id="skToggleButton" layoutX="519.0" layoutY="367.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
+      <Button fx:id="enToggleButton" layoutX="552.0" layoutY="367.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
    </children>
 </Pane>
