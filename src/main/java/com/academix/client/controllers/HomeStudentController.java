@@ -72,10 +72,14 @@ public class HomeStudentController {
 
     @FXML
     private void initialize() {
-        // Initialization code
     }
 
     public void goToPastResults(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadHomeStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
@@ -108,13 +112,14 @@ public class HomeStudentController {
 
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-    public void setMainApp(MainApplication mainApplication){
+
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 }

@@ -21,7 +21,8 @@ public class HomeFacultyConstroller {
     @FXML
     public Button addFacultyInformationButton;
     private MainApplication mainApplication;
-    public void setMainApp(MainApplication mainApplication){
+
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
@@ -32,7 +33,7 @@ public class HomeFacultyConstroller {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-    
+
 
     public void goToAccountSettings(ActionEvent actionEvent) {
         try {
@@ -47,7 +48,7 @@ public class HomeFacultyConstroller {
 
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
