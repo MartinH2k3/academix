@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.Notification;
 import com.academix.client.UserTypeEnum;
 import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
@@ -35,9 +36,12 @@ public class LoginController {
     private String loginCheck() {
         String username = usernameTextfield.getText().trim();
         String password = passwordField.getText().trim();
+        Notification notification = Notification.getInstance();
 
         if (username.isEmpty() || password.isEmpty()) {
+            notification.showNotification("username or password were not entered");
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
+            return null;
         }
         String response = RequesterUser.getInstance().login(username, password);
         if (response != null) {
@@ -65,7 +69,7 @@ public class LoginController {
                 } catch (Exception e) {
                     Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
-            }else {
+            }else if(UserTypeEnum.STUDENT.toString().equals(userType.toUpperCase())){
                 try {
                     mainApplication.loadHomeStudentPane();
                 } catch (Exception e) {
