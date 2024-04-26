@@ -10,7 +10,7 @@ public class LocaleManager {
 
     private LocaleManager() {
         currentLocale = Locale.getDefault();
-        messages = ResourceBundle.getBundle("messages",currentLocale);
+        messages = ResourceBundle.getBundle("languages/messages",currentLocale);
     }
 
     public static LocaleManager getInstance() {
@@ -22,7 +22,7 @@ public class LocaleManager {
 
     public void setLocale(Locale locale) {
         this.currentLocale = locale;
-        messages = ResourceBundle.getBundle("messages", currentLocale);
+        messages = ResourceBundle.getBundle("languages/messages", currentLocale);
     }
 
     public ResourceBundle getMessages() {
