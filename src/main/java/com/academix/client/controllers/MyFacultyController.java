@@ -8,9 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import language.LocaleManager;
+
+import java.util.ResourceBundle;
 
 public class MyFacultyController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     @FXML
     private TextField facultyTextfield;
 
@@ -33,9 +38,6 @@ public class MyFacultyController {
     private Line line2;
 
     @FXML
-    private Text belongText1;
-
-    @FXML
     private Button takeQuizButton;
 
     @FXML
@@ -51,9 +53,6 @@ public class MyFacultyController {
     private Line line3;
 
     @FXML
-    private Text text1;
-
-    @FXML
     private TextArea longDescriptionTextfield;
 
     @FXML
@@ -61,9 +60,6 @@ public class MyFacultyController {
 
     @FXML
     private Line line4;
-
-    @FXML
-    private Text text2;
 
     @FXML
     private HBox hbox;
@@ -82,9 +78,6 @@ public class MyFacultyController {
 
     @FXML
     private Hyperlink signOutHyperlink;
-
-    @FXML
-    private Text text3;
 
     @FXML
     private GridPane gridPane;
@@ -122,10 +115,54 @@ public class MyFacultyController {
     @FXML
     private TextField averageTextfield;
 
+    @FXML
+    private Text basicText;
+
+    @FXML
+    private Text contactText;
+
+    @FXML
+    private Text descriptionText;
+
+    @FXML
+    private Text shortDescription;
+
+    @FXML
+    private Text catalogOption;
+
+    @FXML
+    private void initialize(){
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        basicText.setText(messages.getString("basic_text"));
+        contactText.setText(messages.getString("contact"));
+        descriptionText.setText(messages.getString("description"));
+        shortDescription.setText(messages.getString("short_description"));
+        catalogOption.setText(messages.getString("catalog_text"));
+
+        facultyTextfield.setPromptText(messages.getString("faculty"));
+        universityTextfield.setPromptText(messages.getString("university"));
+        averageTextfield.setPromptText(messages.getString("average_grade"));
+        nameTextfield.setPromptText(messages.getString("full_name"));
+        phoneNumberTextfield.setPromptText(messages.getString("phone_number"));
+        emailTextfield.setPromptText(messages.getString("email"));
+
+        addContactButton.setText(messages.getString("add_contact"));
+        longDescriptionTextfield.setPromptText(messages.getString("description"));
+        shortDescriptionTextfield.setPromptText(messages.getString("short_description"));
+    }
 
 
     @FXML
-    void goToAccountSettings() {
+    void goToAccountSettings(ActionEvent actionEvent) {
         try {
             mainApplication.loadAccountSettingsFacultyPane();
         } catch (Exception e) {
@@ -139,7 +176,7 @@ public class MyFacultyController {
     }
 
     @FXML
-    void goToCatalog() {
+    void goToCatalog(ActionEvent actionEvent) {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {

@@ -12,10 +12,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class CatalogFacultyController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
     @FXML
     private Hyperlink myFacultyHyperlink;
@@ -53,6 +58,25 @@ public class CatalogFacultyController {
 
     @FXML
     void goToCatalog() {
+        try {
+            mainApplication.loadCatalogFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prepjst medzi scenami");
+        }
+    }
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+        searchTextfield.setPromptText(messages.getString("search"));
 
     }
 
@@ -81,7 +105,11 @@ public class CatalogFacultyController {
 
     @FXML
     void goToMyFaculty() {
-
+        try {
+            mainApplication.loadMyFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejst medzi scenami");
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

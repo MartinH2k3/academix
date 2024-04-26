@@ -15,9 +15,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import language.LocaleManager;
+
+import java.util.ResourceBundle;
 
 
 public class QuizController {
+
+    private LocaleManager localeManager;
     //int[n] kde n je pocet otazok dal som zatial 20
     private int[] results = new int[20];
     private final Color WHITE = Color.WHITE;
@@ -91,6 +96,17 @@ public class QuizController {
                 setCirclesOnClick((HBox) node);
             }
         }
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        pastResultHyperlink.setText(messages.getString("past_results"));
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
 
     }
     private void setCirclesOnClick(HBox hBox){

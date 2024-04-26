@@ -81,6 +81,7 @@ public class LoginController {
     public void login(ActionEvent actionEvent) {
         try {
             mainApplication.loadHomeStudentPane();
+//            mainApplication.loadHomeFaculty();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }

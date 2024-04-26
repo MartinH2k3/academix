@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -17,8 +18,9 @@ public class AccountSettingsFacultyController {
     private LocaleManager localeManager;
 
     @FXML
-    private Hyperlink myFacultyHyperLink;
+    private Hyperlink myFacultyHyperlink;
 
+    @FXML
     private TextField firstNameTextfield;
 
     @FXML
@@ -63,13 +65,13 @@ public class AccountSettingsFacultyController {
     @FXML
     private Text passwordText;
 
-
+    @FXML
     private void initialize() {
         localeManager = LocaleManager.getInstance();
 
         ResourceBundle messages = localeManager.getMessages();
 
-        myFacultyHyperLink.setText(messages.getString("my_faculty"));
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
         catalogHyperlink.setText(messages.getString("uni_catalog"));
         accountSettingsHyperlink.setText(messages.getString("account_settings"));
         helpHyperlink.setText(messages.getString("help"));
@@ -107,5 +109,36 @@ public class AccountSettingsFacultyController {
     @FXML
     private void saveChanges() {
         // Implement the logic to save the changes made in the account settings
+    }
+
+    @FXML
+    private void goToMyFaculty(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadMyFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
+    @FXML
+    private void goToCatalog(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadCatalogFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
+
+    @FXML
+    private void goToAccountSettings(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void goToHelp(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    private void goBack() {
+
     }
 }

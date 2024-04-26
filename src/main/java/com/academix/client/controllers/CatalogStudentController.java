@@ -10,10 +10,16 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class CatalogStudentController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
+
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -31,6 +37,9 @@ public class CatalogStudentController {
 
     @FXML
     private Hyperlink signOutHyperlink;
+
+    @FXML
+    private TextField searchTextfield;
 
     @FXML
     private ScrollBar scrollBar;
@@ -58,6 +67,24 @@ public class CatalogStudentController {
 
     @FXML
     private Button SelectButton2;
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        pastResultHyperlink.setText(messages.getString("past_results"));
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        searchTextfield.setPromptText(messages.getString("search"));
+
+
+    }
 
     public void goToPastResults(ActionEvent actionEvent) {
         try {
