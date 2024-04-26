@@ -123,28 +123,28 @@ public class AccountSettingsStudentController {
                 try {
                     mainApplication.loadHelpStudent();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
             }
             case "catalog" -> {
                 try {
-                    mainApplication.loadCatalogFaculty();
+                    mainApplication.loadCatalogStudentPane();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
             }
             case "quiz" -> {
                 try {
                     mainApplication.loadQuizPane();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
             }
             default -> {
                 try {
                     mainApplication.loadHomeStudentPane();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
             }
         }

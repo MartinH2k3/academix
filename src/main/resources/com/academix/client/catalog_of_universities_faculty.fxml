@@ -57,7 +57,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
+                        <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
                            <font>
                               <Font name="Avenir Book" size="12.0" />
                            </font>
@@ -86,7 +86,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="SelectButton2" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
+                        <Button fx:id="SelectButton2" minWidth="-Infinity" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="Select">
                            <font>
                               <Font name="Avenir Book" size="12.0" />
                            </font>

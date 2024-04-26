@@ -77,11 +77,12 @@ public class MainApplication extends Application {
         accountSettingsStudentController.setBack(back);
         root.setCenter(accountset);
     }
-    public void loadAccountSettingsFacultyPane() throws Exception {
+    public void loadAccountSettingsFacultyPane(String back) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_faculty.fxml"));
         Pane accountset = loader.load();
         AccountSettingsFacultyController accountSettingsFacultyController = loader.getController();
         accountSettingsFacultyController.setMainApp(this);
+        accountSettingsFacultyController.setBack(back);
         root.setCenter(accountset);
     }
     public void loadQuizPane() throws Exception{
@@ -120,10 +121,12 @@ public class MainApplication extends Application {
         helpStudentController.setMainApp(this);
         root.setCenter(helpStudent);
     }
-
+    public void loadHelpFaculty() {
+    }
     public static void main(String[] args) {
         launch(args);
     }
+
 
 
 }
