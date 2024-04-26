@@ -40,7 +40,7 @@ public class LoginController {
         }
         String response = RequesterUser.getInstance().login(username, password);
         if (response.equals("Login successful")) {
-            mainApplication.logged_in_user = username;
+            mainApplication.loggedInUser = username;
             return true;
         } else {
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
@@ -50,12 +50,12 @@ public class LoginController {
 
     @FXML
     public void login(ActionEvent actionEvent) {
-        if (login()){
+        if (login()) {
             try {
                 mainApplication.loadHomeStudentPane();
             } catch (Exception e) {
                 Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-           }
+            }
         }
     }
 

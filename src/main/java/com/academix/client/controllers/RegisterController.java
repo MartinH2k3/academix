@@ -91,7 +91,4 @@ public class RegisterController {
             }
         }
     }
-
-
-    // You can add more methods and fields as needed
 }
