@@ -16,13 +16,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.io.IOException;
 import java.util.Formattable;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RegisterController {
     private MainApplication mainApplication;
+    private LocaleManager localeManager;
     @FXML
     private Polygon invalidPasswordBubble;
     @FXML
@@ -54,12 +58,50 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLoginHyperlink;
 
+    @FXML
+    private Button skToggleButton;
+
+    @FXML
+    private Button enToggleButton;
+
 
     @FXML
     private void initialize() {
         // You can add initialization logic here if needed
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        registerButton.setText(messages.getString("register"));
+        schoolEmployeeCheckbox.setText(messages.getString("employeetoggle"));
     }
 
+    @FXML
+    private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
+    }
+
+    @FXML
+    private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
+    }
+
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        registerButton.setText(messages.getString("register"));
+        schoolEmployeeCheckbox.setText(messages.getString("employeetoggle"));
+    }
     public void switchToLogin(ActionEvent actionEvent) {
         try {
             mainApplication.loadLoginPane();
