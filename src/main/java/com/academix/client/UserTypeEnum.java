@@ -2,6 +2,7 @@ package com.academix.client;
 
 public enum UserTypeEnum {
     STUDENT,
-    FACULTY_REPRESENTATIVE
+    FACULTY_REPRESENTATIVE,
+    ADMIN
 
 }
