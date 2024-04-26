@@ -16,4 +16,6 @@ module com.academix.academix {
 
     opens common to com.google.gson;
     exports common.dto;
+    exports com.academix.client.requests;
+    opens com.academix.client.requests to javafx.fxml;
 }
