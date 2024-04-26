@@ -93,6 +93,17 @@ public class RequesterUser {
     }
 
     /**
+     * gets information about the user
+     * @param username to know whose information to get
+     * @return AccountInfoDTO object with the information
+     */
+    public AccountInfoDTO getAccountInfo(String username) {
+        String json = requestSender.sendRequest("/account_info?username=" + username, "GET");
+        Gson gson = new Gson();
+        return gson.fromJson(json, AccountInfoDTO.class);
+    }
+
+    /**
      * @param username to know whose password to reset
      * @param oldPassword
      * @param newPassword
