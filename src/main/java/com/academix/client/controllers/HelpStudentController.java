@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -69,7 +70,8 @@ public class HelpStudentController {
             mainApplication.loadHelpStudent();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-        }    }
+        }
+    }
 
     @FXML
     void goToPastResults(ActionEvent event) {
@@ -87,19 +89,20 @@ public class HelpStudentController {
 
     @FXML
     void SendHelpMessage(ActionEvent event) {
-        //TODO sem dorobit dat sendQuestion po doimplementovani subjectu
+        RequesterUser.getInstance().sendQuestion(mainApplication.loggedInUser, subjectTextField.getText(), messageTextField.getText());
     }
 
     @FXML
     void signOut(ActionEvent event) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-        }    }
+        }
+    }
 
-    public void setMainApp(MainApplication mainApplication){
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 

@@ -4,4 +4,5 @@ public enum UserTypeEnum {
     STUDENT,
     FACULTY_REPRESENTATIVE,
     ADMIN
+
 }

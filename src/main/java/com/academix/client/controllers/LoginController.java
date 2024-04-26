@@ -56,7 +56,7 @@ public class LoginController {
                 mainApplication.loadHomeStudentPane();
             } catch (Exception e) {
                 Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-           }
+            }
         }
     }
     @FXML

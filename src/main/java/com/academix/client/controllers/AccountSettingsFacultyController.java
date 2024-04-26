@@ -36,7 +36,8 @@ public class AccountSettingsFacultyController {
 
     private MainApplication mainApplication;
     private String back;
-    public void setMainApp(MainApplication mainApplication){
+
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
@@ -73,9 +74,11 @@ public class AccountSettingsFacultyController {
             }
         }
     }
+
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
     }
+
     @FXML
     private void goToMyFaculty(ActionEvent actionEvent) {
         try {
@@ -84,6 +87,7 @@ public class AccountSettingsFacultyController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+
     @FXML
     private void goToCatalog() {
         try {
@@ -92,9 +96,11 @@ public class AccountSettingsFacultyController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+
     @FXML
     public void goToAccountSettings(ActionEvent actionEvent) {
     }
+
     @FXML
     public void goToHelp(ActionEvent actionEvent) {
         try {
@@ -103,10 +109,11 @@ public class AccountSettingsFacultyController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+
     @FXML
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
