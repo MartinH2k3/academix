@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class MainApplication extends Application {
 
     private BorderPane root;
-    private Stage primaryStage;
     public String logged_in_user;
 
     @Override
@@ -38,7 +37,6 @@ public class MainApplication extends Application {
         primaryStage.setTitle("Main Application");
         primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
         primaryStage.show();
-        this.primaryStage = primaryStage;
     }
 
     public void loadRegisterPane() throws Exception {

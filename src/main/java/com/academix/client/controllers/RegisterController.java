@@ -59,6 +59,17 @@ public class RegisterController {
         String username = usernameTextfield.getText();
         String password = passwordPasswordField.getText();
 
+
+        if (!FormatCheck.isValidUsername(username)){
+            return;
+        }
+        if(passwordPasswordField.getCharacters().isEmpty()){
+            return;
+        }
+
+        if(!confirmPasswordField.getText().equals(passwordPasswordField.getText())){
+            return;
+        }
         String response;
         if (schoolEmployeeCheckbox.isSelected()){
             try {
