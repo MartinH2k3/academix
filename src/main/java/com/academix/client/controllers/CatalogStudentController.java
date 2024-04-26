@@ -96,7 +96,7 @@ public class CatalogStudentController {
 
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");

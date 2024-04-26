@@ -1,7 +1,6 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
-import javafx.application.Preloader;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,11 +114,19 @@ public class QuizController {
       circle.setFill(col);
     }
     public void goToPastResults(ActionEvent actionEvent) {
-
+        try {
+            mainApplication.loadHomeStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
-
+        try {
+            mainApplication.loadQuizPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToCatalog(ActionEvent actionEvent) {
@@ -143,7 +150,7 @@ public class QuizController {
 
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
