@@ -63,7 +63,7 @@ public class Auth {
      * @param username Username of the faculty representative
      */
     private static void addFacultyRepresentative(Connection conn, String username){
-        String query = "INSERT INTO faculty_representatives (user_id) VALUES ((SELECT user_id FROM users WHERE username = ?))";
+        String query = "INSERT INTO faculty_representatives (user_id, verified) VALUES ((SELECT user_id FROM users WHERE username = ?), false)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
