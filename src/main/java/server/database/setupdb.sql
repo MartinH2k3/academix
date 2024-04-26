@@ -3,6 +3,7 @@ BEGIN;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Drop existing tables
+DROP TABLE IF EXISTS "requests" CASCADE;
 DROP TABLE IF EXISTS "faculty_representatives" CASCADE;
 DROP TABLE IF EXISTS "faculties" CASCADE;
 DROP TABLE IF EXISTS "users" CASCADE;
