@@ -31,7 +31,7 @@ public class LoginController {
     }
 
 
-    private boolean login() {
+    private String loginCheck() {
         String username = usernameTextfield.getText().trim();
         String password = passwordField.getText().trim();
 
@@ -39,18 +39,19 @@ public class LoginController {
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
         }
         String response = RequesterUser.getInstance().login(username, password);
-        if (response.equals("Login successful")) {
+        if (response != null) {
             mainApplication.logged_in_user = username;
-            return true;
+            return response;
         } else {
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
-            return false;
+            return null;
         }
     }
 
     @FXML
-    public void login(ActionEvent actionEvent) {
-        if (login()){
+    private void login() {
+        String userType = loginCheck();
+        if (userType != null){
             try {
                 mainApplication.loadHomeStudentPane();
             } catch (Exception e) {
@@ -58,8 +59,8 @@ public class LoginController {
            }
         }
     }
-
-    public void switchToRegister(ActionEvent actionEvent) {
+    @FXML
+    private void switchToRegister(ActionEvent actionEvent) {
         try {
             mainApplication.loadRegisterPane();
         } catch (Exception e) {
