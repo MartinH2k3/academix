@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,12 +36,32 @@ public class LoginController {
         // You can add initialization logic here if needed
     }
 
+
+    private boolean login() {
+        String username = usernameTextfield.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
+        }
+        String response = RequesterUser.getInstance().login(username, password);
+        if (response.equals("Login successful")) {
+            mainApplication.logged_in_user = username;
+            return true;
+        } else {
+            Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
+            return false;
+        }
+    }
+
     @FXML
-    private void login() {
-        try {
-            mainApplication.loadHomeStudentPane();
-        } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+    public void login(ActionEvent actionEvent) {
+        if (login()){
+            try {
+                mainApplication.loadHomeStudentPane();
+            } catch (Exception e) {
+                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+            }
         }
     }
 

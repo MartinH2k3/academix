@@ -1,20 +1,18 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterStudent;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import server.logging.Logging;
 
-public class HomeStudentController {
+public class HelpStudentController {
     private MainApplication mainApplication;
-
-    @FXML
-    private HBox navigationBar;
 
     @FXML
     private Hyperlink pastResultHyperlink;
@@ -38,47 +36,50 @@ public class HomeStudentController {
     private Text takeALookText;
 
     @FXML
-    private Pane facultyPane1;
+    private TextField messageTextField;
 
     @FXML
-    private Pane facultyPane2;
+    private Button sendMessageButton;
 
     @FXML
-    private Pane facultyPane3;
+    private Text sentSuccessfullyText;
 
     @FXML
-    private Text belongText;
+    private TextField subjectTextField;
 
     @FXML
-    private Text facultyText1;
-
-    @FXML
-    private Text uniText1;
-
-    @FXML
-    private Text facultyText2;
-
-    @FXML
-    private Text uniText2;
-
-    @FXML
-    private Text facultyText3;
-
-    @FXML
-    private Text uniText3;
-
-    @FXML
-    private Button takeQuizButton;
-
-    @FXML
-    private void initialize() {
-        // Initialization code
+    void goToAccountSettings(ActionEvent event) {
+        try {
+            mainApplication.loadAccountSettingsStudentPane("help");
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
-    public void goToPastResults(ActionEvent actionEvent) {
+    @FXML
+    void goToCatalog(ActionEvent event) {
+        try {
+            mainApplication.loadCatalogStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
-    public void goToQuiz(ActionEvent actionEvent) {
+    @FXML
+    void goToHelp(ActionEvent event) {
+        try {
+            mainApplication.loadHelpStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }    }
+
+    @FXML
+    void goToPastResults(ActionEvent event) {
+        //TODO past results implement
+    }
+
+    @FXML
+    void goToQuiz(ActionEvent event) {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
@@ -86,36 +87,22 @@ public class HomeStudentController {
         }
     }
 
-    public void goToCatalog(ActionEvent actionEvent) {
-        try {
-            mainApplication.loadCatalogStudentPane();
-        } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-        }
-
+    @FXML
+    void SendHelpMessage(ActionEvent event) {
+        //TODO sem dorobit dat sendQuestion po doimplementovani subjectu
     }
 
-    public void goToAccountSettings(ActionEvent actionEvent) {
-        try {
-            mainApplication.loadAccountSettingsStudentPane("home");
-        } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-        }
-    }
-
-    public void goToHelp(ActionEvent actionEvent) {
-    }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    void signOut(ActionEvent event) {
         try {
             mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
-        }
-    }
+        }    }
+
     public void setMainApp(MainApplication mainApplication){
         this.mainApplication = mainApplication;
     }
-    // Add methods for handling actions/events here
+
 }

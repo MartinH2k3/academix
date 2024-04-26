@@ -5,11 +5,11 @@
             <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/> <!-- level sa tu nastavuje ako treshold - nejaka bariera, ktora rozhoduje o tom, ci sprava prejde alebo nie -->
             <PatternLayout pattern="%d{HH:mm:ss.SS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="File" fileName="app.log">
+        <File name="File" fileName="src/main/resources/logger/app.log">
             <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{HH:mm:ss.SS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
-        <File name="File" fileName="full.log">
+        <File name="File" fileName="src/main/resources/logger/full.log">
             <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{HH:mm:ss.SS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>

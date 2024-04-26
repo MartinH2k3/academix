@@ -62,6 +62,7 @@ CREATE TABLE "students" (
 CREATE TABLE "helpline_questions" (
     "question_id" BIGSERIAL PRIMARY KEY,
     "asked_by" UUID REFERENCES "users"("user_id") NOT NULL,
+    "subject" VARCHAR(100) NOT NULL,
     "text" VARCHAR(500) NOT NULL,
     "status" VARCHAR(30) NOT NULL
 );

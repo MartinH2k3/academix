@@ -1,7 +1,9 @@
 package server.handlers.support;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.QuestionDTO;
 import server.database.support.Helpline;
 import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
@@ -26,9 +28,10 @@ public class HelplineQuestionHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            String question = HttpStreamManager.readRequestBody(exchange);
-            response = Helpline.submitQuestion(params.get("username"), question);
+            String json = HttpStreamManager.readRequestBody(exchange);
+            Gson gson = new Gson();
+            QuestionDTO dto = gson.fromJson(json, QuestionDTO.class);
+            response = Helpline.submitQuestion(dto.username, dto.subject, dto.question);
         } else {
             response = "Wrong request method";
             // TODO log here
