@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Properties;
 
 public class RequestSender {
     private static RequestSender instance = null;
@@ -14,7 +15,15 @@ public class RequestSender {
     private String domain;
 
     private RequestSender() {
-        domain ="http://localhost:8080";
+        Properties prop = new Properties();
+        InputStream input = RequestSender.class.getClassLoader().getResourceAsStream("config.properties");
+        try {
+            prop.load(input);
+        }
+        catch (IOException e) {
+            Logging.getInstance().logException(e, "Chyba pri načítaní konfiguračného súboru.");
+        }
+        domain = prop.getProperty("server_ip");
     }
 
     public static RequestSender getInstance() {
