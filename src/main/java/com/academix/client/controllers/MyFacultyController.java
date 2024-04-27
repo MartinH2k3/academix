@@ -17,40 +17,37 @@ public class MyFacultyController {
 
     private LocaleManager localeManager;
     @FXML
+    private RadioButton vetMedRadioButton;
+    @FXML
+    private RadioButton bioRadioButton;
+    @FXML
+    private RadioButton physRadioButton;
+    @FXML
+    private RadioButton matRadioButton;
+    @FXML
+    private RadioButton medRadioButton;
+    @FXML
+    private RadioButton ecoRadioButton;
+    @FXML
+    private RadioButton psyRadioButton;
+    @FXML
+    private RadioButton socRadioButton;
+    @FXML
+    private RadioButton lawRadioButton;
+    private Line line2;
+
+    @FXML
+    private RadioButton busRadioButton;
+    @FXML
+    private RadioButton marRadioButton;
+    @FXML
+    private RadioButton infRadioButton;
+    private String back;
+    @FXML
     private TextField facultyTextfield;
 
     @FXML
     private TextField universityTextfield;
-
-    @FXML
-    private TextField phoneNumberTextfield;
-
-    @FXML
-    private TextField emailTextfield;
-
-    @FXML
-    private Line line1;
-
-    @FXML
-    private Text text;
-
-    @FXML
-    private Line line2;
-
-    @FXML
-    private Button takeQuizButton;
-
-    @FXML
-    private Button takeQuizButton1;
-
-    @FXML
-    private TextField nameTextfield;
-
-    @FXML
-    private Button addContactButton;
-
-    @FXML
-    private Line line3;
 
     @FXML
     private TextArea longDescriptionTextfield;
@@ -172,7 +169,11 @@ public class MyFacultyController {
 
     @FXML
     void goToHelp() {
-        // Implement action here
+        try {
+            mainApplication.loadHelpFaculty();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -187,7 +188,7 @@ public class MyFacultyController {
     @FXML
     void signOut() {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
@@ -198,15 +199,48 @@ public class MyFacultyController {
         this.mainApplication = mainApplication;
     }
 
-    public void save(ActionEvent actionEvent) {
+    @FXML
+    private void save(ActionEvent actionEvent) {
     }
 
-    public void back(ActionEvent actionEvent) {
+    @FXML
+    private void back() {
+        switch (back) {
+            case "help" -> {
+                try {
+                    mainApplication.loadHelpFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            case "catalog" -> {
+                try {
+                    mainApplication.loadCatalogFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            case "accset" -> {
+                try {
+                    mainApplication.loadAccountSettingsFacultyPane("myfaculty");
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            default -> {
+                try {
+                    mainApplication.loadHomeFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+        }
+    }
+    @FXML
+    private void goToMyFaculty(ActionEvent actionEvent) {
     }
 
-    public void addContact(ActionEvent actionEvent) {
-    }
-
-    public void goToMyFaculty(ActionEvent actionEvent) {
+    public void setBack(String back) {
+        this.back = back;
     }
 }

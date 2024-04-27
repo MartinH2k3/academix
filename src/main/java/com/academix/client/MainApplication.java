@@ -21,7 +21,7 @@ public class MainApplication extends Application {
     private BorderPane root;
 
     private Stage primaryStage;
-    public String loggedInUser;
+    private String loggedInUser;
 
     @Override
     public void start(Stage primaryStage) {
@@ -119,11 +119,12 @@ public class MainApplication extends Application {
         root.setCenter(home);
     }
 
-    public void loadMyFaculty() throws Exception {
+    public void loadMyFaculty(String back) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("my_faculty.fxml"));
         Parent MyFaculty = loader.load();
         MyFacultyController myFacultyController = loader.getController();
         myFacultyController.setMainApp(this);
+        myFacultyController.setBack(back);
         root.setCenter(MyFaculty);
     }
 
@@ -179,6 +180,14 @@ public class MainApplication extends Application {
         requestsController.setMainApp(this);
         root.setCenter(req);
     }
+
+    public void setLoggedInUser(String loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+    public String getLoggedInUser(){
+        return this.loggedInUser;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

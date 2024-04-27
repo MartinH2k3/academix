@@ -148,6 +148,7 @@ public class RegisterController {
                 Logging.getInstance().logException(e, "Pri registrácii nastala chyba.");
             }
         }
+        mainApplication.setLoggedInUser(username);
     }
 
     public void hideUsernameBubble(MouseEvent mouseEvent) {

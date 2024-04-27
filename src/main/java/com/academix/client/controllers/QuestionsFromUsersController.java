@@ -99,6 +99,12 @@ public class QuestionsFromUsersController {
 
     @FXML
     private void signOut() {
+        try {
+            mainApplication.setLoggedInUser(null);
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

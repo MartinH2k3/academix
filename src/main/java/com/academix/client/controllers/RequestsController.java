@@ -65,15 +65,36 @@ public class RequestsController {
     }
     @FXML
     private void goToQuestionsFromUsers(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void goToAccounts(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void goToAccountSettings(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void signOut(ActionEvent actionEvent) {
+        try {
+            mainApplication.setLoggedInUser(null);
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     public void setMainApp(MainApplication mainApplication){
     this.mainApplication = mainApplication;

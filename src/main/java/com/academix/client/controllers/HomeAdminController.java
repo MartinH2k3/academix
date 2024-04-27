@@ -15,6 +15,7 @@ public class HomeAdminController {
 
     @FXML
     private void signOut() {
+
     }
 
     @FXML
