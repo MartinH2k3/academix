@@ -58,4 +58,8 @@ public class ExactAnswerStudentController {
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
+
+    public void setMessage(String answer) {
+        answerLabel.setText(answer);
+    }
 }
