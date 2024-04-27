@@ -2,29 +2,52 @@ package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import server.logging.Logging;
 
 public class ExactAnswerStudentController {
-    public Label answerLabel;
+    @FXML
+    private Label answerLabel;
     private MainApplication mainApplication;
+    @FXML
+    private void goToAnswers( ) {
 
-    public void goToAnswers(ActionEvent actionEvent) {
     }
-
-    public void goToQuiz(ActionEvent actionEvent) {
+    @FXML
+    private void goToQuiz( ) {
+        try {
+            mainApplication.loadQuizPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
-
-    public void goToCatalog(ActionEvent actionEvent) {
+    @FXML
+    private void goToCatalog() {
+        try {
+            mainApplication.loadCatalogStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
-
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    @FXML
+    private void goToAccountSettings( ) {
+        try {
+            mainApplication.loadAccountSettingsStudentPane("help");
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
-
-    public void goToHelp(ActionEvent actionEvent) {
+    @FXML
+    private void goToHelp( ) {
+        try {
+            mainApplication.loadHelpStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    private void signOut( ) {
         try {
             mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
