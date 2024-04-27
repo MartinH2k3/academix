@@ -43,7 +43,6 @@ public class CatalogStudentController {
     private VBox allSchools;
     @FXML
     private TextField pageTextField;
-    private MainApplication mainApplication;
 
 
     @FXML
