@@ -23,7 +23,7 @@ public class FacultyCreator {
                 return rs.getBoolean("verified");
             }
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Používateľ nie je zamestanec fakulty.");
+            Logging.getInstance().logException(e, "User is not a verified faculty representative");
         }
         return false;
     }
@@ -64,7 +64,7 @@ public class FacultyCreator {
             pstmt.executeUpdate();
             return "Faculty added";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
             return "Faculty addition failed";
         }
     }

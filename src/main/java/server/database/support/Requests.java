@@ -24,7 +24,7 @@ public class Requests {
             return "Request submitted";
         } catch (SQLException e) {
             String message = "Request submission failed";
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
             return message;
         }
     }
@@ -49,7 +49,7 @@ public class Requests {
             return "Request answered";
         } catch (SQLException e) {
             String message = "Request answer failed";
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error while updating the request status in the database");
             return message;
         }
     }
@@ -64,7 +64,7 @@ public class Requests {
           }
           return requests;
     } catch (SQLException e) {
-          Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+          Logging.getInstance().logException(e, "Error with SQL query.");
           return null;
          }
     }

@@ -23,7 +23,7 @@ public class DatabaseConnector {
             try {
                 prop.load(input);
             } catch (IOException e) {
-                Logging.getInstance().logException(e, "Pri načítaní properties súboru došlo k chybe");
+                Logging.getInstance().logException(e, "Error while trying to load the database properties file.");
             }
             String url = prop.getProperty("db.url");
             //String url = "jdbc:postgresql://localhost:5432/academix?user=postgres";

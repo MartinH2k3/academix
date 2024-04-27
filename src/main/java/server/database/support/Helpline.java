@@ -30,7 +30,7 @@ public class Helpline {
             return "Question submitted";
         } catch (SQLException e) {
             String message = "Question submission failed";
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
             return message;
         }
     }
@@ -54,7 +54,7 @@ public class Helpline {
             return "Answer submitted";
         } catch (SQLException e) {
             String message = "Answer submission failed";
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
             return message;
         }
     }
@@ -73,7 +73,7 @@ public class Helpline {
             }
             return questions;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query");
             return null;
         }
     }
@@ -93,7 +93,7 @@ public class Helpline {
             }
             return answers;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query");
             return null;
         }
     }

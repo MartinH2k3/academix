@@ -53,7 +53,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error occured while inserting record into the database");
         }
     }
 
@@ -69,7 +69,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
         }
     }
 
@@ -108,7 +108,7 @@ public class Auth {
                 }
                 return "Registration successful";
             } catch (SQLException e) {
-                Logging.getInstance().logException(e, "Pri registrácii používateľa došlo k chybe");
+                Logging.getInstance().logException(e, "Error during registration");
                 return "Error during registration";
             }
 
@@ -138,7 +138,7 @@ public class Auth {
 
             }
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri resetovaní hesla používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error occured while resetting password");
         }
         return "Password reset failed";
     }
@@ -153,7 +153,7 @@ public class Auth {
                 return "Account deleted";
             }
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri mazaní účtu došlo k chybe");
+            Logging.getInstance().logException(e, "Error occured while deleting account");
         }
         return "Account deletion failed";
     }

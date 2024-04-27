@@ -31,7 +31,7 @@ public class FacultyGetter {
             }
             return faculties;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query.");
             return null;
         }
     }
@@ -52,7 +52,7 @@ public class FacultyGetter {
             }
             return faculties;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query.");
             return null;
         }
     }
@@ -75,7 +75,7 @@ public class FacultyGetter {
             }
             return faculties;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query.");
             return null;
         }
     }
@@ -104,7 +104,7 @@ public class FacultyGetter {
             }
             return null;
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            Logging.getInstance().logException(e, "Error with SQL query.");
             return null;
         }
     }
