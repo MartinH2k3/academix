@@ -41,11 +41,11 @@ public class FacultyCreator {
      * @return Success or failure message
      */
     public static String addFaculty(String username, String university_name, String faculty_name, String description, String field, String minimal_grade, String website_url, String title_image_url) {
-        if (!facultyMiddleware(username)) {
+        /*if (!facultyMiddleware(username)) {
             String message = "User is not a verified faculty representative";
             Logging.getInstance().logServerWarning(message);
             return message;
-        }
+        }*/
 
         if (!universityExists(university_name)) {
             addUniversity(university_name);
