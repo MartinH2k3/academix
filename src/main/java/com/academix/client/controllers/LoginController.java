@@ -1,11 +1,9 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -53,9 +51,22 @@ public class LoginController {
         loginButton.setText(messages.getString("login"));
     }
 
-    @FXML
-    private void login() {
-        // Implement the login logic here
+
+    private boolean login() {
+        String username = usernameTextfield.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
+        }
+        String response = RequesterUser.getInstance().login(username, password);
+        if (response.equals("Login successful")) {
+            mainApplication.logged_in_user = username;
+            return true;
+        } else {
+            Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
+            return false;
+        }
     }
 
     @FXML
@@ -77,13 +88,14 @@ public class LoginController {
         goToRegisterHyperlink.setText(messages.getString("noaccount"));
         loginButton.setText(messages.getString("login"));
     }
-
-    public void login(ActionEvent actionEvent) {
-        try {
-            mainApplication.loadHomeStudentPane();
-//            mainApplication.loadHomeFaculty();
-        } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+    @FXML
+    private void login(ActionEvent actionEvent) {
+        if (login()){
+            try {
+                mainApplication.loadHomeStudentPane();
+            } catch (Exception e) {
+                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+           }
         }
     }
 

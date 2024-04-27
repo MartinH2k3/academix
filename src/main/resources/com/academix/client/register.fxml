@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.RegisterController">
+
+<AnchorPane prefHeight="552.0" prefWidth="548.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.RegisterController">
    <children>
-      <ImageView fitHeight="178.0" fitWidth="297.0" layoutX="164.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@logo.png" />
-         </image>
-      </ImageView>
-      <VBox alignment="CENTER_LEFT" layoutX="164.0" layoutY="207.0" prefHeight="178.0" prefWidth="300.0" spacing="5.0">
+      <VBox alignment="CENTER" layoutX="124.0" layoutY="95.2" prefHeight="363.0" prefWidth="266.0" spacing="5.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="95.0">
          <children>
-            <Text fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" wrappingWidth="168.46794509887695">
+            <ImageView fitHeight="178.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" wrappingWidth="263.66797256469727">
                <font>
                   <Font name="Avenir Black" size="9.0" />
                </font>
             </Text>
-            <TextField fx:id="usernameTextfield" promptText="Username">
+            <TextField fx:id="usernameTextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="266.0" promptText="Username">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordPasswordField" promptText="Password">
+            <PasswordField fx:id="passwordPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="266.0" promptText="Password">
                <font>
                   <Font name="Avenir Book Oblique" size="12.0" />
                </font>
             </PasswordField>
-            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password">
+            <PasswordField fx:id="confirmPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="266.0" promptText="Confirm Password">
                <font>
                   <Font name="Avenir Book Oblique" size="12.0" />
                </font>
             </PasswordField>
-            <CheckBox fx:id="schoolEmployeeCheckbox" mnemonicParsing="false" text="School Employee" />
-            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="16.0" prefWidth="149.0" style="-fx-background-color: #3b5e87;" text="Register" textFill="WHITE">
+            <CheckBox fx:id="schoolEmployeeCheckbox" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="151.0" text="School Employee" />
+            <Button fx:id="registerButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="Register" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="goToLoginHyperlink" onAction="#switchToLogin" text="Already have an account? Log in!" textAlignment="CENTER" textFill="#545450">
+            <Hyperlink fx:id="goToLoginHyperlink" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToLogin" prefHeight="18.0" prefWidth="151.0" text="Already have an account? Log in!" textAlignment="CENTER" textFill="#545450">
                <font>
                   <Font name="Avenir Book" size="9.0" />
                </font>
             </Hyperlink>
          </children>
       </VBox>
-      <Polygon fx:id="invalidUsernameBubble" fill="WHITE" layoutX="250.0" layoutY="188.0" onMouseEntered="#hideUsernameBubble" points="206.0, -2.543131586207892E-6, 206.0, -41.00001907348633, -86.4000244140625, -41.00000762939453, -86.4000244140625, 0.0, -64.0, 0.0, -45.5999755859375, 36.600006103515625, -27.20001220703125, 0.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Text fx:id="invalidUsernameText" layoutX="168.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid username no special symbols, lenght 3-20 characters" visible="false" wrappingWidth="282.0" />
-      <Polygon fx:id="invalidPasswordBubble" fill="WHITE" layoutX="250.0" layoutY="233.0" onMouseEntered="#hidePasswordBubble" points="206.0, -2.543131586207892E-6, 206.0, -41.00001907348633, -86.4000244140625, -41.00000762939453, -86.4000244140625, 0.0, -64.0, 0.0, -45.5999755859375, 36.600006103515625, -27.20001220703125, 0.0" scaleY="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Text fx:id="invalidPasswordText" layoutX="169.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid password can not be empty." visible="false" wrappingWidth="282.0" />
-      <Polygon fx:id="invalidConfirmPasswordBubble" fill="WHITE" layoutX="250.0" layoutY="265.0" onMouseEntered="#hideConfirmPasswordBubble" points="206.0, -2.543131586207892E-6, 206.0, -41.00001907348633, -86.4000244140625, -41.00000762939453, -86.4000244140625, 0.0, -64.0, 0.0, -45.5999755859375, 36.600006103515625, -27.20001220703125, 0.0" scaleY="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Text fx:id="invalidConfirmPasswordText" layoutX="170.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password do not match." visible="false" wrappingWidth="282.0" />
-      <Button fx:id="skToggleButton" layoutX="498.0" layoutY="383.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
-      <Button fx:id="enToggleButton" layoutX="532.0" layoutY="383.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
    </children>
-</Pane>
+</AnchorPane>

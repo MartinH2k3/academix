@@ -4,13 +4,18 @@ import com.academix.client.controllers.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import language.LocaleManager;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -19,6 +24,7 @@ public class MainApplication extends Application {
 
     private BorderPane root;
     private Stage primaryStage;
+    public String logged_in_user;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -43,8 +49,6 @@ public class MainApplication extends Application {
         Pane registerPane = loader.load();
         RegisterController registerController = loader.getController();
         registerController.setMainApp(this);
-        primaryStage.setWidth(registerPane.getPrefWidth());
-        primaryStage.setHeight(registerPane.getPrefHeight());
         root.setCenter(registerPane);
     }
     public void loadLoginPane() throws Exception {
@@ -52,8 +56,6 @@ public class MainApplication extends Application {
         Pane loginPane = loader.load();
         LoginController loginController = loader.getController();
         loginController.setMainApp(this);
-        primaryStage.setWidth(loginPane.getPrefWidth());
-        primaryStage.setHeight(loginPane.getPrefHeight());
         root.setCenter(loginPane);
     }
     public void loadCatalogStudentPane() throws Exception {
@@ -61,8 +63,6 @@ public class MainApplication extends Application {
         Pane catalog = loader.load();
         CatalogStudentController catalogStudentController = loader.getController();
         catalogStudentController.setMainApp(this);
-        primaryStage.setWidth(catalog.getPrefWidth());
-        primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
     public void loadHomeStudentPane() throws Exception {
@@ -70,8 +70,6 @@ public class MainApplication extends Application {
         Pane homeStudent = loader.load();
         HomeStudentController homeStudentController = loader.getController();
         homeStudentController.setMainApp(this);
-        primaryStage.setWidth(homeStudent.getPrefWidth());
-        primaryStage.setHeight(homeStudent.getPrefHeight());
         root.setCenter(homeStudent);
     }
     public void loadAccountSettingsStudentPane(String back) throws Exception {
@@ -80,17 +78,14 @@ public class MainApplication extends Application {
         AccountSettingsStudentController accountSettingsStudentController = loader.getController();
         accountSettingsStudentController.setMainApp(this);
         accountSettingsStudentController.setBack(back);
-        primaryStage.setWidth(accountset.getPrefWidth());
-        primaryStage.setHeight(accountset.getPrefHeight());
         root.setCenter(accountset);
     }
-    public void loadAccountSettingsFacultyPane() throws Exception {
+    public void loadAccountSettingsFacultyPane(String back) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_faculty.fxml"));
         Pane accountset = loader.load();
         AccountSettingsFacultyController accountSettingsFacultyController = loader.getController();
         accountSettingsFacultyController.setMainApp(this);
-        primaryStage.setWidth(accountset.getPrefWidth());
-        primaryStage.setHeight(accountset.getPrefHeight());
+        accountSettingsFacultyController.setBack(back);
         root.setCenter(accountset);
     }
     public void loadQuizPane() throws Exception{
@@ -99,8 +94,6 @@ public class MainApplication extends Application {
         QuizController quizController = loader.getController();
         quizController.initialize();
         quizController.setMainApp(this);
-        primaryStage.setWidth(quiz.getPrefWidth());
-        primaryStage.setHeight(quiz.getPrefHeight());
         root.setCenter(quiz);
     }
     public void loadHomeFaculty() throws Exception{
@@ -108,8 +101,6 @@ public class MainApplication extends Application {
         Pane home = loader.load();
         HomeFacultyConstroller homeFacultyConstroller = loader.getController();
         homeFacultyConstroller.setMainApp(this);
-        primaryStage.setWidth(home.getPrefWidth());
-        primaryStage.setHeight(home.getPrefHeight());
         root.setCenter(home);
     }
     public void loadMyFaculty() throws Exception{
@@ -117,8 +108,6 @@ public class MainApplication extends Application {
         Pane MyFaculty = loader.load();
         MyFacultyController myFacultyController = loader.getController();
         myFacultyController.setMainApp(this);
-        primaryStage.setWidth(MyFaculty.getPrefWidth());
-        primaryStage.setHeight(MyFaculty.getPrefHeight());
         root.setCenter(MyFaculty);
     }
     public void loadCatalogFaculty() throws Exception{
@@ -126,16 +115,21 @@ public class MainApplication extends Application {
         Pane catalog = loader.load();
         CatalogFacultyController catalogFacultyController = loader.getController();
         catalogFacultyController.setMainApp(this);
-        primaryStage.setWidth(catalog.getPrefWidth());
-        primaryStage.setHeight(catalog.getPrefHeight());
         root.setCenter(catalog);
     }
-    public void loadHelpStudent() {
+    public void loadHelpStudent() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("help_student.fxml"));
+        Pane helpStudent = loader.load();
+        HelpStudentController helpStudentController = loader.getController();
+        helpStudentController.setMainApp(this);
+        root.setCenter(helpStudent);
     }
-
+    public void loadHelpFaculty() {
+    }
     public static void main(String[] args) {
         launch(args);
     }
+
 
 
 }

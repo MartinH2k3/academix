@@ -4,42 +4,41 @@ import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import language.LocaleManager;
 import server.logging.Logging;
-
+import javafx.scene.control.Hyperlink;
+import language.LocaleManager;
 import java.util.ResourceBundle;
 
 public class AccountSettingsFacultyController {
+    @FXML
+    public TextField firstNameTextfield;
+    @FXML
+    public TextField lastNameTextfield;
+    @FXML
+    public TextField phoneNumberTextfield;
+    @FXML
+    public TextField emailTextfield;
+    @FXML
+    public PasswordField currentPasswordField;
+    @FXML
+    public PasswordField newPasswordField;
+    @FXML
+    public PasswordField repeatNewPasswordField;
+    @FXML
+    public Button backButton;
+    @FXML
+    public Button saveButton;
+
     private MainApplication mainApplication;
+    private String back;
 
     private LocaleManager localeManager;
 
     @FXML
     private Hyperlink myFacultyHyperlink;
-
-    @FXML
-    private TextField firstNameTextfield;
-
-    @FXML
-    private TextField lastNameTextfield;
-
-    @FXML
-    private TextField phoneNumberTextfield;
-
-    @FXML
-    private TextField emailTextfield;
-
-    @FXML
-    private TextField currentPasswordField;
-
-    @FXML
-    private TextField newPasswordField;
-
-    @FXML
-    private TextField repeatNewPasswordField;
 
     @FXML
     private Hyperlink catalogHyperlink;
@@ -52,12 +51,6 @@ public class AccountSettingsFacultyController {
 
     @FXML
     private Hyperlink signOutHyperlink;
-
-    @FXML
-    private Button backButton;
-
-    @FXML
-    private Button saveButton;
 
     @FXML
     private Text basicText;
@@ -98,21 +91,43 @@ public class AccountSettingsFacultyController {
     }
 
     @FXML
-    private void signOut() {
-        try {
-            mainApplication.loadLoginPane();
-        } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+    private void goBack() {
+        switch (back) {
+            case "help" -> {
+                try {
+                    mainApplication.loadHelpFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            case "catalog" -> {
+                try {
+                    mainApplication.loadCatalogFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            case "myfaculty" -> {
+                try {
+                    mainApplication.loadMyFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
+            default -> {
+                try {
+                    mainApplication.loadHomeFaculty();
+                } catch (Exception e) {
+                    Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+                }
+            }
         }
     }
-
     @FXML
-    private void saveChanges() {
-        // Implement the logic to save the changes made in the account settings
+    public void saveChanges(ActionEvent actionEvent) {
     }
-
     @FXML
-    private void goToMyFaculty(ActionEvent actionEvent) {
+    public void goToMyFaculty(ActionEvent actionEvent) {
         try {
             mainApplication.loadMyFaculty();
         } catch (Exception e) {
@@ -120,25 +135,35 @@ public class AccountSettingsFacultyController {
         }
     }
     @FXML
-    private void goToCatalog(ActionEvent actionEvent) {
+    public void goToCatalog(ActionEvent actionEvent) {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
     @FXML
-    private void goToAccountSettings(ActionEvent actionEvent) {
+    public void goToAccountSettings(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void goToHelp(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadHelpFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
+    @FXML
+    public void signOut(ActionEvent actionEvent) {
+        try {
+            mainApplication.logged_in_user = null;
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
-    @FXML
-    private void goToHelp(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    private void goBack() {
-
+    public void setBack(String back) {
+        this.back = back;
     }
 }

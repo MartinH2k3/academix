@@ -1,5 +1,9 @@
 package com.academix.client.requests;
 
+import common.dto.QnADTO;
+
+import java.util.List;
+
 public class ConnectionTest {
     public static void main(String[] args) {
         RequesterUser requesterUser = RequesterUser.getInstance();
@@ -7,27 +11,36 @@ public class ConnectionTest {
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         RequesterStudent requesterStudent = RequesterStudent.getInstance();
         // register faculty representative
-        // System.out.println(requesterUser.register("bobert14", "password", "faculty_representative"));
+        // System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
 
         // register student
-        // System.out.println(requesterUser.register("shmosby", "password", "student"));
+        System.out.println(requesterUser.register("student1", "password", "student"));
 
         // login
-        // System.out.println(requesterUser.login("shmosby", "password"));
+        // System.out.println(requesterUser.login("student1", "password"));
 
-        // update account info /account/{username}/update?x=y... would be more fitting, but without using Spring (or something similar), this is more scalable
-        // System.out.println(requesterUser.updateAccountInfo("shmosby", "email", "firstname", "lastname", "phone_number"));
+        // update account info (email, firstname, lastname, phone_number)
+        // System.out.println(requesterUser.updateAccountInfo("student1", "bob", "Stude bt", "Studen tovski", "bob"));
 
         // reset password
-        // System.out.println(requesterUser.resetPassword("shmosby", "password", "new_password"));
-        // System.out.println(requesterUser.resetPassword("shmosby", "new_password", "password"));
+        // System.out.println(requesterUser.resetPassword("student1", "password", "new_password"));
 
         // submit question
-        // System.out.println(requesterUser.sendQuestion("shmosby", "What is the meaning of life?"));
-
+        //System.out.println(requesterUser.sendQuestion("student1", "Meaning", "What is the meaning of life?"));
+        for (Long i = 1L; i < 5L; i++) {
+            requesterUser.sendQuestion("student1", Long.toString(i),"What is the meaning of life?");
+            requesterAdmin.answerQuestion(i, Long.toString(i));
+        }
         // answer question
-        // System.out.println(requesterAdmin.answerQuestion(1L, "He died for our sins"));
+        // System.out.println(requesterAdmin.answerQuestion(1L, "potatoes"));
 
+        // get answers for requests
+        List<QnADTO> answers = requesterUser.getResponses("student1");
+        if (answers != null) {
+            for (QnADTO answer : answers) {
+                System.out.println(answer.question + ":" + answer.questionSubject + ":" + answer.answer);
+            }
+        }
         // approve faculty representative
         // System.out.println(requesterAdmin.acceptRequest(2L));
 
@@ -47,6 +60,6 @@ public class ConnectionTest {
         // System.out.println(requesterStudent.getQuiz());
 
         // get university based on quiz
-        System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
+        // System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
     }
 }

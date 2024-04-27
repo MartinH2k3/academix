@@ -2,11 +2,9 @@ package com.academix.client.controllers;
 
 import com.academix.client.FormatCheck;
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -119,6 +117,8 @@ public class RegisterController {
         hideUsernameBubble(null);
         hideConfirmPasswordBubble(null);
         String username = usernameTextfield.getText();
+        String password = passwordPasswordField.getText();
+
         if (!FormatCheck.isValidUsername(username)){
             invalidUsernameBubble.setVisible(true);
             invalidUsernameText.setVisible(true);
@@ -135,17 +135,24 @@ public class RegisterController {
             invalidConfirmPasswordText.setVisible(true);
             return;
         }
+        String response;
         if (schoolEmployeeCheckbox.isSelected()){
             try {
-                mainApplication.loadHomeFaculty();
+                response = RequesterUser.getInstance().register(username,password,"faculty_representative");
+                if (response.equals("Registration successful")){
+                    mainApplication.loadHomeFaculty();
+                }
             } catch (Exception e) {
-                e.printStackTrace();
+                Logging.getInstance().logException(e, "Pri registrácii nastala chyba.");
             }
         }else {
             try {
-                mainApplication.loadHomeStudentPane();
+                response = RequesterUser.getInstance().register(username,password,"student");
+                if (response.equals("Registration successful")){
+                    mainApplication.loadHomeStudentPane();
+                }
             } catch (Exception e) {
-                e.printStackTrace();
+                Logging.getInstance().logException(e, "Pri registrácii nastala chyba.");
             }
         }
     }

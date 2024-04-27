@@ -4,10 +4,44 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeFacultyConstroller">
-   <children>
-      <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeFacultyConstroller">
+   <center>
+      <AnchorPane prefHeight="424.0" prefWidth="603.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <VBox alignment="CENTER" layoutX="104.0" layoutY="44.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="397.0" AnchorPane.bottomAnchor="45.599999999999966" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="104.80000000000001" AnchorPane.topAnchor="44.0">
+               <children>
+                  <ImageView fitHeight="256.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="addFacultyInformationButton" mnemonicParsing="false" onAction="#goToMyFaculty" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Add information about faculty" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
             <Hyperlink fx:id="myFacultyHyperlink" onAction="#goToMyFaculty" text="My faculty" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -36,17 +70,5 @@
             </Hyperlink>
          </children>
       </HBox>
-      <ImageView fitHeight="198.0" fitWidth="284.0" layoutX="159.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@logo.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="addFacultyInformationButton" layoutX="110.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToMyFaculty" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Add information about faculty" textFill="WHITE">
-         <font>
-            <Font name="Avenir Book" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="skToggleButton" layoutX="511.0" layoutY="369.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
-      <Button fx:id="enToggleButton" layoutX="544.0" layoutY="369.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
-   </children>
-</Pane>
+   </top>
+</BorderPane>

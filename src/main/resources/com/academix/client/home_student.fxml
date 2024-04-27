@@ -1,12 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeStudentController">
-   <children>
-      <HBox alignment="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;">
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeStudentController">
+   <center>
+      <AnchorPane prefHeight="406.0" prefWidth="540.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <VBox alignment="CENTER" layoutX="12.0" layoutY="18.0" prefHeight="369.0" prefWidth="578.0" AnchorPane.bottomAnchor="18.399999999999977" AnchorPane.leftAnchor="12.000000000000114" AnchorPane.rightAnchor="12.800000000000068" AnchorPane.topAnchor="18.0">
+               <children>
+                  <Text fx:id="takeALookText" fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Take a look at these faculties!">
+                     <font>
+                        <Font name="Avenir Book Oblique" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="531.0">
+                     <children>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #3b5e87;">
+                           <children>
+                              <Text fx:id="uniText2" fill="#545450" layoutX="10.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="facultyText2" fill="#545450" layoutX="10.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="image1" fitHeight="148.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.5999999999999943" AnchorPane.leftAnchor="-0.799999999999983" AnchorPane.rightAnchor="-0.5999999999999943" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #3b5e87;">
+                           <children>
+                              <Text fx:id="uniText21" fill="#545450" layoutX="10.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="facultyText21" fill="#545450" layoutX="10.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="image2" fitHeight="148.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.4000000000000057" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.5999999999999943" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #3b5e87;">
+                           <children>
+                              <Text fx:id="uniText22" fill="#545450" layoutX="10.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="facultyText22" fill="#545450" layoutX="10.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
+                                 <font>
+                                    <Font name="Avenir Book" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="image3" fitHeight="148.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.5999999999999943" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.4000000000000057" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Text fx:id="belongText" fill="#545450" strokeType="OUTSIDE" strokeWidth="0.0" text="Where do you belong to?">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Button fx:id="takeQuizButton" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Take quiz!" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="603.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
             <Hyperlink fx:id="pastResultHyperlink" onAction="#goToPastResults" text="Past results" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -40,64 +143,5 @@
             </Hyperlink>
          </children>
       </HBox>
-      <Text fx:id="takeALookText" fill="#545450" layoutX="153.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Take a look at these faculties!">
-         <font>
-            <Font name="Avenir Book Oblique" size="22.0" />
-         </font>
-      </Text>
-      <Pane fx:id="facultyPane2" layoutX="221.0" layoutY="125.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-width: 1; -fx-border-color: #3b5e87;">
-         <children>
-            <Text fx:id="facultyText2" fill="#545450" layoutX="11.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="uniText2" fill="#545450" layoutX="9.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="facultyPane3" layoutX="393.0" layoutY="124.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-width: 1; -fx-border-color: #3b5e87;">
-         <children>
-            <Text fx:id="facultyText3" fill="#545450" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="uniText3" fill="#545450" layoutX="9.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="facultyPane1" layoutX="55.0" layoutY="125.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-width: 1; -fx-border-color: #3b5e87;">
-         <children>
-            <Text fx:id="facultyText1" fill="#545450" layoutX="11.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty of something" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="uniText1" fill="#545450" layoutX="9.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University" wrappingWidth="130.67599487304688">
-               <font>
-                  <Font name="Avenir Book" size="14.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Text fx:id="belongText" fill="#545450" layoutX="228.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Where do you belong to?">
-         <font>
-            <Font name="Avenir Book" size="14.0" />
-         </font>
-      </Text>
-      <Button fx:id="takeQuizButton" layoutX="116.0" layoutY="325.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="28.0" prefWidth="383.0" style="-fx-background-color: #3b5e87;" text="Take quiz!" textFill="WHITE">
-         <font>
-            <Font name="Avenir Book" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="skToggleButton" layoutX="519.0" layoutY="367.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
-      <Button fx:id="enToggleButton" layoutX="552.0" layoutY="367.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
-   </children>
-</Pane>
+   </top>
+</BorderPane>

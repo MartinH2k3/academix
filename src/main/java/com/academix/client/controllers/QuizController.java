@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import language.LocaleManager;
 
 import java.util.ResourceBundle;
+import server.logging.Logging;
 
 
 public class QuizController {
@@ -141,7 +142,7 @@ public class QuizController {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -149,7 +150,7 @@ public class QuizController {
         try {
             mainApplication.loadAccountSettingsStudentPane("quiz");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -158,9 +159,10 @@ public class QuizController {
 
     public void signOut(ActionEvent actionEvent) {
         try {
+            mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 

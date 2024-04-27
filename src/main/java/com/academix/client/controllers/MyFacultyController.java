@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import language.LocaleManager;
 
 import java.util.ResourceBundle;
+import server.logging.Logging;
 
 public class MyFacultyController {
     private MainApplication mainApplication;
@@ -164,7 +165,7 @@ public class MyFacultyController {
     @FXML
     void goToAccountSettings(ActionEvent actionEvent) {
         try {
-            mainApplication.loadAccountSettingsFacultyPane();
+            mainApplication.loadAccountSettingsFacultyPane("myfaculty");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,16 +181,17 @@ public class MyFacultyController {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
     @FXML
     void signOut() {
         try {
+            mainApplication.logged_in_user = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
