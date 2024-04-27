@@ -4,6 +4,7 @@ import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import server.logging.Logging;
 
 public class HomeAdminController {
     private MainApplication mainApplication;
@@ -18,6 +19,11 @@ public class HomeAdminController {
 
     @FXML
     private void goToQuestionsFromUsers() {
+        try {
+            mainApplication.loadQuestionsFromUsers();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
@@ -30,6 +36,11 @@ public class HomeAdminController {
 
     @FXML
     private void goToRequests() {
+        try {
+            mainApplication.loadRequests();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void setMainApp(MainApplication mainApplication){

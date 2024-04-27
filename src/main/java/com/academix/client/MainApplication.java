@@ -1,16 +1,6 @@
 package com.academix.client;
 
-import com.academix.client.controllers.AccountSettingsFacultyController;
-import com.academix.client.controllers.AccountSettingsStudentController;
-import com.academix.client.controllers.CatalogFacultyController;
-import com.academix.client.controllers.CatalogStudentController;
-import com.academix.client.controllers.HelpStudentController;
-import com.academix.client.controllers.HomeFacultyConstroller;
-import com.academix.client.controllers.HomeStudentController;
-import com.academix.client.controllers.LoginController;
-import com.academix.client.controllers.MyFacultyController;
-import com.academix.client.controllers.QuizController;
-import com.academix.client.controllers.RegisterController;
+import com.academix.client.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -108,7 +98,6 @@ public class MainApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("quiz_student.fxml"));
         Parent quiz = loader.load();
         QuizController quizController = loader.getController();
-        quizController.initialize();
         quizController.setMainApp(this);
         root.setCenter(quiz);
     }
@@ -146,14 +135,40 @@ public class MainApplication extends Application {
     }
 
     public void loadHelpFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("help_faculty.fxml"));
+        Parent helpFaculty = loader.load();
+        HelpFacultyController helpFacultyController = loader.getController();
+        helpFacultyController.setMainApp(this);
+        root.setCenter(helpFaculty);
     }
 
     public void loadHomeAdmin() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home_admin.fxml"));
-        Parent helpStudent = loader.load();
-        HelpStudentController helpStudentController = loader.getController();
-        helpStudentController.setMainApp(this);
-        root.setCenter(helpStudent);
+        Parent home = loader.load();
+        HomeAdminController homeAdminController = loader.getController();
+        homeAdminController.setMainApp(this);
+        root.setCenter(home);
+    }
+    public void loadQuestionsFromUsers() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("questions_from_users.fxml"));
+        Parent questions = loader.load();
+        QuestionsFromUsersController questionsFromUsersController = loader.getController();
+        questionsFromUsersController.setMainApp(this);
+        root.setCenter(questions);
+    }
+    public void loadAccountSettingsAdmin() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_admin.fxml"));
+        Parent accset = loader.load();
+        AccountSettingsAdminController accountSettingsAdminController = loader.getController();
+        accountSettingsAdminController.setMainApp(this);
+        root.setCenter(accset);
+    }
+    public void loadRequests() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("requests.fxml"));
+        Parent req = loader.load();
+        RequestsController requestsController = loader.getController();
+        requestsController.setMainApp(this);
+        root.setCenter(req);
     }
     public static void main(String[] args) {
         launch(args);

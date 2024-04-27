@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.QuizController">
    <center>
@@ -19,98 +15,9 @@
          <content>
             <AnchorPane maxWidth="750.0" prefHeight="356.0" prefWidth="750.0">
                <children>
-                  <VBox alignment="CENTER" layoutX="71.0" layoutY="77.0" maxWidth="750.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <VBox alignment="TOP_CENTER" layoutX="71.0" layoutY="208.0" maxWidth="750.0" prefHeight="69.0" prefWidth="710.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                      <children>
-                        <Label prefHeight="51.0" prefWidth="437.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
-                        <HBox fx:id="hBox1" alignment="CENTER" prefHeight="52.0" prefWidth="441.0">
-                           <children>
-                              <Circle fx:id="negative4Circle" fill="RED" radius="26.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative3Circle" fill="#ff8500" radius="22.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative2Circle" fill="#ffbe00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative1Circle" fill="#fff000" radius="12.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive1Circle" fill="#f0ff00" radius="12.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive2Circle" fill="#d3ff00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive3Circle" fill="#a7ff00" radius="22.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive4Circle" fill="LIME" radius="26.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Circle>
-                           </children>
-                        </HBox>
-                        <Label prefHeight="51.0" prefWidth="437.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
-                        <HBox fx:id="hBox11" alignment="CENTER" prefHeight="52.0" prefWidth="441.0">
-                           <children>
-                              <Circle fx:id="negative4Circle1" fill="RED" radius="26.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative3Circle1" fill="#ff8500" radius="22.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative2Circle1" fill="#ffbe00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="negative1Circle1" fill="#fff000" radius="12.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive1Circle1" fill="#f0ff00" radius="12.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive2Circle1" fill="#d3ff00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive3Circle1" fill="#a7ff00" radius="22.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <Circle fx:id="positive4Circle1" fill="LIME" radius="26.0" stroke="BLACK" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Circle>
-                           </children>
-                        </HBox>
+                        <VBox fx:id="allAnswers" prefHeight="28.0" prefWidth="710.0" />
                         <Button fx:id="resultsButton" mnemonicParsing="false" onMouseClicked="#ComputeResult" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: #3b5e87;" text="compute results" textFill="WHITE" />
                      </children>
                   </VBox>

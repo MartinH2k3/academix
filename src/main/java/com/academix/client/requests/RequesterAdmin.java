@@ -52,10 +52,16 @@ public class RequesterAdmin {
     public String acceptRequest(Long requestId) {
         return evaluateRequest(requestId, "accepted");
     }
-
+    public String acceptRequest(String requestId) {
+        return evaluateRequest(Long.getLong(requestId), "accepted");
+    }
     public String rejectRequest(Long requestId) {
         return evaluateRequest(requestId, "rejected");
     }
+    public String rejectRequest(String requestId) {
+        return evaluateRequest(Long.getLong(requestId), "rejected");
+    }
+
 
     public String answerQuestion(Long questionId, String answer) {
         return requestSender.sendRequest("/answer_question?question_id=" + questionId, answer, "POST");

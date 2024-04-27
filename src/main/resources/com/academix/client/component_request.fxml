@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox alignment="CENTER" maxWidth="750.0" prefHeight="25.0" prefWidth="518.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="requestLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="300.0" text="some req" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin>
+      </Label>
+      <Button fx:id="acceptButton1" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="accept" textFill="WHITE">
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="rejectButton1" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="reject" textFill="WHITE" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
+</HBox>

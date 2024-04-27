@@ -91,4 +91,10 @@ public class RegisterController {
             }
         }
     }
+    @FXML
+    private void skLanguage() {
+    }
+    @FXML
+    private void enLanguage() {
+    }
 }

@@ -39,17 +39,20 @@ public class LoginController {
         Notification notification = Notification.getInstance();
 
         if (username.isEmpty() || password.isEmpty()) {
-            notification.showNotification("username or password were not entered");
+            notification.showNotification("Username or password were not entered");
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
+            passwordField.setText("");
             return null;
         }
         String response = RequesterUser.getInstance().login(username, password);
-        if (response != null) {
+        if (response.equals("Incorrect username or password")) {
+            notification.showNotification("Incorrect username or password");
+            Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
+            passwordField.setText("");
+            return null;
+        } else {
             mainApplication.loggedInUser = username;
             return response;
-        } else {
-            Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
-            return null;
         }
     }
 

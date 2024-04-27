@@ -1,11 +1,14 @@
 package com.academix.client.controllers;
 
+import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import server.logging.Logging;
 
 public class AccountSettingsAdminController {
+    private MainApplication mainApplication;
     @FXML
     private PasswordField currentPasswordField;
     @FXML
@@ -22,23 +25,28 @@ public class AccountSettingsAdminController {
     private TextField firstNameTextfield;
 
     @FXML
-    private void goToRequests(ActionEvent actionEvent) {
+    private void goToRequests() {
     }
 
     @FXML
-    private void goToQuestionsFromUsers(ActionEvent actionEvent) {
+    private void goToQuestionsFromUsers() {
+        try{
+            mainApplication.loadQuestionsFromUsers();
+        }catch (Exception e){
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
-    private void goToAccounts(ActionEvent actionEvent) {
+    private void goToAccounts() {
     }
 
     @FXML
-    private void goToAccountSettings(ActionEvent actionEvent) {
+    private void goToAccountSettings() {
     }
 
     @FXML
-    private void signOut(ActionEvent actionEvent) {
+    private void signOut() {
     }
 
     @FXML
@@ -47,5 +55,8 @@ public class AccountSettingsAdminController {
 
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
+    }
+    public void setMainApp(MainApplication mainApplication){
+        this.mainApplication = mainApplication;
     }
 }
