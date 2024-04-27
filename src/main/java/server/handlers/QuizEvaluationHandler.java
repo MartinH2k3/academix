@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpHandler;
 import common.dto.FacultyDTO;
 import server.database.faculty.FacultyGetter;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,7 +36,7 @@ public class QuizEvaluationHandler implements HttpHandler {
             response = gson.toJson(dto);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

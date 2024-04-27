@@ -7,6 +7,7 @@ import common.dto.QuestionDTO;
 import server.database.support.Helpline;
 import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,7 +35,7 @@ public class HelplineQuestionHandler implements HttpHandler {
             response = Helpline.submitQuestion(dto.username, dto.subject, dto.question);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.AccountSettingsFacultyController">
    <center>
       <AnchorPane prefHeight="260.0" prefWidth="603.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
@@ -115,7 +114,7 @@
                   </HBox>
                   <HBox alignment="BOTTOM_RIGHT" maxWidth="750.0" prefHeight="31.0" prefWidth="531.0">
                      <children>
-                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #3b5e87;" text="Cancel" textFill="WHITE">
                            <font>
                               <Font name="Avenir Book" size="13.0" />
                            </font>

@@ -91,6 +91,11 @@ public class HomeFacultyConstroller {
     }
     @FXML
     private void goToHelp() {
+        try {
+            mainApplication.loadHelpFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void signOut() {

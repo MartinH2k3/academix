@@ -155,6 +155,11 @@ public class QuizController {
     }
 
     public void goToHelp(ActionEvent actionEvent) {
+        try {
+            mainApplication.loadHelpStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void signOut(ActionEvent actionEvent) {

@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import server.database.support.Helpline;
+import server.logging.Logging;
 
 public class HelplineAnswerHandler implements HttpHandler {
     private static HelplineAnswerHandler instance;
@@ -32,7 +33,7 @@ public class HelplineAnswerHandler implements HttpHandler {
             response = Helpline.answerQuestion(Long.parseLong(params.get("question_id")), answer);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

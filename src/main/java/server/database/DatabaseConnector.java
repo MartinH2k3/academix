@@ -1,5 +1,7 @@
 package server.database;
 
+import server.logging.Logging;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -21,7 +23,7 @@ public class DatabaseConnector {
             try {
                 prop.load(input);
             } catch (IOException e) {
-                e.printStackTrace();
+                Logging.getInstance().logException(e, "Pri načítaní properties súboru došlo k chybe");
             }
             String url = prop.getProperty("db.url");
             //String url = "jdbc:postgresql://localhost:5432/academix?user=postgres";

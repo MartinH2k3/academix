@@ -100,11 +100,6 @@ public class HelpStudentController {
     }
 
     @FXML
-    void goToPastResults(ActionEvent event) {
-        //TODO past results implement
-    }
-
-    @FXML
     void goToQuiz(ActionEvent event) {
         try {
             mainApplication.loadQuizPane();

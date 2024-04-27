@@ -57,13 +57,6 @@ public class RegisterController {
     private Hyperlink goToLoginHyperlink;
 
     @FXML
-    private Button skToggleButton;
-
-    @FXML
-    private Button enToggleButton;
-
-
-    @FXML
     private void initialize() {
         // You can add initialization logic here if needed
         localeManager = LocaleManager.getInstance();

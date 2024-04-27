@@ -12,6 +12,7 @@ import java.util.Map;
 
 import server.database.faculty.FacultyGetter;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 public class GetFacultiesHandler implements HttpHandler {
     private static GetFacultiesHandler instance = null;
@@ -44,7 +45,7 @@ public class GetFacultiesHandler implements HttpHandler {
             response = gson.toJson(faculties);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

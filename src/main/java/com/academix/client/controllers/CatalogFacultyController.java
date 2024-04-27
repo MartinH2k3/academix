@@ -114,10 +114,6 @@ public class CatalogFacultyController {
         this.mainApplication = mainApplication;
     }
 
-    @FXML
-    public void schoolInfo(ActionEvent actionEvent) {
-
-    }
 
     public void goToPreviousPage(MouseEvent mouseEvent) {
     }

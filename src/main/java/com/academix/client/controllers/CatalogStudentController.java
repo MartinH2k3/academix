@@ -93,35 +93,35 @@ public class CatalogStudentController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToQuiz(ActionEvent actionEvent) {
+    @FXML
+    private void goToQuiz(ActionEvent actionEvent) {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToCatalog(ActionEvent actionEvent) {
+    @FXML
+    private void goToCatalog(ActionEvent actionEvent) {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    @FXML
+    private void goToAccountSettings(ActionEvent actionEvent) {
         try {
             mainApplication.loadAccountSettingsStudentPane("catalog");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToHelp(ActionEvent actionEvent) {
+    @FXML
+    private void goToHelp() {
     }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    private void signOut(ActionEvent actionEvent) {
         try {
             mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();

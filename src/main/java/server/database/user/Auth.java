@@ -69,7 +69,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
         }
     }
 
@@ -108,7 +108,7 @@ public class Auth {
                 }
                 return "Registration successful";
             } catch (SQLException e) {
-                e.printStackTrace();  // Better to use logging in real applications
+                Logging.getInstance().logException(e, "Pri registrácii používateľa došlo k chybe");
                 return "Error during registration";
             }
 
@@ -138,7 +138,7 @@ public class Auth {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri resetovaní hesla používateľa došlo k chybe");
         }
         return "Password reset failed";
     }
