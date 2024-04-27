@@ -91,7 +91,7 @@ public class MyFacultyController {
         try {
             mainApplication.loadAccountSettingsFacultyPane("myfaculty");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -100,7 +100,7 @@ public class MyFacultyController {
         try {
             mainApplication.loadHelpFaculty();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -165,7 +165,7 @@ public class MyFacultyController {
         }
     }
     @FXML
-    private void goToMyFaculty(ActionEvent actionEvent) {
+    private void goToMyFaculty() {
     }
 
     public void setBack(String back) {

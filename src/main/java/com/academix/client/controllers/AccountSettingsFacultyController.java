@@ -98,11 +98,11 @@ public class AccountSettingsFacultyController {
     }
 
     @FXML
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    private void goToAccountSettings() {
     }
 
     @FXML
-    public void goToHelp(ActionEvent actionEvent) {
+    private void goToHelp() {
         try {
             mainApplication.loadHelpFaculty();
         } catch (Exception e) {
@@ -111,7 +111,7 @@ public class AccountSettingsFacultyController {
     }
 
     @FXML
-    public void signOut(ActionEvent actionEvent) {
+    private void signOut() {
         try {
             mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
