@@ -110,6 +110,11 @@ public class HomeStudentController {
     }
     @FXML
     private void goToHelp() {
+        try {
+            mainApplication.loadHelpStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void signOut() {

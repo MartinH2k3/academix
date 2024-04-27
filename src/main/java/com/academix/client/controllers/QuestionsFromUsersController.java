@@ -78,20 +78,35 @@ public class QuestionsFromUsersController {
 
     @FXML
     private void goToRequests() {
+        try {
+            mainApplication.loadRequests();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
     private void goToQuestionsFromUsers() {
+        try {
+            mainApplication.loadQuestionsFromUsers();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
     private void goToAccounts() {
+        try {
+            mainApplication.loadAccounts();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
     private void goToAccountSettings() {
         try{
-            mainApplication.loadAccountSettingsAdmin();
+            mainApplication.loadAccountSettingsAdmin("questions");
         }catch (Exception e){
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
