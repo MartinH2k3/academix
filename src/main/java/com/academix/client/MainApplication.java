@@ -180,6 +180,20 @@ public class MainApplication extends Application {
         accountsController.setMainApp(this);
         root.setCenter(acc);
     }
+    public void loadAnswerFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_faculty.fxml"));
+        Parent acc = loader.load();
+        AnswerFacultyController answerFacultyController = loader.getController();
+        answerFacultyController.setMainApp(this);
+        root.setCenter(acc);
+    }
+    public void loadAnswerStudent() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        Parent acc = loader.load();
+        AnswerStudentController answerStudentController = loader.getController();
+        answerStudentController.setMainApp(this);
+        root.setCenter(acc);
+    }
 
     public void setLoggedInUser(String loggedInUser) {
         this.loggedInUser = loggedInUser;
