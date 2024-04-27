@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 import common.dto.LoginCredentialsDTO;
 import server.database.user.Auth;
 import server.handlers.util.HttpStreamManager;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,6 +44,7 @@ public class LoginHandler implements HttpHandler {
             try {
                 response = Auth.login(dto.username, dto.password);
             } catch (SQLException e) {
+                Logging.getInstance().logException(e, "SQL Exception");
                 throw new RuntimeException(e);
             }
         }

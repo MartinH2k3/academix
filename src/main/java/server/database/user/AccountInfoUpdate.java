@@ -49,7 +49,8 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Phone number updated";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri aktualizácii telefónneho čísla používateľa došlo k chybe");
+            e.printStackTrace();
         }
         return "Phone number update failed";
     }
@@ -69,7 +70,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "First name updated";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri aktualizácii krstného mena používateľa došlo k chybe");
         }
         return "First name update failed";
     }
@@ -89,7 +90,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Last name updated";
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri aktualizácii priezviska používateľa došlo k chybe");
         }
         return "Last name update failed";
     }
@@ -111,7 +112,7 @@ public class AccountInfoUpdate {
                 return json;
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri získavaní informácií o účte došlo k chybe");
         }
         return null;
     }

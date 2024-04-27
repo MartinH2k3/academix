@@ -4,7 +4,6 @@ import common.dto.QnADTO;
 import server.database.DatabaseConnector;
 import server.logging.Logging;
 
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -74,7 +73,7 @@ public class Helpline {
             }
             return questions;
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
             return null;
         }
     }
@@ -94,7 +93,7 @@ public class Helpline {
             }
             return answers;
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
             return null;
         }
     }

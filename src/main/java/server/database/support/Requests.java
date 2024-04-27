@@ -64,7 +64,7 @@ public class Requests {
           }
           return requests;
     } catch (SQLException e) {
-          e.printStackTrace(); // Log required
+          Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
           return null;
          }
     }

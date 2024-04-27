@@ -7,6 +7,7 @@ import common.dto.AccountInfoDTO;
 import server.database.user.AccountInfoUpdate;
 import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -76,6 +77,7 @@ public class AccountInfoHandler implements HttpHandler {
 
         } else {
             response = "Wrong request method";
+            Logging.getInstance().logServerWarning(response);
         }
 
         exchange.sendResponseHeaders(200, response.length());

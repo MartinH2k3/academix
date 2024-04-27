@@ -1,5 +1,7 @@
 package server.database.security;
 
+import server.logging.Logging;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -22,6 +24,7 @@ public class Hasher {
             }
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
+            Logging.getInstance().logException(e, "Pri hashovaní hesla došlo k chybe");
             throw new RuntimeException("Failed to hash the password", e);
         }
     }

@@ -4,10 +4,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.support.Requests;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class AcceptRejectHandler implements HttpHandler {
     private static AcceptRejectHandler instance = null;
@@ -29,7 +31,7 @@ public class AcceptRejectHandler implements HttpHandler {
             response = Requests.answerRequest(Long.parseLong(params.get("request_id")), params.get("decision").equalsIgnoreCase("accepted"));
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

@@ -119,6 +119,10 @@ public class RequesterUser {
         return requestSender.sendRequest("/account/reset_password", json,"POST");
     }
 
+    public String deleteAccount(String username) {
+        return requestSender.sendRequest("/account/delete?username=" + username, "POST");
+    }
+
     /**
      * sends a question to the helpline, which will later be answered by the admin
      * @param question to be sent

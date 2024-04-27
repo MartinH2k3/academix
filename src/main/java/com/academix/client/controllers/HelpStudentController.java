@@ -45,7 +45,7 @@ public class HelpStudentController {
     @FXML
     private TextField subjectTextField;
 
-    public void initialize(){
+    public void initialize() {
         sentSuccessfullyText.setVisible(false);
     }
 
@@ -100,6 +100,7 @@ public class HelpStudentController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;

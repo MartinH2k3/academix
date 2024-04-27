@@ -1,26 +1,25 @@
-package server.handlers.support;
+package server.handlers.account;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
+import server.database.user.Auth;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import server.database.support.Helpline;
-import server.logging.Logging;
 
-public class HelplineAnswerHandler implements HttpHandler {
-    private static HelplineAnswerHandler instance;
+public class AccountDeletionHandler implements HttpHandler {
+    private static AccountDeletionHandler instance;
 
-    private HelplineAnswerHandler() {
+    private AccountDeletionHandler() {
     }
 
-    public static HelplineAnswerHandler getInstance() {
+    public static AccountDeletionHandler getInstance() {
         if (instance == null) {
-            instance = new HelplineAnswerHandler();
+            instance = new AccountDeletionHandler();
         }
         return instance;
     }
@@ -29,8 +28,8 @@ public class HelplineAnswerHandler implements HttpHandler {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             Map<String, String> params = ParamParser.paramsToMap(exchange.getRequestURI().getQuery());
-            String answer = HttpStreamManager.readRequestBody(exchange);
-            response = Helpline.answerQuestion(Long.parseLong(params.get("question_id")), answer);
+            String username = params.get("username");
+            response = Auth.deleteAccount(username);
         } else {
             response = "Wrong request method";
             Logging.getInstance().logServerWarning(response);

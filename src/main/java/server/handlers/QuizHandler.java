@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpHandler;
 import server.database.support.Helpline;
 import server.handlers.util.HttpStreamManager;
 import server.handlers.util.ParamParser;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -32,14 +33,14 @@ public class QuizHandler implements HttpHandler {
             try {
                 response = Files.readString(Paths.get("src/main/java/server/quiz.json"));
             } catch (IOException e) {
-                // TODO log here
                 response = "Error reading quiz file";
+                Logging.getInstance().logServerWarning(response);
             }
             Gson gson = new Gson();
             gson.fromJson(response, Object.class);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

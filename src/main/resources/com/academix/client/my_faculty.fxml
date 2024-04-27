@@ -125,7 +125,7 @@
                         <Insets bottom="10.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="urlTextfield1" maxWidth="750.0" prefHeight="30.0" prefWidth="522.0" promptText="URL of your school galery">
+                  <TextField fx:id="galleryUrlTextfield" maxWidth="750.0" prefHeight="30.0" prefWidth="522.0" promptText="URL of your school galery">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>

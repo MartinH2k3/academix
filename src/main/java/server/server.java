@@ -20,6 +20,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/account/update", AccountInfoHandler.getInstance());
         server.createContext("/account_info", GetAcountInfoHandler.getInstance());
         server.createContext("/account/reset_password", PasswordResetHandler.getInstance());
+        server.createContext("/account/delete", AccountDeletionHandler.getInstance());
         // Support
         server.createContext("/pending_questions", PendingQuestionsHandler.getInstance());
         server.createContext("/submit_question", HelplineQuestionHandler.getInstance());
