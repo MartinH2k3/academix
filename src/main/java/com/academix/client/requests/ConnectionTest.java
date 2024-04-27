@@ -11,7 +11,7 @@ public class ConnectionTest {
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         RequesterStudent requesterStudent = RequesterStudent.getInstance();
         // register faculty representative
-        System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
+        //System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
 
         // register student
         // System.out.println(requesterUser.register("student1", "password", "student"));
@@ -44,11 +44,11 @@ public class ConnectionTest {
 //            }
 //        }
         // approve faculty representative
-        System.out.println(requesterAdmin.acceptRequest(1L));
+        //System.out.println(requesterAdmin.acceptRequest(1L));
 
         // create a faculty
-        System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Yeah, its a school. Get over it", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
-        System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Chicken", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
+        //System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Yeah, its a school. Get over it", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
+        //System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Chicken", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
 
         // get pending questions
         // System.out.println(requesterAdmin.getPendingQuestions());
@@ -57,8 +57,13 @@ public class ConnectionTest {
         // System.out.println(requesterAdmin.getPendingRequests());
 
         // get all faculties
-        // System.out.println(requesterUser.get_faculties());
+        //System.out.println(requesterUser.get_faculties("Oopla", 1, 10));
 
+        // get all users
+        var bob = requesterAdmin.showAllUsers();
+        for (String user : bob) {
+            System.out.println(user);
+        }
         // get quiz
         // System.out.println(requesterStudent.getQuiz());
 

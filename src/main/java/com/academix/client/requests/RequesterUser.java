@@ -171,4 +171,18 @@ public class RequesterUser {
         Type facultyListType = new TypeToken<List<FacultyDTO>>(){}.getType();
         return gson.fromJson(response, facultyListType);
     }
+
+    /**
+     * returns faculties where name LIKE %name%
+     * @param name
+     * @param page
+     * @param page_size
+     * @return list of faculties
+     */
+    public List<FacultyDTO> get_faculties(String name, int page, int page_size) {
+        String response = requestSender.sendRequest("/faculties?page=" + page + "&page_size=" + page_size + "&name=" + name, "GET");
+        Gson gson = new Gson();
+        Type facultyListType = new TypeToken<List<FacultyDTO>>(){}.getType();
+        return gson.fromJson(response, facultyListType);
+    }
 }

@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
+import server.database.faculty.FacultyCreator;
 import server.database.faculty.FacultyGetter;
 import server.handlers.util.ParamParser;
 import server.logging.Logging;
@@ -36,7 +37,12 @@ public class GetFacultiesHandler implements HttpHandler {
             if (params.containsKey("page") && params.containsKey("page_size")){
                 Integer page = Integer.parseInt(params.get("page"));
                 Integer page_size = Integer.parseInt(params.get("page_size"));
-                faculties = FacultyGetter.getAllFaculties(page, page_size);
+                if (params.containsKey("name")){
+                    faculties = FacultyGetter.getAllFaculties(params.get("name"), page, page_size);
+                }
+                else {
+                    faculties = FacultyGetter.getAllFaculties(page, page_size);
+                }
             }
             else {
                 faculties = FacultyGetter.getAllFaculties();
