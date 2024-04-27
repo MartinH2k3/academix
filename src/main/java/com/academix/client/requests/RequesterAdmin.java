@@ -53,13 +53,13 @@ public class RequesterAdmin {
         return evaluateRequest(requestId, "accepted");
     }
     public String acceptRequest(String requestId) {
-        return evaluateRequest(Long.getLong(requestId), "accepted");
+        return evaluateRequest(Long.parseLong(requestId), "accepted");
     }
     public String rejectRequest(Long requestId) {
         return evaluateRequest(requestId, "rejected");
     }
     public String rejectRequest(String requestId) {
-        return evaluateRequest(Long.getLong(requestId), "rejected");
+        return evaluateRequest(Long.parseLong(requestId), "rejected");
     }
 
 

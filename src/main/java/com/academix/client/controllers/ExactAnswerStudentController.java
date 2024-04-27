@@ -3,26 +3,29 @@ package com.academix.client.controllers;
 import com.academix.client.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
 import server.logging.Logging;
 
-public class AnswerFacultyController {
+public class ExactAnswerStudentController {
     @FXML
-    private VBox allAnswers;
+    private Label answerLabel;
     private MainApplication mainApplication;
-
     @FXML
-    private void goToMyFaculty( ) {
+    private void goToAnswers( ) {
+
+    }
+    @FXML
+    private void goToQuiz( ) {
         try {
-            mainApplication.loadMyFaculty("help");
+            mainApplication.loadQuizPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
     @FXML
-    private void goToCatalog( ) {
+    private void goToCatalog() {
         try {
-            mainApplication.loadCatalogFaculty();
+            mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
@@ -30,7 +33,7 @@ public class AnswerFacultyController {
     @FXML
     private void goToAccountSettings( ) {
         try {
-            mainApplication.loadAccountSettingsFacultyPane("help");
+            mainApplication.loadAccountSettingsStudentPane("help");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
@@ -38,7 +41,7 @@ public class AnswerFacultyController {
     @FXML
     private void goToHelp( ) {
         try {
-            mainApplication.loadHelpFaculty();
+            mainApplication.loadHelpStudent();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
@@ -52,7 +55,6 @@ public class AnswerFacultyController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
