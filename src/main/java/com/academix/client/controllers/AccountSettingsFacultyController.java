@@ -1,6 +1,8 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterFaculty;
+import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -77,6 +79,27 @@ public class AccountSettingsFacultyController {
 
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
+        if (isPersonalInfoFilled() && isPasswordFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPasswordFilled()) {
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPersonalInfoFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+        } else {}
+    }
+
+    private boolean isPersonalInfoFilled() {
+        return !firstNameTextfield.getText().isEmpty()
+                || !lastNameTextfield.getText().isEmpty()
+                || !phoneNumberTextfield.getText().isEmpty()
+                || !emailTextfield.getText().isEmpty();
+    }
+
+    private boolean isPasswordFilled() {
+        return !currentPasswordField.getText().isEmpty()
+                && !newPasswordField.getText().isEmpty()
+                && !repeatNewPasswordField.getText().isEmpty();
     }
 
     @FXML

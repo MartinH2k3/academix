@@ -1,6 +1,7 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -57,7 +58,6 @@ public class AccountSettingsStudentController {
     @FXML
     private Button saveButton;
 
-    // Event handler for the "Past results" hyperlink
     @FXML
     private void goToPastResults() {
         try {
@@ -67,7 +67,6 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Take quiz" hyperlink
     @FXML
     private void goToQuiz() {
         try {
@@ -77,7 +76,6 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Catalog of universities" hyperlink
     @FXML
     private void goToCatalog() {
         try {
@@ -87,7 +85,6 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Account settings" hyperlink
     @FXML
     private void goToAccountSettings() {
         try {
@@ -97,7 +94,6 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Help" hyperlink
     @FXML
     private void goToHelp() {
         try {
@@ -107,7 +103,6 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Sign out" hyperlink
     @FXML
     private void signOut() {
         try {
@@ -118,13 +113,31 @@ public class AccountSettingsStudentController {
         }
     }
 
-    // Event handler for the "Save" button
     @FXML
     private void saveChanges() {
-        // Implement the logic to save the changes made in the account settings
+        if (isPersonalInfoFilled() && isPasswordFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPasswordFilled()) {
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPersonalInfoFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+        } else {}
     }
 
-    // Event handler for the "Back" button
+    private boolean isPersonalInfoFilled() {
+        return !firstNameTextfield.getText().isEmpty()
+                || !lastNameTextfield.getText().isEmpty()
+                || !phoneNumberTextfield.getText().isEmpty()
+                || !emailTextfield.getText().isEmpty();
+    }
+
+    private boolean isPasswordFilled() {
+        return !currentPasswordField.getText().isEmpty()
+                && !newPasswordField.getText().isEmpty()
+                && !repeatNewPasswordField.getText().isEmpty();
+    }
+
     @FXML
     private void goBack() {
         switch (back) {
