@@ -2,6 +2,7 @@ package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
 import com.academix.client.Notification;
+import com.academix.client.requests.RequesterStudent;
 import com.google.gson.Gson;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import server.logging.Logging;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -63,7 +65,17 @@ public class QuizController {
     @FXML
     private ScrollPane scrollPane;
 
+    private final Map<String, Map<String, String>> questions = new HashMap<>();
+    private final Map<String, Integer> fieldPoints = new HashMap<>();
+
     private MainApplication mainApplication;
+
+    public QuizController(){
+        initializeQuestions();
+        initializeFieldPoints();
+    }
+
+
 
     public void initialize() {
         Gson gson = new Gson();
@@ -155,13 +167,31 @@ public class QuizController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+
+    private void initializeQuestions() {
+        Gson gson = new Gson();
+        try (InputStream inputStream = getClass().getResourceAsStream("/com/academix/client/quiz.json");
+             InputStreamReader reader = new InputStreamReader(inputStream)) {
+            questions.putAll(gson.fromJson(reader, Map.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initializeFieldPoints() {
+        for (Map<String, String> questionData : questions.values()) {
+            String field = questionData.get("field");
+            fieldPoints.put(field, 0);
+        }
+    }
+
+
+
     @FXML
     private void ComputeResult() {
-        var index = 0;
-        for (Node node: allAnswers.getChildren()) {
-            Node hBox = ((VBox) node).getChildren().get(2);
+        for (Node node : allAnswers.getChildren()) {
             var onlyOne = false;
-            for (Node circle : ((HBox) hBox).getChildren()) {
+            for (Node circle : ((HBox) ((VBox) node).getChildren().get(2)).getChildren()) {
                 if (((Circle) circle).getFill() != WHITE) {
                     if (onlyOne) {
                         var notification = Notification.getInstance();
@@ -169,16 +199,36 @@ public class QuizController {
                         return;
                     }
 
-                    results[index] = ((HBox) hBox).getChildren().indexOf(circle);
-                    index++;
+                    int questionIndex = allAnswers.getChildren().indexOf(node) + 1;
+                    String questionKey = "question" + questionIndex;
+
+                    // Debugging: Print the generated questionKey
+                    System.out.println("Question key: " + questionKey);
+
+                    // Check if the questionKey exists in the questions map
+                    if (questions.containsKey(questionKey)) {
+                        String field = questions.get(questionKey).get("field");
+                        fieldPoints.put(field, ((HBox) ((VBox) node).getChildren().get(2)).getChildren().indexOf(circle));
+                    } else {
+                        // Debugging: Print a message if the questionKey does not exist
+                        System.out.println("Question key does not exist: " + questionKey);
+                    }
+
                     onlyOne = true;
                 }
             }
         }
-        //todo: spracovanie vysledkov
-        for (int i=0;i<index;i++) {
-            System.out.println(results[i]);
+
+        String winningField = null;
+        int maxPoints = Integer.MIN_VALUE;
+        for (Map.Entry<String, Integer> entry : fieldPoints.entrySet()) {
+            if (entry.getValue() > maxPoints) {
+                winningField = entry.getKey();
+                maxPoints = entry.getValue();
+            }
         }
+
+        System.out.println("Winning Field: " + winningField);
     }
 
     public void setMainApp(MainApplication mainApplication) {

@@ -34,7 +34,7 @@ public class QuestionsFromUsersController {
                     label.setId(question.getKey()+"");
                     allQuestions.getChildren().add(hBox);
                 } catch (Exception e) {
-                    Logging.getInstance().logException(e, "nepodarilo sa načitat spravi");
+                    Logging.getInstance().logException(e, "nepodarilo sa načitat spravy");
                 }
             }
         }
