@@ -14,7 +14,7 @@ public class ConnectionTest {
         //System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
 
         // register student
-        // System.out.println(requesterUser.register("student1", "password", "student"));
+        System.out.println(requesterUser.register("student1", "password", "student"));
 
         // login
         //System.out.println(requesterUser.login("student1", "password"));
@@ -60,10 +60,10 @@ public class ConnectionTest {
         //System.out.println(requesterUser.get_faculties("Oopla", 1, 10));
 
         // get all users
-        var bob = requesterAdmin.showAllUsers();
-        for (String user : bob) {
-            System.out.println(user);
-        }
+        //var bob = requesterAdmin.showAllUsers();
+        //for (String user : bob) {
+        //    System.out.println(user);
+        //}
         // get quiz
         // System.out.println(requesterStudent.getQuiz());
 

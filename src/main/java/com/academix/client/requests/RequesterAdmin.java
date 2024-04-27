@@ -2,6 +2,7 @@ package com.academix.client.requests;
 
 import com.google.gson.Gson;
 import common.dto.AccountInfoDTO;
+import common.dto.QuestionDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class RequesterAdmin {
      * Sends a request for all pending questions, that haven't been answered by an admin yet
      * @return a map of pending questions with their id and the question
      */
-    public Map<Long, String> getPendingQuestions() {
+    public Map<Long, QuestionDTO> getPendingQuestions() {
         String response =  requestSender.sendRequest("/pending_questions", "GET");
         Gson gson = new Gson();
         return gson.fromJson(response, Map.class);

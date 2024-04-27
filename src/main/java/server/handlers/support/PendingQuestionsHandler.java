@@ -3,11 +3,13 @@ package server.handlers.support;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import common.dto.QuestionDTO;
 import server.database.support.Helpline;
 import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 public class PendingQuestionsHandler implements HttpHandler {
@@ -26,7 +28,7 @@ public class PendingQuestionsHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String response;
         if (exchange.getRequestMethod().equalsIgnoreCase("GET")) {
-            Map<Long, String> questions = Helpline.getQuestions();
+            Map<Long, QuestionDTO> questions = Helpline.getQuestions();
             Gson gson = new Gson();
             response = gson.toJson(questions);
         } else {

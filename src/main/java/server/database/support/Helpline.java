@@ -1,6 +1,7 @@
 package server.database.support;
 
 import common.dto.QnADTO;
+import common.dto.QuestionDTO;
 import server.database.DatabaseConnector;
 import server.logging.Logging;
 
@@ -63,13 +64,14 @@ public class Helpline {
      * Get all questions that are pending (unanswered)
      * @return Map of question_id to question text
      */
-    public static Map<Long, String> getQuestions(){
-        String query = "SELECT question_id, text FROM helpline_questions WHERE status = 'pending'";
+    public static Map<Long, QuestionDTO> getQuestions(){
+        String query = "SELECT question_id, username, subject, text FROM helpline_questions JOIN users ON (helpline_questions.asked_by = users.user_id) WHERE status = 'pending'";
         try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             ResultSet rs = pstmt.executeQuery();
-            Map<Long, String> questions = new HashMap<>();
+            Map<Long, QuestionDTO> questions = new HashMap<>();
             while (rs.next()){
-                questions.put(rs.getLong("question_id"), rs.getString("text"));
+                QuestionDTO question = new QuestionDTO(rs.getString("username"), rs.getString("subject"), rs.getString("text"));
+                questions.put(rs.getLong("question_id"), question);
             }
             return questions;
         } catch (SQLException e) {
