@@ -57,6 +57,29 @@ public class FacultyGetter {
         }
     }
 
+    public static List<FacultyDTO> getAllFaculties(String name, Integer page, Integer page_size) {
+        String query = "SELECT universities.name as university_name, faculties.name as faculty_name, description, field, minimal_grade, website_url, title_image_url FROM faculties JOIN universities ON faculties.parent_university_id = universities.university_id WHERE faculties.name LIKE ? ORDER BY faculty_name LIMIT ? OFFSET ?;";
+        try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            String likePattern = "%" + name + "%";
+            pstmt.setString(1, likePattern);
+            pstmt.setInt(2, page_size);
+            pstmt.setInt(3, (page - 1) * page_size);
+            ResultSet rs = pstmt.executeQuery();
+            List<FacultyDTO> faculties = new ArrayList<>();
+            while (rs.next()) {
+                FacultyDTO faculty = new FacultyDTO(rs.getString("university_name"),
+                        rs.getString("faculty_name"), rs.getString("description"),
+                        rs.getString("field"), rs.getString("minimal_grade"),
+                        rs.getString("website_url"), rs.getString("title_image_url"));
+                faculties.add(faculty);
+            }
+            return faculties;
+        } catch (SQLException e) {
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
+            return null;
+        }
+    }
+
     /**
      * Get best faculty from selected field, that accepts student with selected grade
      * @param field study field of the unviersity
