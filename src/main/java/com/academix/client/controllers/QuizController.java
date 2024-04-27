@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -69,6 +66,9 @@ public class QuizController {
 
     private MainApplication mainApplication;
 
+    @FXML
+    private TextField gradeTextField;
+
     public void initialize() {
         Gson gson = new Gson();
         try (InputStream inputStream = getClass().getResourceAsStream("/com/academix/client/quiz.json");
@@ -95,12 +95,14 @@ public class QuizController {
 
         ResourceBundle messages = localeManager.getMessages();
 
-        pastResultHyperlink.setText(messages.getString("past_results"));
         takeQuizHyperlink.setText(messages.getString("take_quiz"));
         catalogHyperlink.setText(messages.getString("uni_catalog"));
         accountSettingsHyperlink.setText(messages.getString("account_settings"));
         helpHyperlink.setText(messages.getString("help"));
         signOutHyperlink.setText(messages.getString("sign_out"));
+
+        gradeTextField.setPromptText(messages.getString("average_grade"));
+        resultsButton.setText(messages.getString("results_button"));
 
     }
     private void setCirclesOnClick(HBox hBox){

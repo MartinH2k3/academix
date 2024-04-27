@@ -58,9 +58,6 @@ public class MyFacultyController {
     private TextField universityTextfield;
 
     @FXML
-    private TextArea longDescriptionTextfield;
-
-    @FXML
     private TextField shortDescriptionTextfield;
 
     @FXML
@@ -83,9 +80,6 @@ public class MyFacultyController {
 
     @FXML
     private Hyperlink signOutHyperlink;
-
-    @FXML
-    private GridPane gridPane;
 
     @FXML
     private CheckBox checkBox1;
@@ -121,21 +115,6 @@ public class MyFacultyController {
     private TextField averageTextfield;
 
     private final Map<RadioButton, String> radioButtonMap = new HashMap<>();
-
-    public void init(){
-        radioButtonMap.put(vetMedRadioButton, "veterinary_medicine");
-        radioButtonMap.put(bioRadioButton, "biology");
-        radioButtonMap.put(physRadioButton, "physics");
-        radioButtonMap.put(matRadioButton, "mathematics");
-        radioButtonMap.put(medRadioButton, "medicine");
-        radioButtonMap.put(ecoRadioButton, "economics");
-        radioButtonMap.put(psyRadioButton, "psychology");
-        radioButtonMap.put(socRadioButton, "sociology");
-        radioButtonMap.put(lawRadioButton, "law");
-        radioButtonMap.put(busRadioButton, "business");
-        radioButtonMap.put(marRadioButton, "marketing");
-        radioButtonMap.put(infRadioButton, "informatics");
-    }
 
     @FXML
     private Text basicText;
@@ -177,7 +156,6 @@ public class MyFacultyController {
         signOutHyperlink.setText(messages.getString("sign_out"));
 
         basicText.setText(messages.getString("basic_text"));
-        contactText.setText(messages.getString("contact"));
         descriptionText.setText(messages.getString("description"));
         shortDescription.setText(messages.getString("short_description"));
         catalogOption.setText(messages.getString("catalog_text"));
@@ -189,9 +167,24 @@ public class MyFacultyController {
         phoneNumberTextfield.setPromptText(messages.getString("phone_number"));
         emailTextfield.setPromptText(messages.getString("email"));
 
+        urlTextfield.setPromptText(messages.getString("school_url"));
+        galleryUrlTextfield.setPromptText(messages.getString("gallery_url"));
+
+
         addContactButton.setText(messages.getString("add_contact"));
-        longDescriptionTextfield.setPromptText(messages.getString("description"));
         shortDescriptionTextfield.setPromptText(messages.getString("short_description"));
+        radioButtonMap.put(vetMedRadioButton, messages.getString("veterinary"));
+        radioButtonMap.put(bioRadioButton, messages.getString("biology"));
+        radioButtonMap.put(physRadioButton, messages.getString("physics"));
+        radioButtonMap.put(matRadioButton, messages.getString("math"));
+        radioButtonMap.put(medRadioButton, messages.getString("medicine"));
+        radioButtonMap.put(ecoRadioButton, messages.getString("economics"));
+        radioButtonMap.put(psyRadioButton, messages.getString("psych"));
+        radioButtonMap.put(socRadioButton, messages.getString("sociology"));
+        radioButtonMap.put(lawRadioButton, messages.getString("law"));
+        radioButtonMap.put(busRadioButton, messages.getString("business"));
+        radioButtonMap.put(marRadioButton, messages.getString("marketing"));
+        radioButtonMap.put(infRadioButton, messages.getString("informatics"));
     }
 
 
@@ -238,7 +231,7 @@ public class MyFacultyController {
 
     @FXML
     private void save(ActionEvent actionEvent) {
-        init();
+        initialize();
         String facultyField = getSelectedFacultyType();
         RequesterFaculty.getInstance().createFaculty(mainApplication.getLoggedInUser(), universityTextfield.getText(), facultyTextfield.getText(), shortDescriptionTextfield.getText(), facultyField, averageTextfield.getText(),urlTextfield.getText() ,galleryUrlTextfield.getText());
     }

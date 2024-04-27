@@ -36,13 +36,13 @@ public class AccountSettingsFacultyController {
     private Button backButton;
     @FXML
     private Button saveButton;
-    @FXML
-    private Hyperlink accountSettingsHyperlink;
-
     private MainApplication mainApplication;
     private String back;
 
     private LocaleManager localeManager;
+
+    @FXML
+    private Hyperlink accountSettingsHyperlink;
 
     @FXML
     private Hyperlink myFacultyHyperlink;

@@ -82,7 +82,6 @@ public class HomeStudentController {
 
         ResourceBundle messages = localeManager.getMessages();
 
-        pastResultHyperlink.setText(messages.getString("past_results"));
         takeQuizHyperlink.setText(messages.getString("take_quiz"));
         catalogHyperlink.setText(messages.getString("uni_catalog"));
         accountSettingsHyperlink.setText(messages.getString("account_settings"));

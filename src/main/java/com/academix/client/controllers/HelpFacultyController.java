@@ -37,6 +37,10 @@ public class HelpFacultyController {
     private Hyperlink signOutHyperlink;
     @FXML
     private Hyperlink helpHyperlink;
+
+    @FXML
+    private Button switcher;
+
     private MainApplication mainApplication;
 
     private LocaleManager localeManager;
@@ -61,7 +65,7 @@ public class HelpFacultyController {
         takeALookAt.setText(messages.getString("help_contact_admin"));
 
         sendMessageButton.setText(messages.getString("send_button"));
-
+        switcher.setText(messages.getString("switcher"));
     }
     @FXML
     private void SendHelpMessage() {

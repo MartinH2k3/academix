@@ -10,18 +10,61 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class QuestionsFromUsersController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
+
+    @FXML
+    private Hyperlink requestsHyperlink;
+
+    @FXML
+    private Hyperlink questionsHyperlink;
+
+    @FXML
+    private Hyperlink accountsHyperlink;
+
+    @FXML
+    private Hyperlink accountSettingsHyperlink;
+
+    @FXML
+    private Hyperlink signOutHyperlink;
+
+    @FXML
+    private Button markAllButton11;
+    @FXML
+    private Button unmarkallButton1;
+    @FXML
+    private Button deleteMarkedButton;
+
     @FXML
     private VBox allQuestions;
     public void initialize(){
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        requestsHyperlink.setText(messages.getString("requests"));
+        questionsHyperlink.setText(messages.getString("user_questions"));
+        accountsHyperlink.setText(messages.getString("accounts"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        markAllButton11.setText(messages.getString("mark"));
+        unmarkallButton1.setText(messages.getString("unmark"));
+        deleteMarkedButton.setText(messages.getString("delete"));
+
        var admin = RequesterAdmin.getInstance();
         Map<Long,String> map = admin.getPendingQuestions();
         if (map != null && !map.isEmpty()) {

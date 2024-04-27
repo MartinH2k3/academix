@@ -18,8 +18,6 @@ public class HelpStudentController {
     private MainApplication mainApplication;
 
     private LocaleManager localeManager;
-    @FXML
-    private Hyperlink pastResultHyperlink;
 
     @FXML
     private Hyperlink takeQuizHyperlink;
@@ -51,6 +49,9 @@ public class HelpStudentController {
     @FXML
     private TextField subjectTextField;
 
+    @FXML
+    private Button switcher;
+
     public void initialize() {
         sentSuccessfullyText.setVisible(false);
 
@@ -58,7 +59,6 @@ public class HelpStudentController {
 
         ResourceBundle messages = localeManager.getMessages();
 
-        pastResultHyperlink.setText(messages.getString("past_results"));
         takeQuizHyperlink.setText(messages.getString("take_quiz"));
         catalogHyperlink.setText(messages.getString("uni_catalog"));
         accountSettingsHyperlink.setText(messages.getString("account_settings"));
@@ -70,6 +70,7 @@ public class HelpStudentController {
         takeALookText.setText(messages.getString("help_contact_admin"));
 
         sendMessageButton.setText(messages.getString("send_button"));
+        switcher.setText(messages.getString("switcher"));
     }
 
     @FXML
