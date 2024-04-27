@@ -106,4 +106,12 @@ public class HelpStudentController {
         this.mainApplication = mainApplication;
     }
 
+    @FXML
+    private void switchToReceivedHelp( ) {
+        try {
+            mainApplication.loadAnswerStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
 }
