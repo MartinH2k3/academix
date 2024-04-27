@@ -21,12 +21,6 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="save" textFill="WHITE" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" />
@@ -52,6 +46,19 @@
                </HBox.margin>
             </Label>
             <Label maxWidth="1.7976931348623157E308" text="phone number" HBox.hgrow="ALWAYS" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #3b5e87;" text="save" textFill="WHITE" />
          </children>
          <VBox.margin>
             <Insets bottom="15.0" />

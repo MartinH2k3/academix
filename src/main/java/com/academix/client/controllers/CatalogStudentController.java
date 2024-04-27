@@ -54,7 +54,7 @@ public class CatalogStudentController {
     private BorderPane pane;
     public void initialize() {
         RequesterUser user = RequesterUser.getInstance();
-        int pageSize = (int) Math.round(pane.getHeight() / 80 - 100);
+        int pageSize = 5;
         String val = pageTextField.getText();
         var faculties = user.get_faculties(Integer.parseInt(val), pageSize);
         if (faculties != null && !faculties.isEmpty()) {
