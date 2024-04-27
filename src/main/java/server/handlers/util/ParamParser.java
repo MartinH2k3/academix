@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParamParser {
+    private ParamParser() {}
     /**
      * Convert a map of parameters to a string
      * @param params Map (key, value)

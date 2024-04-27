@@ -17,13 +17,13 @@ public class ConnectionTest {
         // System.out.println(requesterUser.register("student1", "password", "student"));
 
         // login
-        System.out.println(requesterUser.login("student1", "password"));
+        //System.out.println(requesterUser.login("student1", "password"));
 
         // update account info (email, firstname, lastname, phone_number)
-        System.out.println(requesterUser.updateAccountInfo("student1", "bob", "Stude bt", "Studen tovski", "bob"));
+        //System.out.println(requesterUser.updateAccountInfo("student1", "bob", "Stude bt", "Studen tovski", "bob"));
 
         // get account info
-        System.out.println(requesterUser.getAccountInfo("student1"));
+        //System.out.println(requesterUser.getAccountInfo("student1"));
         // reset password
         // System.out.println(requesterUser.resetPassword("student1", "password", "new_password"));
 
@@ -63,5 +63,10 @@ public class ConnectionTest {
 
         // get university based on quiz
         // System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
+
+        // delete account
+        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
+        System.out.println(requesterUser.deleteAccount("pomaranc"));
+        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
     }
 }
