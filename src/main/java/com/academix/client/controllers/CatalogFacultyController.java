@@ -56,7 +56,6 @@ public class CatalogFacultyController {
     @FXML
     private Hyperlink signOutHyperlink;
 
-
     @FXML
     private Text takeALookText;
 
@@ -95,7 +94,7 @@ public class CatalogFacultyController {
         accountSettingsHyperlink.setText(messages.getString("account_settings"));
         helpHyperlink.setText(messages.getString("help"));
         signOutHyperlink.setText(messages.getString("sign_out"));
-        searchTextfield.setPromptText(messages.getString("search"));
+        searchTextField.setPromptText(messages.getString("search"));
 
         RequesterUser user = RequesterUser.getInstance();
         int pageSize = 5;
