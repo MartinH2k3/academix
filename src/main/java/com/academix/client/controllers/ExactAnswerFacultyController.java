@@ -54,6 +54,11 @@ public class ExactAnswerFacultyController {
     }
     @FXML
     private void goToAnswers( ) {
+        try {
+            mainApplication.loadAnswerFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     
     public void setMainApp(MainApplication mainApplication) {

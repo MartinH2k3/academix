@@ -13,9 +13,19 @@ public class AnswerFacultyController {
 
     @FXML
     private void goToMyFaculty( ) {
+        try {
+            mainApplication.loadMyFaculty("help");
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void goToCatalog( ) {
+        try {
+            mainApplication.loadCatalogFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void goToAccountSettings( ) {
