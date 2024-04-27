@@ -25,6 +25,10 @@ public class LocaleManager {
         messages = ResourceBundle.getBundle("languages/messages", currentLocale);
     }
 
+    public Locale getLocale() {
+        return this.currentLocale;
+    }
+
     public ResourceBundle getMessages() {
         return messages;
     }

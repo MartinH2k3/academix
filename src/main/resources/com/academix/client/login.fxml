@@ -62,7 +62,5 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="skToggleButton" layoutX="519.0" layoutY="365.0" mnemonicParsing="false" onAction="#skLanguage" text="SK" />
-      <Button fx:id="enToggleButton" layoutX="552.0" layoutY="365.0" mnemonicParsing="false" onAction="#enLanguage" text="EN" />
    </children>
 </AnchorPane>

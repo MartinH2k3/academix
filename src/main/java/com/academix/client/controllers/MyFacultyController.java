@@ -128,6 +128,18 @@ public class MyFacultyController {
     private Text catalogOption;
 
     @FXML
+    private TextField nameTextfield;
+
+    @FXML
+    private TextField emailTextfield;
+
+    @FXML
+    private TextField phoneNumberTextfield;
+
+    @FXML
+    private Button addContactButton;
+
+    @FXML
     private void initialize(){
         localeManager = LocaleManager.getInstance();
 
