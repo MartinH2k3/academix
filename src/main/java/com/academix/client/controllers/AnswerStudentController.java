@@ -59,24 +59,25 @@ public class AnswerStudentController {
         var list =  user.getResponses(mainApplication.getLoggedInUser());
         if (list != null && !list.isEmpty()) {
             for (QnADTO answer : list) {
-                try{
+                try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_answer.fxml"));
                     HBox hBox = loader.load();
                     Label label = (Label) hBox.getChildren().get(0);
                     label.setText(answer.questionSubject);
                     Button button = (Button) hBox.getChildren().get(1);
-                    button.setOnAction(e ->{
-                        try{
-                        mainApplication.loadExactAnswerStudent("Your question: \n"+ answer.question + "\nAdmin answer: \n" + answer.answer);
-                        } catch (Exception ex){
+                    button.setOnAction(e -> {
+                        try {
+                            mainApplication.loadExactAnswerStudent("Your question: \n" + answer.question + "\nAdmin answer: \n" + answer.answer);
+                        } catch (Exception ex) {
                             Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
                         }
                     });
                     allAnswers.getChildren().add(hBox);
-                } catch (Exception e){
+                } catch (Exception e) {
                     Logging.getInstance().logException(e, "Doslo k chybe");
-     }           }
-    }
+                }
+            }
+        }
     }
 
     @FXML
