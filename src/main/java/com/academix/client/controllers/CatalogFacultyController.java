@@ -94,7 +94,7 @@ public class CatalogFacultyController {
     @FXML
     void signOut() {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
@@ -106,7 +106,7 @@ public class CatalogFacultyController {
         try {
             mainApplication.loadMyFaculty();
         } catch (Exception e) {
-            Logging.getInstance().logException(e, "Nepodarilo sa prejst medzi scenami");
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
 
@@ -116,6 +116,7 @@ public class CatalogFacultyController {
 
     @FXML
     public void schoolInfo(ActionEvent actionEvent) {
+
     }
 
     public void goToPreviousPage(MouseEvent mouseEvent) {

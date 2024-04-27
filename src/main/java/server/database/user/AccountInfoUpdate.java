@@ -1,10 +1,13 @@
 package server.database.user;
 
+import com.google.gson.Gson;
+import common.dto.AccountInfoDTO;
 import server.database.DatabaseConnector;
 import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -89,5 +92,27 @@ public class AccountInfoUpdate {
             e.printStackTrace(); // Log required
         }
         return "Last name update failed";
+    }
+
+    public static String getAccountInfo(String username) {
+        String query = "SELECT email, first_name, last_name, phone_number FROM users WHERE username = ?";
+        try (Connection conn = DatabaseConnector.connect()) {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                AccountInfoDTO dto = new AccountInfoDTO();
+                dto.email = rs.getString("email");
+                dto.firstName = rs.getString("first_name");
+                dto.lastName = rs.getString("last_name");
+                dto.phoneNumber = rs.getString("phone_number");
+                Gson gson = new Gson();
+                String json = gson.toJson(dto);
+                return json;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log required
+        }
+        return null;
     }
 }

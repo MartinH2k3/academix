@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="126.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="101.0" prefWidth="710.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Absolutely disagree" />
+            <Label text="Do not care">
+               <HBox.margin>
+                  <Insets left="90.0" right="100.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Absolutely agree" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox fx:id="hBox11" alignment="CENTER" prefHeight="52.0" prefWidth="441.0">
+         <children>
+            <Circle fx:id="negative4Circle1" fill="RED" radius="26.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="negative3Circle1" fill="#ff8500" radius="22.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="negative2Circle1" fill="#ffbe00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="positive1Circle1" fill="YELLOW" radius="12.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="positive2Circle1" fill="#d3ff00" radius="17.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="positive3Circle1" fill="#a7ff00" radius="22.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Circle>
+            <Circle fx:id="positive4Circle1" fill="LIME" radius="26.0" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Circle>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -49,7 +49,7 @@ public class RequesterUser {
      * logs in the user
      * @param username
      * @param password
-     * @return response from the server, status of the login
+     * @return user type "student", "admin", "faculty_representative" or an error message in case of invalid log in
      */
     public String login(String username, String password) {
         LoginCredentialsDTO dto = new LoginCredentialsDTO();
@@ -90,6 +90,17 @@ public class RequesterUser {
         Gson gson = new Gson();
         String json = gson.toJson(dto);
         return requestSender.sendRequest("/account/update?username=" + username, json, "POST");
+    }
+
+    /**
+     * gets information about the user
+     * @param username to know whose information to get
+     * @return AccountInfoDTO object with the information
+     */
+    public AccountInfoDTO getAccountInfo(String username) {
+        String json = requestSender.sendRequest("/account_info?username=" + username, "GET");
+        Gson gson = new Gson();
+        return gson.fromJson(json, AccountInfoDTO.class);
     }
 
     /**

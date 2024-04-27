@@ -3,10 +3,7 @@ package server;
 import com.sun.net.httpserver.HttpServer;
 import server.handlers.QuizEvaluationHandler;
 import server.handlers.QuizHandler;
-import server.handlers.account.AccountInfoHandler;
-import server.handlers.account.LoginHandler;
-import server.handlers.account.PasswordResetHandler;
-import server.handlers.account.RegisterHandler;
+import server.handlers.account.*;
 import server.handlers.faculty.FacultyCreationHandler;
 import server.handlers.faculty.GetFacultiesHandler;
 import server.handlers.support.*;
@@ -21,6 +18,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/register", RegisterHandler.getInstance());
         server.createContext("/login", LoginHandler.getInstance());
         server.createContext("/account/update", AccountInfoHandler.getInstance());
+        server.createContext("/account_info", GetAcountInfoHandler.getInstance());
         server.createContext("/account/reset_password", PasswordResetHandler.getInstance());
         // Support
         server.createContext("/pending_questions", PendingQuestionsHandler.getInstance());

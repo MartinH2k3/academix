@@ -126,15 +126,25 @@ public class HomeStudentController {
     public void goToPastResults(ActionEvent actionEvent) {
     }
 
-    public void goToQuiz(ActionEvent actionEvent) {
+    @FXML
+    private void goToPastResults() {
+        try {
+            mainApplication.loadHomeStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
+
+    @FXML
+    private void goToQuiz() {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToCatalog(ActionEvent actionEvent) {
+    @FXML
+    private void goToCatalog() {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
@@ -142,27 +152,28 @@ public class HomeStudentController {
         }
 
     }
-
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    @FXML
+    private void goToAccountSettings() {
         try {
             mainApplication.loadAccountSettingsStudentPane("home");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToHelp(ActionEvent actionEvent) {
+    @FXML
+    private void goToHelp() {
     }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    private void signOut() {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-    public void setMainApp(MainApplication mainApplication){
+
+    public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 }

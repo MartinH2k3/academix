@@ -13,18 +13,19 @@ import server.logging.Logging;
 
 public class HomeFacultyConstroller {
     @FXML
-    public Hyperlink myFacultyHyperlink;
+    private Hyperlink myFacultyHyperlink;
     @FXML
-    public Hyperlink catalogHyperlink;
+    private Hyperlink catalogHyperlink;
     @FXML
-    public Hyperlink accountSettingsHyperlink;
+    private Hyperlink accountSettingsHyperlink;
     @FXML
-    public Hyperlink signOutHyperlink;
+    private Hyperlink signOutHyperlink;
     @FXML
-    public Hyperlink helpHyperlink;
+    private Hyperlink helpHyperlink;
     @FXML
-    public Button addFacultyInformationButton;
+    private Button addFacultyInformationButton;
     private MainApplication mainApplication;
+
     private LocaleManager localeManager;
 
     public void setMainApp(MainApplication mainApplication){
@@ -71,36 +72,37 @@ public class HomeFacultyConstroller {
     }
 
 
-    public void goToCatalog(ActionEvent actionEvent) {
+    @FXML
+    private void goToCatalog() {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-    
 
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    @FXML
+    private void goToAccountSettings() {
         try {
             mainApplication.loadAccountSettingsFacultyPane("home");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToHelp(ActionEvent actionEvent) {
+    @FXML
+    private void goToHelp() {
     }
-
-    public void signOut(ActionEvent actionEvent) {
+    @FXML
+    private void signOut() {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void goToMyFaculty(ActionEvent actionEvent) {
+    @FXML
+    private void goToMyFaculty() {
         try {
             mainApplication.loadMyFaculty();
         } catch (Exception e) {

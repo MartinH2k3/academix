@@ -31,7 +31,7 @@ public class LoginHandler implements HttpHandler {
     /**
      * Handle the login request. If parameters are correct, user is logged in.
      * @param exchange HttpExchange (username, password)
-     * @return String
+     * @return String user type
      * @throws IOException
      */
     public void handle(HttpExchange exchange) throws IOException{

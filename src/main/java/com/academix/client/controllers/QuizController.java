@@ -1,10 +1,12 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
-import javafx.application.Preloader;
+import com.academix.client.Notification;
+import com.google.gson.Gson;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -13,12 +15,18 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import language.LocaleManager;
 
 import java.util.ResourceBundle;
 import server.logging.Logging;
+
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Map;
 
 
 public class QuizController {
@@ -30,17 +38,14 @@ public class QuizController {
     private final Color NEG4 = Color.web("#FF0000");
     private final Color NEG3 = Color.web("#ff8500");
     private final Color NEG2 = Color.web("#ffbe00");
-    private final Color NEG1 = Color.web("#fff000");
-    private final Color POS1 = Color.web("#f0ff00");
+    private final Color NEUT = Color.web("#ffff00");
     private final Color POS2 = Color.web("#d3ff00");
     private final Color POS3 = Color.web("#a7ff00");
     private final Color POS4 = Color.web("#00FF00");
     @FXML
+    private VBox allAnswers;
+    @FXML
     private Hyperlink pastResultHyperlink;
-    @FXML
-    private HBox hBox1;
-    @FXML
-    private Pane pane;
 
     @FXML
     private Hyperlink takeQuizHyperlink;
@@ -62,40 +67,28 @@ public class QuizController {
     @FXML
     private ScrollPane scrollPane;
 
-    @FXML
-    private Label label;
-
-    @FXML
-    private Circle negative4Circle;
-
-    @FXML
-    private Circle negative3Circle;
-
-    @FXML
-    private Circle negative2Circle;
-
-    @FXML
-    private Circle negative1Circle;
-
-    @FXML
-    private Circle positive1Circle;
-
-    @FXML
-    private Circle positive2Circle;
-
-    @FXML
-    private Circle positive3Circle;
-
-    @FXML
-    private Circle positive4Circle;
     private MainApplication mainApplication;
 
     public void initialize() {
-        // Initialize your controller here
-        for (Node node: pane.getChildren()) {
-            if(node instanceof HBox){
-                setCirclesOnClick((HBox) node);
+        Gson gson = new Gson();
+        try (InputStream inputStream = getClass().getResourceAsStream("/com/academix/client/quiz.json");
+             InputStreamReader reader = new InputStreamReader(inputStream)) {
+            Map<String, Map<String,String>> questions = gson.fromJson(reader, Map.class);
+
+            // Access the questions
+            for (Map.Entry<String, Map<String,String>> entry : questions.entrySet()) {
+                Map<String,String> question = entry.getValue();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_quiz.fxml"));
+                VBox vBox = loader.load();
+                Label label = (Label) vBox.getChildren().get(0);
+                label.setText(question.get("question"));
+                allAnswers.getChildren().add(vBox);
+                setCirclesOnClick((HBox) vBox.getChildren().get(2));
+
+
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         localeManager = LocaleManager.getInstance();
@@ -115,11 +108,10 @@ public class QuizController {
         list.get(0).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(0),hBox.getChildren(), NEG4));
         list.get(1).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(1),hBox.getChildren(), NEG3));
         list.get(2).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(2),hBox.getChildren(), NEG2));
-        list.get(3).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(3),hBox.getChildren(), NEG1));
-        list.get(4).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(4),hBox.getChildren(), POS1));
-        list.get(5).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(5),hBox.getChildren(), POS2));
-        list.get(6).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(6),hBox.getChildren(), POS3));
-        list.get(7).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(7),hBox.getChildren(), POS4));
+        list.get(3).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(3),hBox.getChildren(), NEUT));
+        list.get(4).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(4),hBox.getChildren(), POS2));
+        list.get(5).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(5),hBox.getChildren(), POS3));
+        list.get(6).setOnMouseClicked(event -> toggleSelection((Circle)  list.get(6),hBox.getChildren(), POS4));
 
     }
 
@@ -131,11 +123,19 @@ public class QuizController {
       circle.setFill(col);
     }
     public void goToPastResults(ActionEvent actionEvent) {
-
+        try {
+            mainApplication.loadHomeStudentPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToQuiz(ActionEvent actionEvent) {
-
+        try {
+            mainApplication.loadQuizPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     public void goToCatalog(ActionEvent actionEvent) {
@@ -159,30 +159,29 @@ public class QuizController {
 
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
-
-    public void ComputeResult(MouseEvent mouseEvent) {
+    @FXML
+    private void ComputeResult() {
         var index = 0;
-        for (Node node: pane.getChildren()) {
-            if(node instanceof HBox){
-                var onlyOne = false;
-                for (Node circle: ((HBox) node).getChildren()) {
-                    if (((Circle)circle).getFill()!=WHITE) {
-                        if (onlyOne) {
-                            //todo: nezaklikol nic v nejakej otazke treba upozornenie
-                            System.out.println("chyba");
-                            return;
-                        }
-
-                        results[index] = ((HBox) node).getChildren().indexOf(circle);
-                        index++;
-                        onlyOne = true;
+        for (Node node: allAnswers.getChildren()) {
+            Node hBox = ((VBox) node).getChildren().get(2);
+            var onlyOne = false;
+            for (Node circle : ((HBox) hBox).getChildren()) {
+                if (((Circle) circle).getFill() != WHITE) {
+                    if (onlyOne) {
+                        var notification = Notification.getInstance();
+                        notification.showNotification("Please select one everywhere");
+                        return;
                     }
+
+                    results[index] = ((HBox) hBox).getChildren().indexOf(circle);
+                    index++;
+                    onlyOne = true;
                 }
             }
         }

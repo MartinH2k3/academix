@@ -68,6 +68,7 @@ public class AccountSettingsStudentController {
 
     @FXML
     private Text passwordText;
+
     // Event handler for the "Past results" hyperlink
 
     @FXML
@@ -101,9 +102,9 @@ public class AccountSettingsStudentController {
 
     @FXML
     private void goToPastResults() {
-        try{
+        try {
             mainApplication.loadHomeStudentPane();
-        }catch(Exception e){
+        } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
@@ -131,20 +132,28 @@ public class AccountSettingsStudentController {
     // Event handler for the "Account settings" hyperlink
     @FXML
     private void goToAccountSettings() {
-        // Implement the logic to navigate to the account settings page
+        try {
+            mainApplication.loadAccountSettingsStudentPane(back);
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     // Event handler for the "Help" hyperlink
     @FXML
     private void goToHelp() {
-        // Implement the logic to navigate to the help page
+        try {
+            mainApplication.loadHelpStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     // Event handler for the "Sign out" hyperlink
     @FXML
     private void signOut() {
         try {
-            mainApplication.logged_in_user = null;
+            mainApplication.loggedInUser = null;
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
@@ -191,6 +200,7 @@ public class AccountSettingsStudentController {
             }
         }
     }
+
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }

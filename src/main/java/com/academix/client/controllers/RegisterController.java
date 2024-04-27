@@ -112,27 +112,20 @@ public class RegisterController {
         this.mainApplication = mainApplication;
     }
 
+    @FXML
     public void register(ActionEvent actionEvent) {
-        hidePasswordBubble(null);
-        hideUsernameBubble(null);
-        hideConfirmPasswordBubble(null);
         String username = usernameTextfield.getText();
         String password = passwordPasswordField.getText();
 
+
         if (!FormatCheck.isValidUsername(username)){
-            invalidUsernameBubble.setVisible(true);
-            invalidUsernameText.setVisible(true);
             return;
         }
         if(passwordPasswordField.getCharacters().isEmpty()){
-            invalidPasswordBubble.setVisible(true);
-            invalidPasswordText.setVisible(true);
             return;
         }
 
         if(!confirmPasswordField.getText().equals(passwordPasswordField.getText())){
-            invalidConfirmPasswordBubble.setVisible(true);
-            invalidConfirmPasswordText.setVisible(true);
             return;
         }
         String response;
@@ -167,11 +160,4 @@ public class RegisterController {
         invalidPasswordBubble.setVisible(false);
         invalidPasswordText.setVisible(false);
     }
-
-    public void hideConfirmPasswordBubble(MouseEvent mouseEvent) {
-        invalidConfirmPasswordBubble.setVisible(false);
-        invalidConfirmPasswordText.setVisible(false);
-    }
-
-    // You can add more methods and fields as needed
 }

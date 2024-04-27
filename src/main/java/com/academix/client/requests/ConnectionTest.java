@@ -14,33 +14,35 @@ public class ConnectionTest {
         // System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
 
         // register student
-        System.out.println(requesterUser.register("student1", "password", "student"));
+        // System.out.println(requesterUser.register("student1", "password", "student"));
 
         // login
-        // System.out.println(requesterUser.login("student1", "password"));
+        System.out.println(requesterUser.login("student1", "password"));
 
         // update account info (email, firstname, lastname, phone_number)
-        // System.out.println(requesterUser.updateAccountInfo("student1", "bob", "Stude bt", "Studen tovski", "bob"));
+        System.out.println(requesterUser.updateAccountInfo("student1", "bob", "Stude bt", "Studen tovski", "bob"));
 
+        // get account info
+        System.out.println(requesterUser.getAccountInfo("student1"));
         // reset password
         // System.out.println(requesterUser.resetPassword("student1", "password", "new_password"));
 
         // submit question
         //System.out.println(requesterUser.sendQuestion("student1", "Meaning", "What is the meaning of life?"));
-        for (Long i = 1L; i < 5L; i++) {
-            requesterUser.sendQuestion("student1", Long.toString(i),"What is the meaning of life?");
-            requesterAdmin.answerQuestion(i, Long.toString(i));
-        }
+//        for (Long i = 1L; i < 5L; i++) {
+//            requesterUser.sendQuestion("student1", Long.toString(i),"What is the meaning of life?");
+//            requesterAdmin.answerQuestion(i, Long.toString(i));
+//        }
         // answer question
         // System.out.println(requesterAdmin.answerQuestion(1L, "potatoes"));
 
         // get answers for requests
-        List<QnADTO> answers = requesterUser.getResponses("student1");
-        if (answers != null) {
-            for (QnADTO answer : answers) {
-                System.out.println(answer.question + ":" + answer.questionSubject + ":" + answer.answer);
-            }
-        }
+//        List<QnADTO> answers = requesterUser.getResponses("student1");
+//        if (answers != null) {
+//            for (QnADTO answer : answers) {
+//                System.out.println(answer.question + ":" + answer.questionSubject + ":" + answer.answer);
+//            }
+//        }
         // approve faculty representative
         // System.out.println(requesterAdmin.acceptRequest(2L));
 
