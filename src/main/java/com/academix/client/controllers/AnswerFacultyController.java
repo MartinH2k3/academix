@@ -17,30 +17,6 @@ public class AnswerFacultyController {
     private VBox allAnswers;
     private MainApplication mainApplication;
     public void initialize(){
-        var user = RequesterUser.getInstance();
-        var list =  user.getResponses(mainApplication.getLoggedInUser());
-        if (list != null && !list.isEmpty()) {
-            for (QnADTO answer : list) {
-                try{
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_answer.fxml"));
-                    HBox hBox = loader.load();
-                    Label label = (Label) hBox.getChildren().get(0);
-                    label.setText(answer.questionSubject);
-                    Button button = (Button) hBox.getChildren().get(1);
-                    button.setOnAction(e ->{
-                        try{
-                            mainApplication.loadExactAnswerFaculty("Your question: \n"+ answer.question + "\nAdmin answer: \n" + answer.answer);
-                        } catch (Exception ex){
-                            Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
-                        }
-                    });
-                    allAnswers.getChildren().add(hBox);
-                } catch (Exception e){
-                    Logging.getInstance().logException(e, "Doslo k chybe");
-                }
-
-            }
-        }
     }
 
     @FXML
@@ -95,6 +71,33 @@ public class AnswerFacultyController {
             mainApplication.loadHelpFaculty();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
+
+    public void lateInit() {
+        var user = RequesterUser.getInstance();
+        var list =  user.getResponses(mainApplication.getLoggedInUser());
+        if (list != null && !list.isEmpty()) {
+            for (QnADTO answer : list) {
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_answer.fxml"));
+                    HBox hBox = loader.load();
+                    Label label = (Label) hBox.getChildren().get(0);
+                    label.setText(answer.questionSubject);
+                    Button button = (Button) hBox.getChildren().get(1);
+                    button.setOnAction(e ->{
+                        try{
+                            mainApplication.loadExactAnswerFaculty("Your question: \n"+ answer.question + "\nAdmin answer: \n" + answer.answer);
+                        } catch (Exception ex){
+                            Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
+                        }
+                    });
+                    allAnswers.getChildren().add(hBox);
+                } catch (Exception e){
+                    Logging.getInstance().logException(e, "Doslo k chybe");
+                }
+
+            }
         }
     }
 }

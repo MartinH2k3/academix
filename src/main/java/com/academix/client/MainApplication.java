@@ -197,6 +197,7 @@ public class MainApplication extends Application {
         Parent ans = loader.load();
         AnswerFacultyController answerFacultyController = loader.getController();
         answerFacultyController.setMainApp(this);
+        answerFacultyController.lateInit();
         root.setCenter(ans);
     }
     public void loadAnswerStudent() throws Exception{
