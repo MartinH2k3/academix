@@ -28,7 +28,7 @@ public class ResultController {
     private VBox resultsVBox;
 
     @FXML
-    private HBox resultsSchoolLabel;
+    private HBox resultsSchoolHBox;
 
     @FXML
     private Text takeALookText;
@@ -69,7 +69,7 @@ public class ResultController {
 
     private void updateLabels() {
         if (facultyDTO != null) {
-            resultsSchoolLabel.setText(facultyDTO.university_name);
+            takeALookText.setText(facultyDTO.university_name);
             takeALookText.setText(facultyDTO.faculty_name);
             shortDescription.setText(facultyDTO.description);
         }
