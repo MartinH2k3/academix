@@ -4,6 +4,7 @@ import com.academix.client.MainApplication;
 import com.academix.client.Notification;
 import com.academix.client.requests.RequesterStudent;
 import com.google.gson.Gson;
+import common.dto.FacultyDTO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -29,7 +31,8 @@ import java.util.Map;
 
 
 public class QuizController {
-
+    @FXML
+    public TextField gradeTextField;
     //int[n] kde n je pocet otazok dal som zatial 20
     private int[] results = new int[20];
     private final Color WHITE = Color.WHITE;
@@ -202,16 +205,10 @@ public class QuizController {
                     int questionIndex = allAnswers.getChildren().indexOf(node) + 1;
                     String questionKey = "question" + questionIndex;
 
-                    // Debugging: Print the generated questionKey
-                    System.out.println("Question key: " + questionKey);
 
-                    // Check if the questionKey exists in the questions map
                     if (questions.containsKey(questionKey)) {
                         String field = questions.get(questionKey).get("field");
                         fieldPoints.put(field, ((HBox) ((VBox) node).getChildren().get(2)).getChildren().indexOf(circle));
-                    } else {
-                        // Debugging: Print a message if the questionKey does not exist
-                        System.out.println("Question key does not exist: " + questionKey);
                     }
 
                     onlyOne = true;
@@ -228,7 +225,13 @@ public class QuizController {
             }
         }
 
-        System.out.println("Winning Field: " + winningField);
+        FacultyDTO recommentedFaculty = RequesterStudent.getInstance().facultyBasedOnQuiz(winningField,gradeTextField.getText());
+        try{
+            ResultController resultController = mainApplication.loadResultPane();
+            resultController.setFacultyDTO(recommentedFaculty);
+        }catch(Exception e){
+            Logging.getInstance().logException(e, "Nepodarilo sa zobraziť výsledky");
+        }
     }
 
     public void setMainApp(MainApplication mainApplication) {

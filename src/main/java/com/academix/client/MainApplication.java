@@ -9,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+
+import javax.xml.transform.Result;
 import java.awt.Desktop;
 
 import java.util.Objects;
@@ -52,6 +54,16 @@ public class MainApplication extends Application {
         registerController.setMainApp(this);
         root.setCenter(registerPane);
     }
+
+    public ResultController loadResultPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("results.fxml"));
+        Parent registerPane = loader.load();
+        ResultController resultController = loader.getController();
+        resultController.setMainApp(this);
+        root.setCenter(registerPane);
+        return resultController;
+    }
+
 
     public void loadLoginPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
