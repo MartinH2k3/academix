@@ -152,4 +152,9 @@ public class CatalogStudentController {
     private void goToNextPage(MouseEvent mouseEvent) {
         paging(1);
     }
+
+    @FXML
+    private void search() {
+
+    }
 }
