@@ -51,7 +51,8 @@ public class FacultyCreator {
             addUniversity(university_name);
         }
 
-        String query = "INSERT INTO faculties (name, parent_university_id, description, field, minimal_grade, website_url, title_image_url) VALUES (?, (SELECT university_id FROM universities WHERE name = ?), ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO faculties (name, parent_university_id, description, field, minimal_grade, website_url, title_image_url) VALUES (?, (SELECT university_id FROM universities WHERE name = ?), ?, ?, ?, ?, ?)"
+                + "ON CONFLICT (name, parent_university_id) DO UPDATE SET description = EXCLUDED.description, field = EXCLUDED.field, minimal_grade = EXCLUDED.minimal_grade, website_url = EXCLUDED.website_url, title_image_url = EXCLUDED.title_image_url";
         try (Connection conn = DatabaseConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, faculty_name);
             pstmt.setString(2, university_name);

@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS "universities" CASCADE;
 -- Create tables
 CREATE TABLE "universities" (
     "university_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    "name" VARCHAR(100) NOT NULL
+    "name" VARCHAR(100) UNIQUE NOT NULL
 );
 
 CREATE TABLE "faculties" (
@@ -27,7 +27,8 @@ CREATE TABLE "faculties" (
     "field" VARCHAR(20) NOT NULL,
     "minimal_grade" DECIMAL(3, 2),
     "website_url" VARCHAR(500),
-    "title_image_url" VARCHAR(500)
+    "title_image_url" VARCHAR(500),
+    UNIQUE ("parent_university_id", "name")
 );
 
 CREATE TABLE "users" (
