@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import server.database.support.Helpline;
+import server.logging.Logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -30,7 +31,7 @@ public class PendingQuestionsHandler implements HttpHandler {
             response = gson.toJson(questions);
         } else {
             response = "Wrong request method";
-            // TODO log here
+            Logging.getInstance().logServerWarning(response);
         }
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

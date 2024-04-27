@@ -85,7 +85,6 @@ public class FacultyCreator {
         }
     }
 
-
     /**
      * Check if a university exists in the database
      * @param name Name of the university

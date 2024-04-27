@@ -2,6 +2,7 @@ package server.database.faculty;
 
 import common.dto.FacultyDTO;
 import server.database.DatabaseConnector;
+import server.logging.Logging;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class FacultyGetter {
             }
             return faculties;
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
             return null;
         }
     }
@@ -51,7 +52,7 @@ public class FacultyGetter {
             }
             return faculties;
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
             return null;
         }
     }
@@ -80,7 +81,7 @@ public class FacultyGetter {
             }
             return null;
         } catch (SQLException e) {
-            e.printStackTrace(); // Log required
+            Logging.getInstance().logException(e, "Pri SQL dopyte na databázu došlo k chybe");
             return null;
         }
     }
