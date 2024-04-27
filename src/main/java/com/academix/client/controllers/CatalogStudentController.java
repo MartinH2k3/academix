@@ -132,11 +132,24 @@ public class CatalogStudentController {
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
-
-    @FXML
-    private void goToNextPage(MouseEvent mouseEvent) {
-    }
     @FXML
     private void goToPreviousPage(MouseEvent mouseEvent) {
+        paging(-1);
+    }
+    private void paging(int x){
+        try {
+            String val = pageTextField.getText();
+            int pageNumber = Integer.parseInt(val);
+            pageNumber += x;
+            if (pageNumber <= 0) pageNumber = 1;
+            String nextPage = String.valueOf(pageNumber);
+            pageTextField.setText(nextPage);
+        } catch (NumberFormatException e) {
+            Logging.getInstance().logException(e, "Doslo k chybe");
+        }
+    }
+    @FXML
+    private void goToNextPage(MouseEvent mouseEvent) {
+        paging(1);
     }
 }
