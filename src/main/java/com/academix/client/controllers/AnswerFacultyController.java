@@ -29,7 +29,7 @@ public class AnswerFacultyController {
                     Button button = (Button) hBox.getChildren().get(1);
                     button.setOnAction(e ->{
                         try{
-                            mainApplication.loadExactAnswerStudent("Your question: \n"+ answer.question + "\nAdmin answer: \n" + answer.answer);
+                            mainApplication.loadExactAnswerFaculty("Your question: \n"+ answer.question + "\nAdmin answer: \n" + answer.answer);
                         } catch (Exception ex){
                             Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
                         }
