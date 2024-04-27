@@ -48,7 +48,7 @@ public class HomeFacultyConstroller {
     @FXML
     private void signOut() {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
@@ -57,7 +57,7 @@ public class HomeFacultyConstroller {
     @FXML
     private void goToMyFaculty() {
         try {
-            mainApplication.loadMyFaculty();
+            mainApplication.loadMyFaculty("myfaculty");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }

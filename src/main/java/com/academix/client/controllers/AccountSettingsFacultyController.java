@@ -60,7 +60,7 @@ public class AccountSettingsFacultyController {
             }
             case "myfaculty" -> {
                 try {
-                    mainApplication.loadMyFaculty();
+                    mainApplication.loadMyFaculty("accset");
                 } catch (Exception e) {
                     Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
@@ -82,7 +82,7 @@ public class AccountSettingsFacultyController {
     @FXML
     private void goToMyFaculty(ActionEvent actionEvent) {
         try {
-            mainApplication.loadMyFaculty();
+            mainApplication.loadMyFaculty("accset");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
@@ -113,7 +113,7 @@ public class AccountSettingsFacultyController {
     @FXML
     public void signOut(ActionEvent actionEvent) {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");

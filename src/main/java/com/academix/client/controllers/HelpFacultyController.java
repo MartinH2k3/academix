@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import server.logging.Logging;
 
 public class HelpFacultyController {
     @FXML
@@ -23,7 +24,7 @@ public class HelpFacultyController {
     }
     @FXML
     private void SendHelpMessage() {
-        RequesterUser.getInstance().sendQuestion(mainApplication.loggedInUser, subjectTextField.getText(), messageTextField.getText());
+        RequesterUser.getInstance().sendQuestion(mainApplication.getLoggedInUser(), subjectTextField.getText(), messageTextField.getText());
         sentSuccessfullyText.setVisible(true);
     }
     @FXML
@@ -41,5 +42,11 @@ public class HelpFacultyController {
     }
     @FXML
     private void signOut( ) {
+        try {
+            mainApplication.setLoggedInUser(null);
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 }

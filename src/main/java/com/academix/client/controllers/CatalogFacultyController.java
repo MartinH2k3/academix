@@ -70,7 +70,7 @@ public class CatalogFacultyController {
     @FXML
     void signOut() {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
@@ -80,7 +80,7 @@ public class CatalogFacultyController {
     @FXML
     void goToMyFaculty() {
         try {
-            mainApplication.loadMyFaculty();
+            mainApplication.loadMyFaculty("catalog");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }

@@ -51,7 +51,7 @@ public class LoginController {
             passwordField.setText("");
             return null;
         } else {
-            mainApplication.loggedInUser = username;
+            mainApplication.setLoggedInUser(username);
             return response;
         }
     }

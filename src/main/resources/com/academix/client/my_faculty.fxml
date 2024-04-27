@@ -157,7 +157,7 @@
                         </TextField>
                         <HBox alignment="CENTER_RIGHT" maxWidth="750.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="562.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="takeQuizButton1" mnemonicParsing="false" onAction="#back" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Back" textFill="WHITE">
+                              <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#back" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Cancel" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Book" size="13.0" />
                                  </font>
@@ -168,7 +168,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="takeQuizButton" mnemonicParsing="false" onAction="#save" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
+                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #3b5e87;" text="Save" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Book" size="13.0" />
                                  </font>

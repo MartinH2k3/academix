@@ -47,6 +47,12 @@ public class AccountSettingsAdminController {
 
     @FXML
     private void signOut() {
+        try {
+            mainApplication.setLoggedInUser(null);
+            mainApplication.loadLoginPane();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
 
     @FXML
@@ -59,4 +65,5 @@ public class AccountSettingsAdminController {
     public void setMainApp(MainApplication mainApplication){
         this.mainApplication = mainApplication;
     }
+
 }
