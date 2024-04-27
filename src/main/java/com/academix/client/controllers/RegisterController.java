@@ -90,5 +90,12 @@ public class RegisterController {
                 Logging.getInstance().logException(e, "Pri registrácii nastala chyba.");
             }
         }
+        mainApplication.setLoggedInUser(username);
+    }
+    @FXML
+    private void skLanguage() {
+    }
+    @FXML
+    private void enLanguage() {
     }
 }

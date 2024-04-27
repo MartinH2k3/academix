@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.HomeAdminController">
-   <center>
-      <AnchorPane prefHeight="277.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="CENTER" layoutX="171.0" layoutY="39.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="38.400000000000034" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="144.8" AnchorPane.topAnchor="39.0">
-               <children>
-                  <ImageView fitHeight="248.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label prefHeight="18.0" prefWidth="55.0" text="some info" />
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </center>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +23,7 @@
                   <Font name="Avenir Book" size="12.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="AccountsHyperlink" onAction="#goToAccounts" text="Accounts" textAlignment="CENTER" textFill="WHITE">
+            <Hyperlink fx:id="AccountsHyperlink" onAction="#goToAccounts" text="Accounts" textAlignment="CENTER" textFill="WHITE" visited="true">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
@@ -62,4 +41,15 @@
          </children>
       </HBox>
    </top>
+   <center>
+      <ScrollPane maxWidth="750.0" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="352.0" prefWidth="750.0">
+               <children>
+                  <VBox fx:id="allUsers" alignment="TOP_CENTER" layoutX="325.0" layoutY="76.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>

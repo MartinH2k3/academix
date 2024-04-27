@@ -9,24 +9,24 @@ import server.logging.Logging;
 
 public class HomeFacultyConstroller {
     @FXML
-    public Hyperlink myFacultyHyperlink;
+    private Hyperlink myFacultyHyperlink;
     @FXML
-    public Hyperlink catalogHyperlink;
+    private Hyperlink catalogHyperlink;
     @FXML
-    public Hyperlink accountSettingsHyperlink;
+    private Hyperlink accountSettingsHyperlink;
     @FXML
-    public Hyperlink signOutHyperlink;
+    private Hyperlink signOutHyperlink;
     @FXML
-    public Hyperlink helpHyperlink;
+    private Hyperlink helpHyperlink;
     @FXML
-    public Button addFacultyInformationButton;
+    private Button addFacultyInformationButton;
     private MainApplication mainApplication;
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
     @FXML
-    public void goToCatalog(ActionEvent actionEvent) {
+    private void goToCatalog() {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class HomeFacultyConstroller {
     }
 
     @FXML
-    public void goToAccountSettings(ActionEvent actionEvent) {
+    private void goToAccountSettings() {
         try {
             mainApplication.loadAccountSettingsFacultyPane("home");
         } catch (Exception e) {
@@ -43,21 +43,21 @@ public class HomeFacultyConstroller {
         }
     }
     @FXML
-    public void goToHelp(ActionEvent actionEvent) {
+    private void goToHelp() {
     }
     @FXML
-    public void signOut(ActionEvent actionEvent) {
+    private void signOut() {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
     @FXML
-    public void goToMyFaculty(ActionEvent actionEvent) {
+    private void goToMyFaculty() {
         try {
-            mainApplication.loadMyFaculty();
+            mainApplication.loadMyFaculty("myfaculty");
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }

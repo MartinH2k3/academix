@@ -12,7 +12,6 @@ import server.logging.Logging;
 
 public class HelpStudentController {
     private MainApplication mainApplication;
-
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -45,6 +44,10 @@ public class HelpStudentController {
 
     @FXML
     private TextField subjectTextField;
+
+    public void initialize(){
+        sentSuccessfullyText.setVisible(false);
+    }
 
     @FXML
     void goToAccountSettings(ActionEvent event) {
@@ -89,13 +92,14 @@ public class HelpStudentController {
 
     @FXML
     void SendHelpMessage(ActionEvent event) {
-        RequesterUser.getInstance().sendQuestion(mainApplication.loggedInUser, subjectTextField.getText(), messageTextField.getText());
+        RequesterUser.getInstance().sendQuestion(mainApplication.getLoggedInUser(), subjectTextField.getText(), messageTextField.getText());
+        sentSuccessfullyText.setVisible(true);
     }
 
     @FXML
     void signOut(ActionEvent event) {
         try {
-            mainApplication.loggedInUser = null;
+            mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
