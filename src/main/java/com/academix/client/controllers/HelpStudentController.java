@@ -8,10 +8,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class HelpStudentController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -47,6 +53,23 @@ public class HelpStudentController {
 
     public void initialize(){
         sentSuccessfullyText.setVisible(false);
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        pastResultHyperlink.setText(messages.getString("past_results"));
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        subjectTextField.setPromptText(messages.getString("help_subject"));
+        messageTextField.setPromptText(messages.getString("help_message"));
+        takeALookText.setText(messages.getString("help_contact_admin"));
+
+        sendMessageButton.setText(messages.getString("send_button"));
     }
 
     @FXML
