@@ -10,10 +10,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class LoginController {
     private MainApplication mainApplication;
+    private LocaleManager localeManager;
 
     @FXML
     private TextField usernameTextfield;
@@ -28,8 +33,22 @@ public class LoginController {
     private Hyperlink goToRegisterHyperlink;
 
     @FXML
+    private Button skToggleButton;
+
+    @FXML
+    private Button enToggleButton;
+
+    @FXML
     private void initialize() {
         // You can add initialization logic here if needed
+        localeManager = LocaleManager.getInstance();
+//        localeManager.setLocale(new Locale("sk"));
+
+        ResourceBundle messages = localeManager.getMessages();
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordField.setPromptText(messages.getString("password"));
+        goToRegisterHyperlink.setText(messages.getString("noaccount"));
+        loginButton.setText(messages.getString("login"));
     }
 
 
@@ -39,14 +58,16 @@ public class LoginController {
         Notification notification = Notification.getInstance();
 
         if (username.isEmpty() || password.isEmpty()) {
-            notification.showNotification("Username or password were not entered");
+            if(localeManager.getLocale().equals(new Locale("SK"))){ notification.showNotification("Prihlasovacie meno alebo heslo neboli zadané");}
+            else{notification.showNotification("Username or password were not entered");}
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
             passwordField.setText("");
             return null;
         }
         String response = RequesterUser.getInstance().login(username, password);
         if (response.equals("Incorrect username or password")) {
-            notification.showNotification("Incorrect username or password");
+            if(localeManager.getLocale().equals(new Locale("SK"))){notification.showNotification(("Nesprávne prihlasovacie meno alebo heslo"));}
+            else {notification.showNotification("Incorrect username or password");}
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
             passwordField.setText("");
             return null;
@@ -57,22 +78,52 @@ public class LoginController {
     }
 
     @FXML
-    private void login() {
+    private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
+    }
+
+    @FXML
+    private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
+    }
+
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordField.setPromptText(messages.getString("password"));
+        goToRegisterHyperlink.setText(messages.getString("noaccount"));
+        loginButton.setText(messages.getString("login"));
+    }
+
+    @FXML
+    private void login(ActionEvent actionEvent) {
+        if (login()) {
+            try {
+                mainApplication.loadHomeStudentPane();
+            } catch (Exception e) {
+                Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+            }
+        }
+    }
+
+    private boolean login() {
         String userType = loginCheck();
-        if (userType != null){
+        if (userType != null) {
             if (UserTypeEnum.ADMIN.toString().equals(userType.toUpperCase())) {
                 try {
                     mainApplication.loadHomeAdmin();
                 } catch (Exception e) {
                     Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
-            }else if(UserTypeEnum.FACULTY_REPRESENTATIVE.toString().equals(userType.toUpperCase())) {
+            } else if (UserTypeEnum.FACULTY_REPRESENTATIVE.toString().equals(userType.toUpperCase())) {
                 try {
                     mainApplication.loadHomeFaculty();
                 } catch (Exception e) {
                     Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
                 }
-            }else if(UserTypeEnum.STUDENT.toString().equals(userType.toUpperCase())){
+            } else if (UserTypeEnum.STUDENT.toString().equals(userType.toUpperCase())) {
                 try {
                     mainApplication.loadHomeStudentPane();
                 } catch (Exception e) {
@@ -80,7 +131,9 @@ public class LoginController {
                 }
             }
         }
+        return false;
     }
+
     @FXML
     private void switchToRegister(ActionEvent actionEvent) {
         try {
@@ -92,12 +145,6 @@ public class LoginController {
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
-    }
-    @FXML
-    private void skLanguage() {
-    }
-    @FXML
-    private void enLanguage() {
     }
 
     // You can add more methods and fields as needed

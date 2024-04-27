@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 public class NotificationController {
     @FXML
     private Label errorText;
+
     private Stage stage;
     public void initialize(Stage stage, String text){
         this.stage = stage;

@@ -9,11 +9,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-
-import javax.xml.transform.Result;
+import language.LocaleManager;
+import javafx.stage.StageStyle;
 import java.awt.Desktop;
 
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainApplication extends Application {
 
@@ -25,6 +27,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            LocaleManager.getInstance().setLocale(new Locale("sk"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Pane loginPane = loader.load();
             LoginController loginController = loader.getController();
@@ -37,8 +40,7 @@ public class MainApplication extends Application {
 
             root = new BorderPane();
             root.setCenter(loginPane);
-
-
+        this.primaryStage = primaryStage;
             primaryStage.setTitle("Academix");
             primaryStage.setScene(new Scene(root, loginPane.getPrefWidth(), loginPane.getPrefHeight()));
             primaryStage.show();

@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -21,6 +22,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import language.LocaleManager;
+
+import java.util.ResourceBundle;
 import server.logging.Logging;
 
 import java.io.FileReader;
@@ -31,8 +35,8 @@ import java.util.Map;
 
 
 public class QuizController {
-    @FXML
-    public TextField gradeTextField;
+
+    private LocaleManager localeManager;
     //int[n] kde n je pocet otazok dal som zatial 20
     private int[] results = new int[20];
     private final Color WHITE = Color.WHITE;
@@ -73,6 +77,9 @@ public class QuizController {
 
     private MainApplication mainApplication;
 
+    @FXML
+    private TextField gradeTextField;
+
     public QuizController(){
         initializeQuestions();
         initializeFieldPoints();
@@ -101,6 +108,19 @@ public class QuizController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        gradeTextField.setPromptText(messages.getString("average_grade"));
+        resultsButton.setText(messages.getString("results_button"));
 
     }
     private void setCirclesOnClick(HBox hBox){

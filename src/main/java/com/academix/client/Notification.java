@@ -6,8 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import language.LocaleManager;
+
+import java.util.Locale;
+
 public class Notification {
     private static Notification instance;
+
+    private LocaleManager localeManager;
 
     private Notification() {}
 
@@ -20,6 +26,7 @@ public class Notification {
 
     public void showNotification(String message) {
         try {
+            localeManager = LocaleManager.getInstance();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("notification.fxml"));
             Parent parent = loader.load();
             NotificationController notificationController = loader.getController();
@@ -30,7 +37,10 @@ public class Notification {
 
             stage.setScene(new Scene(parent, 450, 110));
             stage.setResizable(false);
-            stage.setTitle("Notification");
+            if(localeManager.getLocale().equals(new Locale("sk"))){
+                stage.setTitle("Výstraha!");
+            } else {
+            stage.setTitle("Warning!");}
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

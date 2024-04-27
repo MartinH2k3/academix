@@ -8,10 +8,15 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class HomeStudentController {
     private MainApplication mainApplication;
+    private LocaleManager localeManager;
 
     @FXML
     private HBox navigationBar;
@@ -72,6 +77,52 @@ public class HomeStudentController {
 
     @FXML
     private void initialize() {
+        // initialize screen with default or changed language during signup/login
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        takeALookText.setText(messages.getString("take_look"));
+        belongText.setText(messages.getString("belong_to"));
+
+        takeQuizButton.setText(messages.getString("quiz_button"));
+    }
+
+    @FXML
+    private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
+    }
+
+    @FXML
+    private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
+    }
+
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+
+        pastResultHyperlink.setText(messages.getString("past_results"));
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        takeALookText.setText(messages.getString("take_look"));
+        belongText.setText(messages.getString("belong_to"));
+
+        takeQuizButton.setText(messages.getString("quiz_button"));
+    }
+
+    public void goToPastResults(ActionEvent actionEvent) {
     }
 
     @FXML

@@ -9,12 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class RequestsController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     @FXML
     private VBox allRequests;
     @FXML
@@ -57,6 +61,10 @@ public class RequestsController {
         }else{
             noRequestsLabel.setVisible(true);
         }
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
 
     }
     @FXML

@@ -11,6 +11,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import server.logging.Logging;
+import javafx.scene.control.Hyperlink;
+import language.LocaleManager;
+import java.util.ResourceBundle;
 
 public class AccountSettingsFacultyController {
     @FXML
@@ -33,13 +36,61 @@ public class AccountSettingsFacultyController {
     private Button backButton;
     @FXML
     private Button saveButton;
-    @FXML
-    private Hyperlink accountSettingsHyperlink;
-
     private MainApplication mainApplication;
     private String back;
 
-    public void setMainApp(MainApplication mainApplication) {
+    private LocaleManager localeManager;
+
+    @FXML
+    private Hyperlink accountSettingsHyperlink;
+
+    @FXML
+    private Hyperlink myFacultyHyperlink;
+
+    @FXML
+    private Hyperlink catalogHyperlink;
+
+    @FXML
+    private Hyperlink helpHyperlink;
+
+    @FXML
+    private Hyperlink signOutHyperlink;
+
+    @FXML
+    private Text basicText;
+
+    @FXML
+    private Text passwordText;
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        basicText.setText(messages.getString("basic_text"));
+        passwordText.setText(messages.getString("password"));
+
+        firstNameTextfield.setPromptText(messages.getString("first_name"));
+        lastNameTextfield.setPromptText(messages.getString("last_name"));
+        phoneNumberTextfield.setPromptText(messages.getString("phone_number"));
+        emailTextfield.setPromptText(messages.getString("email"));
+
+        currentPasswordField.setPromptText(messages.getString("current_password"));
+        newPasswordField.setPromptText(messages.getString("new_password"));
+        repeatNewPasswordField.setPromptText(messages.getString("confirmpassword"));
+
+        backButton.setText(messages.getString("back"));
+        saveButton.setText(messages.getString("save"));
+    }
+    public void setMainApp(MainApplication mainApplication){
+
         this.mainApplication = mainApplication;
     }
 

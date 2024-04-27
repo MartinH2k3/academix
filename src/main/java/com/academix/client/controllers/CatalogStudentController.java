@@ -19,7 +19,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 import java.net.URI;
 import java.io.IOException;
@@ -28,6 +31,10 @@ import java.awt.Desktop;
 import java.util.ArrayList;
 
 public class CatalogStudentController {
+    private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
+
     @FXML
     private TextField searchTextField;
     @FXML
@@ -53,10 +60,80 @@ public class CatalogStudentController {
 
     @FXML
     private Hyperlink signOutHyperlink;
+
+    @FXML
+    private TextField searchTextfield;
+
+    @FXML
+    private ScrollBar scrollBar;
+
+    @FXML
+    private Label label1;
+
+    @FXML
+    private Text takeALookText;
+
+    @FXML
+    private Button SelectButton1;
+
+    @FXML
+    private TextField usernameTextfield;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label label2;
+
+    @FXML
+    private Text takeALookText1;
+
     @FXML
     private BorderPane pane;
     public void initialize() {
-                loadStuff();
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        searchTextfield.setPromptText(messages.getString("search"));
+        RequesterUser user = RequesterUser.getInstance();
+        int pageSize = 5;
+        String val = pageTextField.getText();
+        var faculties = user.get_faculties(Integer.parseInt(val), pageSize);
+        if (faculties != null && !faculties.isEmpty()) {
+            for (FacultyDTO facultyDTO : faculties) {
+                try {
+                    System.out.println(pageTextField.getText());
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_catalog.fxml"));
+                    VBox vBox = loader.load();
+                    HBox hBoxSchool = (HBox) vBox.getChildren().get(0);
+                    Label label = (Label) hBoxSchool.getChildren().get(0);
+                    label.setText(facultyDTO.university_name + ": " + facultyDTO.faculty_name);
+                    HBox hBoxDescription = (HBox) vBox.getChildren().get(1);
+                    Label labelDescription = (Label) hBoxDescription.getChildren().get(0);
+                    labelDescription.setText(facultyDTO.description);
+                    Button button = (Button) hBoxDescription.getChildren().get(1);
+                    button.setOnAction(e -> {
+                        try {
+                            Desktop.getDesktop().browse(new URI(facultyDTO.website_url));
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+
+                    });
+                    allSchools.getChildren().add(vBox);
+                } catch (Exception ex) {
+                    Logging.getInstance().logException(ex, "nepodarilo sa načitat spravi");
+                }
+            }
+
+        }
     }
 
     @FXML

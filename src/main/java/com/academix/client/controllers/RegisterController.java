@@ -13,10 +13,30 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.io.IOException;
+import java.util.Formattable;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RegisterController {
     private MainApplication mainApplication;
+    private LocaleManager localeManager;
+    @FXML
+    private Polygon invalidPasswordBubble;
+    @FXML
+    private Polygon invalidConfirmPasswordBubble;
+    @FXML
+    private Polygon invalidUsernameBubble;
+    @FXML
+    private Text invalidPasswordText;
+    @FXML
+    private Text invalidConfirmPasswordText;
+    @FXML
+    private Text invalidUsernameText;
 
     @FXML
     private TextField usernameTextfield;
@@ -36,12 +56,44 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLoginHyperlink;
 
-    
+    @FXML
     private void initialize() {
         // You can add initialization logic here if needed
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        registerButton.setText(messages.getString("register"));
+        schoolEmployeeCheckbox.setText(messages.getString("employeetoggle"));
     }
+
     @FXML
-    private void switchToLogin(ActionEvent actionEvent) {
+    private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
+    }
+
+    @FXML
+    private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
+    }
+
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        registerButton.setText(messages.getString("register"));
+        schoolEmployeeCheckbox.setText(messages.getString("employeetoggle"));
+    }
+    public void switchToLogin(ActionEvent actionEvent) {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
@@ -54,7 +106,7 @@ public class RegisterController {
     }
 
     @FXML
-    private void register() {
+    public void register(ActionEvent actionEvent) {
         String username = usernameTextfield.getText();
         String password = passwordPasswordField.getText();
 
@@ -91,10 +143,15 @@ public class RegisterController {
         }
         mainApplication.setLoggedInUser(username);
     }
-    @FXML
-    private void skLanguage() {
+
+    public void hideUsernameBubble(MouseEvent mouseEvent) {
+        invalidUsernameBubble.setVisible(false);
+        invalidUsernameText.setVisible(false);
+
     }
-    @FXML
-    private void enLanguage() {
+
+    public void hidePasswordBubble(MouseEvent mouseEvent) {
+        invalidPasswordBubble.setVisible(false);
+        invalidPasswordText.setVisible(false);
     }
 }
