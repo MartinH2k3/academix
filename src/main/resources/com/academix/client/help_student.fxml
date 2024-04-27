@@ -66,6 +66,15 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="54.0" prefWidth="858.0">
+                     <children>
+                        <Button fx:id="switcher" maxWidth="250.0" mnemonicParsing="false" onAction="#switchToReceivedHelp" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="Switch to received help" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

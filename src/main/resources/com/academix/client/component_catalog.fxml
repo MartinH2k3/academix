@@ -6,26 +6,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="84.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="750.0" prefHeight="84.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxWidth="1000.0" prefHeight="24.0" prefWidth="410.0">
-         <children>
-            <Text fx:id="takeALookText" strokeType="OUTSIDE" strokeWidth="0.0" text="skola 1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-         </children>
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
+         <children>
+            <Label maxWidth="750.0" prefHeight="27.0" prefWidth="410.0" text="skola">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
       </HBox>
       <HBox alignment="CENTER" maxWidth="1000.0" prefHeight="60.0" prefWidth="410.0">
          <children>
-            <Label fx:id="shortDescription" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
-            <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="Select" textFill="WHITE">
+            <Label fx:id="shortDescription" maxWidth="650.0" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
+            <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="Select" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>

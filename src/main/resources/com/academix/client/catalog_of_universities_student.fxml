@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="424.0" prefWidth="606.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.CatalogStudentController">
+<BorderPane fx:id="pane" prefHeight="424.0" prefWidth="606.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.academix.client.controllers.CatalogStudentController">
    <center>
       <AnchorPane prefHeight="237.0" prefWidth="606.0" style="-fx-background-color: #ffffff;">
          <children>
             <HBox alignment="TOP_CENTER" layoutX="61.0" layoutY="14.0" prefHeight="27.0" prefWidth="479.0" AnchorPane.leftAnchor="60.80000000000001" AnchorPane.rightAnchor="63.00000000000006">
                <children>
-                  <TextField fx:id="searchTextfield" maxWidth="750.0" prefHeight="2.0" prefWidth="426.0" promptText="Search" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="searchTextField" maxWidth="750.0" prefHeight="2.0" prefWidth="426.0" promptText="Search" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -45,7 +45,7 @@
                               <Image url="@back.png" />
                            </image>
                         </ImageView>
-                        <TextField prefHeight="26.0" prefWidth="90.0" text="1" />
+                        <TextField fx:id="pageTextField" prefHeight="26.0" prefWidth="90.0" text="1" />
                         <ImageView fx:id="nextPageImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#goToNextPage" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@next.png" />

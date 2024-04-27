@@ -11,7 +11,7 @@ public class ConnectionTest {
         RequesterFaculty requesterFaculty = RequesterFaculty.getInstance();
         RequesterStudent requesterStudent = RequesterStudent.getInstance();
         // register faculty representative
-        // System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
+        System.out.println(requesterUser.register("facrep1", "password", "faculty_representative"));
 
         // register student
         // System.out.println(requesterUser.register("student1", "password", "student"));
@@ -44,10 +44,11 @@ public class ConnectionTest {
 //            }
 //        }
         // approve faculty representative
-        // System.out.println(requesterAdmin.acceptRequest(2L));
+        System.out.println(requesterAdmin.acceptRequest(1L));
 
         // create a faculty
-        // System.out.println(requesterFaculty.createFaculty("bobert14", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Yeah, its a school. Get over it", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
+        System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Yeah, its a school. Get over it", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
+        System.out.println(requesterFaculty.createFaculty("facrep1", "STUBA", "Faculty of Oopla doopla poopy boopy oopy", "Chicken", "Informatics", "5.0", "https://www.stuba.sk", "https://www.stuba.sk/image.jpg"));
 
         // get pending questions
         // System.out.println(requesterAdmin.getPendingQuestions());
@@ -65,8 +66,8 @@ public class ConnectionTest {
         // System.out.println(requesterStudent.facultyBasedOnQuiz("informatics", "1.55"));
 
         // delete account
-        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
-        System.out.println(requesterUser.deleteAccount("pomaranc"));
-        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
+//        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
+//        System.out.println(requesterUser.deleteAccount("pomaranc"));
+//        System.out.println(requesterUser.login("pomaranc", "pomaranc"));
     }
 }

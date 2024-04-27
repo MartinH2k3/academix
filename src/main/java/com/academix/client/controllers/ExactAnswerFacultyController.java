@@ -1,37 +1,18 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
-import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 import server.logging.Logging;
 
-public class HelpFacultyController {
+public class ExactAnswerFacultyController {
     @FXML
-    private Button sendMessageButton;
-    @FXML
-    private TextField subjectTextField;
-    @FXML
-    private TextField messageTextField;
-    @FXML
-    private Text sentSuccessfullyText;
+    private Label answerLabel;
     private MainApplication mainApplication;
-    public void setMainApp(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
-    }
-    public void initialize(){
-        sentSuccessfullyText.setVisible(false);
-    }
+
     @FXML
-    private void SendHelpMessage() {
-        RequesterUser.getInstance().sendQuestion(mainApplication.getLoggedInUser(), subjectTextField.getText(), messageTextField.getText());
-        sentSuccessfullyText.setVisible(true);
-    }
-    @FXML
-    private void goToMyFaculty() {
+    private void goToMyFaculty( ) {
         try {
             mainApplication.loadMyFaculty("help");
         } catch (Exception e) {
@@ -39,7 +20,7 @@ public class HelpFacultyController {
         }
     }
     @FXML
-    private void goToCatalog() {
+    private void goToCatalog( ) {
         try {
             mainApplication.loadCatalogFaculty();
         } catch (Exception e) {
@@ -47,8 +28,7 @@ public class HelpFacultyController {
         }
     }
     @FXML
-
-    private void goToAccountSettings() {
+    private void goToAccountSettings( ) {
         try {
             mainApplication.loadAccountSettingsFacultyPane("help");
         } catch (Exception e) {
@@ -56,7 +36,12 @@ public class HelpFacultyController {
         }
     }
     @FXML
-    private void goToHelp() {
+    private void goToHelp( ) {
+        try {
+            mainApplication.loadHelpFaculty();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
     }
     @FXML
     private void signOut( ) {
@@ -66,5 +51,12 @@ public class HelpFacultyController {
         } catch (Exception e) {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
+    }
+    @FXML
+    private void goToAnswers( ) {
+    }
+    
+    public void setMainApp(MainApplication mainApplication) {
+        this.mainApplication = mainApplication;
     }
 }
