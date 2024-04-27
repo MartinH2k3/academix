@@ -24,12 +24,12 @@
    <top>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: #3b5e87;" BorderPane.alignment="CENTER">
          <children>
-            <Hyperlink fx:id="requestsHyperlink" onAction="#goToRequests" text="requests" textAlignment="CENTER" textFill="WHITE">
+            <Hyperlink fx:id="requestsHyperlink" onAction="#goToRequests" text="Requests" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="questionsHyperlink" onAction="#goToQuestionsFromUsers" text="questions from users" textAlignment="CENTER" textFill="WHITE">
+            <Hyperlink fx:id="questionsHyperlink" onAction="#goToQuestionsFromUsers" text="Questions from users" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>

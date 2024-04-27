@@ -9,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+
+import javax.xml.transform.Result;
 import java.awt.Desktop;
 
 import java.util.Objects;
@@ -52,6 +54,16 @@ public class MainApplication extends Application {
         registerController.setMainApp(this);
         root.setCenter(registerPane);
     }
+
+    public ResultController loadResultPane() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("results.fxml"));
+        Parent registerPane = loader.load();
+        ResultController resultController = loader.getController();
+        resultController.setMainApp(this);
+        root.setCenter(registerPane);
+        return resultController;
+    }
+
 
     public void loadLoginPane() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -195,7 +207,23 @@ public class MainApplication extends Application {
         root.setCenter(ans);
     }
     public void loadExactAnswerStudent(String answer) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("exact_answer_student.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerStudentController exactAnswerStudentController = loader.getController();
+        exactAnswerStudentController.setMainApp(this);
+        exactAnswerStudentController.setMessage(answer);
+        root.setCenter(ans);
+    }
+    public void loadExactAnswerFaculty(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("exact_answer_faculty.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerFacultyController exactAnswerFacultyController = loader.getController();
+        exactAnswerFacultyController.setMainApp(this);
+        exactAnswerFacultyController.setMessage(answer);
+        root.setCenter(ans);
+    }
+    public void loadHelpAdmin(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sprava_admin.fxml"));
         Parent ans = loader.load();
         ExactAnswerStudentController exactAnswerStudentController = loader.getController();
         exactAnswerStudentController.setMainApp(this);

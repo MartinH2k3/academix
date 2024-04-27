@@ -23,6 +23,8 @@ import java.net.URI;
 
 public class CatalogFacultyController {
     @FXML
+    private TextField searchTextField;
+    @FXML
     private ImageView searchImage;
     @FXML
     private VBox allSchools;
@@ -57,9 +59,6 @@ public class CatalogFacultyController {
     private Button SelectButton1;
 
     @FXML
-    private TextField searchTextfield;
-
-    @FXML
     private ImageView imageView;
 
     @FXML
@@ -70,38 +69,7 @@ public class CatalogFacultyController {
     @FXML
     private BorderPane pane;
     public void initialize() {
-        RequesterUser user = RequesterUser.getInstance();
-        int pageSize = 5;
-        String val = pageTextField.getText();
-        var faculties = user.get_faculties(Integer.parseInt(val), pageSize);
-        if (faculties != null && !faculties.isEmpty()) {
-            for (FacultyDTO facultyDTO : faculties) {
-                try {
-                    System.out.println(pageTextField.getText());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_catalog.fxml"));
-                    VBox vBox = loader.load();
-                    HBox hBoxSchool = (HBox) vBox.getChildren().get(0);
-                    Label label = (Label) hBoxSchool.getChildren().get(0);
-                    label.setText(facultyDTO.university_name + ": " + facultyDTO.faculty_name);
-                    HBox hBoxDescription = (HBox) vBox.getChildren().get(1);
-                    Label labelDescription = (Label) hBoxDescription.getChildren().get(0);
-                    labelDescription.setText(facultyDTO.description);
-                    Button button = (Button) hBoxDescription.getChildren().get(1);
-                    button.setOnAction(e -> {
-                        try {
-                            Desktop.getDesktop().browse(new URI(facultyDTO.website_url));
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-
-                    });
-                    allSchools.getChildren().add(vBox);
-                } catch (Exception ex) {
-                    Logging.getInstance().logException(ex, "nepodarilo sa načitat spravi");
-                }
-            }
-
-        }
+                loadStuff();
     }
 
     @FXML
@@ -170,6 +138,7 @@ public class CatalogFacultyController {
         } catch (NumberFormatException e) {
             Logging.getInstance().logException(e, "Doslo k chybe");
         }
+        loadStuff();
     }
     @FXML
     private void goToNextPage(MouseEvent mouseEvent) {
@@ -177,6 +146,42 @@ public class CatalogFacultyController {
     }
 
     @FXML
-    private void search(MouseEvent mouseEvent) {
+    private void search() {
+            loadStuff();
+    }
+
+    private void loadStuff(){
+        RequesterUser user = RequesterUser.getInstance();
+        var faculties =user.get_faculties(Integer.parseInt(pageTextField.getText()), 5);
+        if (!searchTextField.getText().isEmpty()) {
+            faculties = user.get_faculties(searchTextField.getText(), Integer.parseInt(pageTextField.getText()), 5);
+        }
+        allSchools.getChildren().removeAll();
+        if (faculties != null && !faculties.isEmpty()) {
+            for (FacultyDTO facultyDTO : faculties) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_catalog.fxml"));
+                    VBox vBox = loader.load();
+                    HBox hBoxSchool = (HBox) vBox.getChildren().get(0);
+                    Label label = (Label) hBoxSchool.getChildren().get(0);
+                    label.setText(facultyDTO.university_name + ": " + facultyDTO.faculty_name);
+                    HBox hBoxDescription = (HBox) vBox.getChildren().get(1);
+                    Label labelDescription = (Label) hBoxDescription.getChildren().get(0);
+                    labelDescription.setText(facultyDTO.description);
+                    Button button = (Button) hBoxDescription.getChildren().get(1);
+                    button.setOnAction(e -> {
+                        try {
+                            Desktop.getDesktop().browse(new URI(facultyDTO.website_url));
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+
+                    });
+                    allSchools.getChildren().add(vBox);
+                } catch (Exception ex) {
+                    Logging.getInstance().logException(ex, "nepodarilo sa načitat spravi");
+                }
+            }
+        }
     }
 }
