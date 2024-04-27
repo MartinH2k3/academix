@@ -36,13 +36,12 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLoginHyperlink;
 
-
-    @FXML
+    
     private void initialize() {
         // You can add initialization logic here if needed
     }
-
-    public void switchToLogin(ActionEvent actionEvent) {
+    @FXML
+    private void switchToLogin(ActionEvent actionEvent) {
         try {
             mainApplication.loadLoginPane();
         } catch (Exception e) {
@@ -55,7 +54,7 @@ public class RegisterController {
     }
 
     @FXML
-    public void register(ActionEvent actionEvent) {
+    private void register() {
         String username = usernameTextfield.getText();
         String password = passwordPasswordField.getText();
 

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="600.0">
@@ -22,12 +21,24 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="delete">
+            <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="delete" textFill="WHITE">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="save" />
+            <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #3b5e87;" text="save" textFill="WHITE" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" maxWidth="710.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="7.0" text="First name" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+            <Label maxWidth="1.7976931348623157E308" text="Last name" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" />
@@ -35,7 +46,11 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Label maxWidth="1.7976931348623157E308" text="email" HBox.hgrow="ALWAYS" />
+            <Label maxWidth="1.7976931348623157E308" text="Email" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
             <Label maxWidth="1.7976931348623157E308" text="phone number" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>

@@ -157,11 +157,12 @@ public class MainApplication extends Application {
         questionsFromUsersController.setMainApp(this);
         root.setCenter(questions);
     }
-    public void loadAccountSettingsAdmin() throws Exception{
+    public void loadAccountSettingsAdmin(String back) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("account_settings_admin.fxml"));
         Parent accset = loader.load();
         AccountSettingsAdminController accountSettingsAdminController = loader.getController();
         accountSettingsAdminController.setMainApp(this);
+        accountSettingsAdminController.setBack(back);
         root.setCenter(accset);
     }
     public void loadRequests() throws Exception{
@@ -170,6 +171,13 @@ public class MainApplication extends Application {
         RequestsController requestsController = loader.getController();
         requestsController.setMainApp(this);
         root.setCenter(req);
+    }
+    public void loadAccounts() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("accounts.fxml"));
+        Parent acc = loader.load();
+        AccountsController accountsController = loader.getController();
+        accountsController.setMainApp(this);
+        root.setCenter(acc);
     }
 
     public void setLoggedInUser(String loggedInUser) {
