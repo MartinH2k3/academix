@@ -3,6 +3,7 @@ package com.academix.client.controllers;
 import com.academix.client.MainApplication;
 import com.academix.client.requests.RequesterAdmin;
 import com.academix.client.requests.RequesterUser;
+import common.dto.QuestionDTO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,19 +24,19 @@ public class QuestionsFromUsersController {
     private VBox allQuestions;
     public void initialize(){
        var admin = RequesterAdmin.getInstance();
-        Map<Long,String> map = admin.getPendingQuestions();
+        var map = admin.getPendingQuestions();
         if (map != null && !map.isEmpty()) {
-             for(Map.Entry<Long,String> question : map.entrySet()){
+             for(Map.Entry<Long, QuestionDTO> question : map.entrySet()){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/academix/client/component_question.fxml"));
                     HBox hBox = loader.load();
                     Label label = (Label) hBox.getChildren().get(1);
-                    label.setText(question.getValue());
+                    label.setText(question.getValue().subject);
                     label.setId(question.getKey()+"");
                     Button button = (Button) hBox.getChildren().get(2);
                     button.setOnAction(e->{
                         try{
-                            mainApplication.loadHelpAdmin(question.getValue());
+                            mainApplication.loadHelpAdmin(question.getValue().question);
                         }catch (Exception ex){
                             Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
                         }
