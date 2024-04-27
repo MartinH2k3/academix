@@ -4,11 +4,14 @@ import com.academix.client.MainApplication;
 import com.academix.client.requests.RequesterUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import server.logging.Logging;
 
 public class HelpFacultyController {
+    @FXML
+    private Button sendMessageButton;
     @FXML
     private TextField subjectTextField;
     @FXML

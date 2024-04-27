@@ -2,6 +2,7 @@ module com.academix.academix {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
     requires jdk.httpserver;
     requires com.google.gson;
     requires org.apache.logging.log4j;
