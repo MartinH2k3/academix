@@ -18,7 +18,7 @@ public class Auth {
      * @return String status of the login
      */
     public static String login(String username, String password) throws SQLException {
-        String query = "SELECT type FROM users WHERE username = ? AND password_hash = ?";
+        String query = "SELECT type FROM users WHERE username = ? AND password_hash = ? AND type != 'deleted'";
         try (Connection conn = DatabaseConnector.connect()){
             PreparedStatement pstmt = conn.prepareStatement(query);
             var passwordHash = Hasher.hashPassword(password);
@@ -36,7 +36,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            Logging.getInstance().logException(e,"Pri prihlasovaní používateľa" + username + " došlo k chybe");
+            Logging.getInstance().logException(e,"Error while trying to log in the user: " + username);
             }
         return "Login failed";
     }
@@ -53,7 +53,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error occured while inserting record into the database");
         }
     }
 
@@ -69,7 +69,7 @@ public class Auth {
             pstmt.setString(1, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri vkladaní záznamu do databázy došlo k chybe");
+            Logging.getInstance().logException(e, "Error while inserting record into the database");
         }
     }
 
@@ -108,7 +108,7 @@ public class Auth {
                 }
                 return "Registration successful";
             } catch (SQLException e) {
-                Logging.getInstance().logException(e, "Pri registrácii používateľa došlo k chybe");
+                Logging.getInstance().logException(e, "Error during registration");
                 return "Error during registration";
             }
 
@@ -138,8 +138,23 @@ public class Auth {
 
             }
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri resetovaní hesla používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error occured while resetting password");
         }
         return "Password reset failed";
+    }
+
+    public static String deleteAccount(String username) {
+
+        String query = "UPDATE users SET type = 'deleted' WHERE username = ?";
+        try (Connection conn = DatabaseConnector.connect()) {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            if (pstmt.executeUpdate() > 0) {
+                return "Account deleted";
+            }
+        } catch (SQLException e) {
+            Logging.getInstance().logException(e, "Error occured while deleting account");
+        }
+        return "Account deletion failed";
     }
 }

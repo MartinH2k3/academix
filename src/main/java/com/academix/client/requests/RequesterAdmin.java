@@ -1,7 +1,9 @@
 package com.academix.client.requests;
 
 import com.google.gson.Gson;
+import common.dto.AccountInfoDTO;
 
+import java.util.List;
 import java.util.Map;
 
 public class RequesterAdmin {
@@ -52,19 +54,26 @@ public class RequesterAdmin {
     public String acceptRequest(Long requestId) {
         return evaluateRequest(requestId, "accepted");
     }
+
     public String acceptRequest(String requestId) {
-        return evaluateRequest(Long.getLong(requestId), "accepted");
+        return evaluateRequest(Long.parseLong(requestId), "accepted");
     }
+
     public String rejectRequest(Long requestId) {
         return evaluateRequest(requestId, "rejected");
     }
-    public String rejectRequest(String requestId) {
-        return evaluateRequest(Long.getLong(requestId), "rejected");
-    }
 
+    public String rejectRequest(String requestId) {
+        return evaluateRequest(Long.parseLong(requestId), "rejected");
+    }
 
     public String answerQuestion(Long questionId, String answer) {
         return requestSender.sendRequest("/answer_question?question_id=" + questionId, answer, "POST");
     }
 
+    public List<String> showAllUsers() {
+        String response = requestSender.sendRequest("/users", "GET");
+        Gson gson = new Gson();
+        return gson.fromJson(response, List.class);
+    }
 }

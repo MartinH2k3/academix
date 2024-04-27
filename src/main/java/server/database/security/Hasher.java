@@ -24,7 +24,7 @@ public class Hasher {
             }
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            Logging.getInstance().logException(e, "Pri hashovaní hesla došlo k chybe");
+            Logging.getInstance().logException(e, "Failed to hash the password");
             throw new RuntimeException("Failed to hash the password", e);
         }
     }

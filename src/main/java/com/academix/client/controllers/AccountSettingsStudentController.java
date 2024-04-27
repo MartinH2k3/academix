@@ -1,7 +1,6 @@
 package com.academix.client.controllers;
 
 import com.academix.client.MainApplication;
-import com.academix.client.Notification;
 import com.academix.client.requests.RequesterUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -174,40 +173,27 @@ public class AccountSettingsStudentController {
     // Event handler for the "Save" button
     @FXML
     private void saveChanges() {
-        // Implement the logic to save the changes made in the account settings
-        String firstName = firstNameTextfield.getText();
-        String lastName = lastNameTextfield.getText();
-        String email = emailTextfield.getText();
-        String phoneNumber = phoneNumberTextfield.getText();
-        String username = mainApplication.getLoggedInUser();
-        Notification notification = Notification.getInstance();
+        if (isPersonalInfoFilled() && isPasswordFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPasswordFilled()) {
+            RequesterUser.getInstance().resetPassword(mainApplication.getLoggedInUser(), currentPasswordField.getText(), newPasswordField.getText());
+        } else if (isPersonalInfoFilled()) {
+            RequesterUser.getInstance().updateAccountInfo(mainApplication.getLoggedInUser(), emailTextfield.getText(), firstNameTextfield.getText(), lastNameTextfield.getText(), phoneNumberTextfield.getText());
+        } else {}
+    }
 
-        String response = RequesterUser.getInstance().updateAccountInfo(username, email, firstName, lastName, phoneNumber);
+    private boolean isPersonalInfoFilled() {
+        return !firstNameTextfield.getText().isEmpty()
+                || !lastNameTextfield.getText().isEmpty()
+                || !phoneNumberTextfield.getText().isEmpty()
+                || !emailTextfield.getText().isEmpty();
+    }
 
-        if(response != "Last name update failed"){
-            if(localeManager.getLocale().equals(new Locale("SK"))){
-                notification.showNotification("Priezvisko bolo aktualizované");
-            }
-            notification.showNotification("Last name was updated");
-        }
-        else if(response != "First name update failed") {
-            if(localeManager.getLocale().equals(new Locale("SK"))){
-                notification.showNotification("Meno bolo aktualizované");
-            }
-            notification.showNotification("Name was updated");
-        }
-        else if(response != "Email update failed"){
-            if(localeManager.getLocale().equals(new Locale("SK"))){
-                notification.showNotification("Email bol aktualizovaný");
-            }
-            notification.showNotification("Email was updated");
-        }
-        else if(response != "Phone number update failed"){
-            if(localeManager.getLocale().equals(new Locale("SK"))){
-                notification.showNotification("Telefónne číslo bolo aktualizované");
-            }
-            notification.showNotification("Phone number was updated");
-        }
+    private boolean isPasswordFilled() {
+        return !currentPasswordField.getText().isEmpty()
+                && !newPasswordField.getText().isEmpty()
+                && !repeatNewPasswordField.getText().isEmpty();
     }
 
     // Event handler for the "Back" button

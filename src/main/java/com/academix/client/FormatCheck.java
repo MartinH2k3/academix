@@ -22,7 +22,7 @@ public class FormatCheck {
     // Grade is a number between 1 and 5 and has two decimal places
     private static final Pattern GRADE_PATTERN = Pattern.compile("^([1-5](\\.\\d{1,2})?)$");
     // Regex for URL. http or https protocol, followed by a domain name, with path, with optional file at the end
-    private static final Pattern URL_PATTERN = Pattern.compile("^(http|https)://[a-zA-Z0-9.-]+\\.[a-z]+(/[a-zA-Z0-9#]+/?)*(/\\w+\\.\\w+)?$");
+    private static final Pattern URL_PATTERN = Pattern.compile("^(http|https)://[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})?(?:/[a-zA-Z0-9#]+)?/?$");
 
 
     /**

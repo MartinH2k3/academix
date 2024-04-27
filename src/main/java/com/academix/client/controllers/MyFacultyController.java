@@ -1,21 +1,29 @@
 package com.academix.client.controllers;
 import com.academix.client.MainApplication;
+import com.academix.client.requests.RequesterFaculty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import language.LocaleManager;
 
 import java.util.ResourceBundle;
 import server.logging.Logging;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyFacultyController {
     private MainApplication mainApplication;
 
     private LocaleManager localeManager;
+
+    @FXML
+    public TextField galleryUrlTextfield;
+    @FXML
+    public TextField urlTextfield;
     @FXML
     private RadioButton vetMedRadioButton;
     @FXML
@@ -111,6 +119,23 @@ public class MyFacultyController {
 
     @FXML
     private TextField averageTextfield;
+
+    private final Map<RadioButton, String> radioButtonMap = new HashMap<>();
+
+    public void init(){
+        radioButtonMap.put(vetMedRadioButton, "veterinary_medicine");
+        radioButtonMap.put(bioRadioButton, "biology");
+        radioButtonMap.put(physRadioButton, "physics");
+        radioButtonMap.put(matRadioButton, "mathematics");
+        radioButtonMap.put(medRadioButton, "medicine");
+        radioButtonMap.put(ecoRadioButton, "economics");
+        radioButtonMap.put(psyRadioButton, "psychology");
+        radioButtonMap.put(socRadioButton, "sociology");
+        radioButtonMap.put(lawRadioButton, "law");
+        radioButtonMap.put(busRadioButton, "business");
+        radioButtonMap.put(marRadioButton, "marketing");
+        radioButtonMap.put(infRadioButton, "informatics");
+    }
 
     @FXML
     private Text basicText;
@@ -213,6 +238,9 @@ public class MyFacultyController {
 
     @FXML
     private void save(ActionEvent actionEvent) {
+        init();
+        String facultyField = getSelectedFacultyType();
+        RequesterFaculty.getInstance().createFaculty(mainApplication.getLoggedInUser(), universityTextfield.getText(), facultyTextfield.getText(), shortDescriptionTextfield.getText(), facultyField, averageTextfield.getText(),urlTextfield.getText() ,galleryUrlTextfield.getText());
     }
 
     @FXML
@@ -252,7 +280,17 @@ public class MyFacultyController {
     private void goToMyFaculty() {
     }
 
+    private String getSelectedFacultyType() {
+        for (Map.Entry<RadioButton, String> entry : radioButtonMap.entrySet()) {
+            if (entry.getKey().isSelected()) {
+                return entry.getValue();
+            }
+        }
+        return "";
+    }
+
     public void setBack(String back) {
         this.back = back;
     }
+
 }

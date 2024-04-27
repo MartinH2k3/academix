@@ -20,6 +20,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/account/update", AccountInfoHandler.getInstance());
         server.createContext("/account_info", GetAcountInfoHandler.getInstance());
         server.createContext("/account/reset_password", PasswordResetHandler.getInstance());
+        server.createContext("/account/delete", AccountDeletionHandler.getInstance());
         // Support
         server.createContext("/pending_questions", PendingQuestionsHandler.getInstance());
         server.createContext("/submit_question", HelplineQuestionHandler.getInstance());
@@ -27,6 +28,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/question_responses", HelplineResponseHandler.getInstance());
         server.createContext("/pending_requests", PendingRequestsHandler.getInstance());
         server.createContext("/answer_request", AcceptRejectHandler.getInstance());
+        server.createContext("/users", ShowUsersHandler.getInstance());
         server.createContext("/create_faculty", FacultyCreationHandler.getInstance());
 
         // TODO: add the following handlers

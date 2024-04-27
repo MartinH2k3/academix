@@ -29,7 +29,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Email updated";
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri aktualizácii emailu používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error while updating the account");
         }
         return "Email update failed";
     }
@@ -49,7 +49,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Phone number updated";
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri aktualizácii telefónneho čísla používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error while updating the phone number of the user");
             e.printStackTrace();
         }
         return "Phone number update failed";
@@ -70,7 +70,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "First name updated";
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri aktualizácii krstného mena používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error while updating the first name of the user");
         }
         return "First name update failed";
     }
@@ -90,7 +90,7 @@ public class AccountInfoUpdate {
             pstmt.executeUpdate();
             return "Last name updated";
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri aktualizácii priezviska používateľa došlo k chybe");
+            Logging.getInstance().logException(e, "Error while updating the last name of the user");
         }
         return "Last name update failed";
     }
@@ -112,7 +112,7 @@ public class AccountInfoUpdate {
                 return json;
             }
         } catch (SQLException e) {
-            Logging.getInstance().logException(e, "Pri získavaní informácií o účte došlo k chybe");
+            Logging.getInstance().logException(e, "Error while getting the account information of the user");
         }
         return null;
     }

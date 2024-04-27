@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import language.LocaleManager;
 import javafx.stage.StageStyle;
+import java.awt.Desktop;
 
 import java.util.Objects;
 import java.util.ArrayList;
@@ -182,6 +183,28 @@ public class MainApplication extends Application {
         AccountsController accountsController = loader.getController();
         accountsController.setMainApp(this);
         root.setCenter(acc);
+    }
+    public void loadAnswerFaculty() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_faculty.fxml"));
+        Parent ans = loader.load();
+        AnswerFacultyController answerFacultyController = loader.getController();
+        answerFacultyController.setMainApp(this);
+        root.setCenter(ans);
+    }
+    public void loadAnswerStudent() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        Parent ans = loader.load();
+        AnswerStudentController answerStudentController = loader.getController();
+        answerStudentController.setMainApp(this);
+        root.setCenter(ans);
+    }
+    public void loadExactAnswerStudent(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerStudentController exactAnswerStudentController = loader.getController();
+        exactAnswerStudentController.setMainApp(this);
+        exactAnswerStudentController.setMessage(answer);
+        root.setCenter(ans);
     }
 
     public void setLoggedInUser(String loggedInUser) {

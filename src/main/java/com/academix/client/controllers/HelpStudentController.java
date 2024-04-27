@@ -51,7 +51,7 @@ public class HelpStudentController {
     @FXML
     private TextField subjectTextField;
 
-    public void initialize(){
+    public void initialize() {
         sentSuccessfullyText.setVisible(false);
 
         localeManager = LocaleManager.getInstance();
@@ -73,7 +73,7 @@ public class HelpStudentController {
     }
 
     @FXML
-    void goToAccountSettings(ActionEvent event) {
+    void goToAccountSettings() {
         try {
             mainApplication.loadAccountSettingsStudentPane("help");
         } catch (Exception e) {
@@ -82,7 +82,7 @@ public class HelpStudentController {
     }
 
     @FXML
-    void goToCatalog(ActionEvent event) {
+    void goToCatalog() {
         try {
             mainApplication.loadCatalogStudentPane();
         } catch (Exception e) {
@@ -91,7 +91,7 @@ public class HelpStudentController {
     }
 
     @FXML
-    void goToHelp(ActionEvent event) {
+    void goToHelp() {
         try {
             mainApplication.loadHelpStudent();
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class HelpStudentController {
     }
 
     @FXML
-    void goToQuiz(ActionEvent event) {
+    void goToQuiz() {
         try {
             mainApplication.loadQuizPane();
         } catch (Exception e) {
@@ -109,13 +109,13 @@ public class HelpStudentController {
     }
 
     @FXML
-    void SendHelpMessage(ActionEvent event) {
+    void SendHelpMessage() {
         RequesterUser.getInstance().sendQuestion(mainApplication.getLoggedInUser(), subjectTextField.getText(), messageTextField.getText());
         sentSuccessfullyText.setVisible(true);
     }
 
     @FXML
-    void signOut(ActionEvent event) {
+    void signOut() {
         try {
             mainApplication.setLoggedInUser(null);
             mainApplication.loadLoginPane();
@@ -124,8 +124,17 @@ public class HelpStudentController {
         }
     }
 
+
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
+    @FXML
+    private void switchToReceivedHelp( ) {
+        try {
+            mainApplication.loadAnswerStudent();
+        } catch (Exception e) {
+            Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
+        }
+    }
 }
