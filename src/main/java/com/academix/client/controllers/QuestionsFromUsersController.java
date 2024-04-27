@@ -32,9 +32,18 @@ public class QuestionsFromUsersController {
                     Label label = (Label) hBox.getChildren().get(1);
                     label.setText(question.getValue());
                     label.setId(question.getKey()+"");
+                    Button button = (Button) hBox.getChildren().get(2);
+                    button.setOnAction(e->{
+                        try{
+                            mainApplication.loadHelpAdmin(question.getValue());
+                        }catch (Exception ex){
+                            Logging.getInstance().logException(ex, "Nepodarilo sa prejsť medzi scénami");
+                        }
+                    });
                     allQuestions.getChildren().add(hBox);
                 } catch (Exception e) {
-                    Logging.getInstance().logException(e, "nepodarilo sa načitat spravy");
+                    Logging.getInstance().logException(e, "nepodarilo sa načitat komponent");
+
                 }
             }
         }

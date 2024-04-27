@@ -195,7 +195,23 @@ public class MainApplication extends Application {
         root.setCenter(ans);
     }
     public void loadExactAnswerStudent(String answer) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("exact_answer_student.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerStudentController exactAnswerStudentController = loader.getController();
+        exactAnswerStudentController.setMainApp(this);
+        exactAnswerStudentController.setMessage(answer);
+        root.setCenter(ans);
+    }
+    public void loadExactAnswerFaculty(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("exact_answer_faculty.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerFacultyController exactAnswerFacultyController = loader.getController();
+        exactAnswerFacultyController.setMainApp(this);
+        exactAnswerFacultyController.setMessage(answer);
+        root.setCenter(ans);
+    }
+    public void loadHelpAdmin(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sprava_admin.fxml"));
         Parent ans = loader.load();
         ExactAnswerStudentController exactAnswerStudentController = loader.getController();
         exactAnswerStudentController.setMainApp(this);
