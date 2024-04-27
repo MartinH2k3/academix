@@ -9,7 +9,7 @@
 
 <VBox maxWidth="750.0" prefHeight="84.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox maxWidth="1000.0" prefHeight="24.0" prefWidth="410.0">
+      <HBox maxWidth="750.0" prefHeight="24.0" prefWidth="410.0">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
@@ -21,7 +21,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" maxWidth="1000.0" prefHeight="60.0" prefWidth="410.0">
+      <HBox alignment="CENTER" maxWidth="750.0" prefHeight="60.0" prefWidth="410.0">
          <children>
             <Label fx:id="shortDescription" maxWidth="650.0" prefHeight="51.0" prefWidth="312.0" text="Aliquam pharetra dolor a sagittis rutrum. Vivamus vel sapien blandit, tincidunt sem sit amet, tincidunt elit." wrapText="true" />
             <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="Select" textFill="WHITE">

@@ -182,17 +182,25 @@ public class MainApplication extends Application {
     }
     public void loadAnswerFaculty() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_faculty.fxml"));
-        Parent acc = loader.load();
+        Parent ans = loader.load();
         AnswerFacultyController answerFacultyController = loader.getController();
         answerFacultyController.setMainApp(this);
-        root.setCenter(acc);
+        root.setCenter(ans);
     }
     public void loadAnswerStudent() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
-        Parent acc = loader.load();
+        Parent ans = loader.load();
         AnswerStudentController answerStudentController = loader.getController();
         answerStudentController.setMainApp(this);
-        root.setCenter(acc);
+        root.setCenter(ans);
+    }
+    public void loadExactAnswerStudent(String answer) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("answers_student.fxml"));
+        Parent ans = loader.load();
+        ExactAnswerStudentController exactAnswerStudentController = loader.getController();
+        exactAnswerStudentController.setMainApp(this);
+        exactAnswerStudentController.setMessage(answer);
+        root.setCenter(ans);
     }
 
     public void setLoggedInUser(String loggedInUser) {

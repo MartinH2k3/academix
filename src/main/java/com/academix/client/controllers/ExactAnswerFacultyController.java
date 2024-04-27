@@ -60,6 +60,9 @@ public class ExactAnswerFacultyController {
             Logging.getInstance().logException(e, "Nepodarilo sa prejsť medzi scénami");
         }
     }
+    public void setMessage(String answer) {
+        answerLabel.setText(answer);
+    }
     
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
