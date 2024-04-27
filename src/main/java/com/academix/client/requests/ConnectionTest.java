@@ -57,8 +57,13 @@ public class ConnectionTest {
         // System.out.println(requesterAdmin.getPendingRequests());
 
         // get all faculties
-        System.out.println(requesterUser.get_faculties("Oopla", 1, 10));
+        //System.out.println(requesterUser.get_faculties("Oopla", 1, 10));
 
+        // get all users
+        var bob = requesterAdmin.showAllUsers();
+        for (String user : bob) {
+            System.out.println(user);
+        }
         // get quiz
         // System.out.println(requesterStudent.getQuiz());
 

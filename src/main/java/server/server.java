@@ -28,6 +28,7 @@ public static void main(String[] args) throws IOException {
         server.createContext("/question_responses", HelplineResponseHandler.getInstance());
         server.createContext("/pending_requests", PendingRequestsHandler.getInstance());
         server.createContext("/answer_request", AcceptRejectHandler.getInstance());
+        server.createContext("/users", ShowUsersHandler.getInstance());
         server.createContext("/create_faculty", FacultyCreationHandler.getInstance());
 
         // TODO: add the following handlers

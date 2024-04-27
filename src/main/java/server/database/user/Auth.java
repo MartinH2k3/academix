@@ -36,7 +36,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            Logging.getInstance().logException(e,"Pri prihlasovaní používateľa" + username + " došlo k chybe");
+            Logging.getInstance().logException(e,"Error while trying to log in the user: " + username);
             }
         return "Login failed";
     }
