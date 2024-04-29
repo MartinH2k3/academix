@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.io.FileReader;
@@ -28,6 +29,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 
 public class QuizController {
@@ -53,6 +55,7 @@ public class QuizController {
 
     @FXML
     private Hyperlink catalogHyperlink;
+
     @FXML
     private Button resultsButton;
 
@@ -73,14 +76,29 @@ public class QuizController {
 
     private MainApplication mainApplication;
 
+    private LocaleManager localeManager;
+
     public QuizController(){
         initializeQuestions();
         initializeFieldPoints();
     }
 
 
-
+    @FXML
     public void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        gradeTextField.setPromptText(messages.getString("grade_average"));
+        resultsButton.setText(messages.getString("results_button"));
+
         Gson gson = new Gson();
         try (InputStream inputStream = getClass().getResourceAsStream("/com/academix/client/quiz.json");
              InputStreamReader reader = new InputStreamReader(inputStream)) {

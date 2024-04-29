@@ -6,12 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class AccountSettingsStudentController {
     private MainApplication mainApplication;
-    private String back;
 
+    private LocaleManager localeManager;
+
+    private String back;
 
     @FXML
     private TextField firstNameTextfield;
@@ -57,6 +63,40 @@ public class AccountSettingsStudentController {
 
     @FXML
     private Button saveButton;
+
+    @FXML
+    private Text belongText;
+
+    @FXML
+    private Text belongText1;
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        backButton.setText(messages.getString("back"));
+        saveButton.setText(messages.getString("save"));
+
+        firstNameTextfield.setPromptText(messages.getString("first_name"));
+        lastNameTextfield.setPromptText(messages.getString("last_name"));
+        emailTextfield.setPromptText(messages.getString("email"));
+        phoneNumberTextfield.setPromptText(messages.getString("phone_number"));
+
+        currentPasswordField.setPromptText(messages.getString("current_password"));
+        newPasswordField.setPromptText(messages.getString("new_password"));
+        repeatNewPasswordField.setPromptText(messages.getString("confirmpassword"));
+
+        belongText.setText(messages.getString("basic"));
+        belongText1.setText(messages.getString("password"));
+    }
 
     @FXML
     private void goToPastResults() {

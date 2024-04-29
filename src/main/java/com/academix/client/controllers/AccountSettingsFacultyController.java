@@ -10,7 +10,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class AccountSettingsFacultyController {
     @FXML
@@ -36,11 +39,57 @@ public class AccountSettingsFacultyController {
     @FXML
     private Hyperlink accountSettingsHyperlink;
 
+    @FXML
+    private Hyperlink myFacultyHyperlink;
+
+    @FXML
+    private Hyperlink catalogHyperlink;
+
+    @FXML
+    private Hyperlink helpHyperlink;
+
+    @FXML
+    private Hyperlink signOutHyperlink;
+
+    @FXML
+    private Text belongText;
+
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     private String back;
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
+    }
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        backButton.setText(messages.getString("back"));
+        saveButton.setText(messages.getString("save"));
+
+        firstNameTextfield.setPromptText(messages.getString("first_name"));
+        lastNameTextfield.setPromptText(messages.getString("last_name"));
+        emailTextfield.setPromptText(messages.getString("email"));
+        phoneNumberTextfield.setPromptText(messages.getString("phone_number"));
+
+        currentPasswordField.setPromptText(messages.getString("current_password"));
+        newPasswordField.setPromptText(messages.getString("new_password"));
+        repeatNewPasswordField.setPromptText(messages.getString("confirmpassword"));
+
+        belongText.setText(messages.getString("basic"));
+        belongText1.setText(messages.getString("password"));
+
     }
 
     @FXML

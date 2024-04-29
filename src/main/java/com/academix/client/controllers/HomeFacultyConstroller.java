@@ -5,7 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.lang.module.ResolutionException;
+import java.util.ResourceBundle;
 
 public class HomeFacultyConstroller {
     @FXML
@@ -21,6 +25,23 @@ public class HomeFacultyConstroller {
     @FXML
     private Button addFacultyInformationButton;
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        addFacultyInformationButton.setText(messages.getString("add_faculty"));
+    }
 
     public void setMainApp(MainApplication mainApplication) {
         this.mainApplication = mainApplication;

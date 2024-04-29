@@ -12,20 +12,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.awt.*;
 import java.net.URI;
+import java.util.ResourceBundle;
 
 public class ResultController {
 
     private MainApplication mainApplication;
-
-    @FXML
-    private BorderPane root;
-
-    @FXML
-    private VBox resultsVBox;
 
     @FXML
     private HBox resultsSchoolHBox;
@@ -37,13 +33,10 @@ public class ResultController {
     private Label shortDescription;
 
     @FXML
-    private Button selectButton1;
+    private Button selectButton;
 
     @FXML
     private Button schoolGalleryButton;
-
-    @FXML
-    private HBox topHBox;
 
     @FXML
     private Hyperlink takeQuizHyperlink;
@@ -61,6 +54,24 @@ public class ResultController {
     private Hyperlink signOutHyperlink;
 
     private FacultyDTO facultyDTO;
+
+    private LocaleManager localeManager;
+
+    @FXML
+    private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        schoolGalleryButton.setText(messages.getString("gallery"));
+        selectButton.setText(messages.getString("visit"));
+    }
 
     public void setFacultyDTO(FacultyDTO facultyDTO) {
         this.facultyDTO = facultyDTO;

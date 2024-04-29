@@ -10,10 +10,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class LoginController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
     @FXML
     private TextField usernameTextfield;
@@ -28,10 +34,23 @@ public class LoginController {
     private Hyperlink goToRegisterHyperlink;
 
     @FXML
+    private Button skToggleButton;
+
+    @FXML
+    private Button enToggleButton;
+
+    @FXML
     private void initialize() {
         // You can add initialization logic here if needed
-    }
+        localeManager = LocaleManager.getInstance();
 
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordField.setPromptText(messages.getString("password"));
+        loginButton.setText(messages.getString("login"));
+        goToRegisterHyperlink.setText(messages.getString("noaccount"));
+    }
 
     private String loginCheck() {
         String username = usernameTextfield.getText().trim();
@@ -39,14 +58,20 @@ public class LoginController {
         Notification notification = Notification.getInstance();
 
         if (username.isEmpty() || password.isEmpty()) {
-            notification.showNotification("Username or password were not entered");
+            if(localeManager.getLocale().equals(new Locale("SK"))){
+                notification.showNotification("Nezadali ste meno alebo heslo.");
+            } else {
+            notification.showNotification("Username or password were not entered");}
             Logging.getInstance().logServerWarning("Meno alebo heslo neboli pri prihlasovaní vyplnené.");
             passwordField.setText("");
             return null;
         }
         String response = RequesterUser.getInstance().login(username, password);
         if (response.equals("Incorrect username or password")) {
-            notification.showNotification("Incorrect username or password");
+            if(localeManager.getLocale().equals(new Locale("SK"))){
+                notification.showNotification("Nesprávne meno alebo heslo.");
+            } else {
+            notification.showNotification("Incorrect username or password");}
             Logging.getInstance().logServerWarning("Meno alebo heslo nie sú správne.");
             passwordField.setText("");
             return null;
@@ -95,9 +120,22 @@ public class LoginController {
     }
     @FXML
     private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
     }
     @FXML
     private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
+    }
+
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordField.setPromptText(messages.getString("password"));
+        loginButton.setText(messages.getString("login"));
+        goToRegisterHyperlink.setText(messages.getString("noaccount"));
     }
 
     // You can add more methods and fields as needed

@@ -6,21 +6,46 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class RequestsController {
     private MainApplication mainApplication;
+    private LocaleManager localeManager;
+    @FXML
+    private Hyperlink requestsHyperlink;
+    @FXML
+    private Hyperlink questionsHyperlink;
+    @FXML
+    private Hyperlink accountsHyperlink;
+    @FXML
+    private Hyperlink accountSettingsHyperlink1;
+    @FXML
+    private Hyperlink signOutHyperlink1;
     @FXML
     private VBox allRequests;
     @FXML
     private Label noRequestsLabel;
+    @FXML
     public void initialize(){
         //todo treba otestovat ci to ide aj ako long alebo to iba mne robi (iba odstranit +"")
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        requestsHyperlink.setText(messages.getString("requests"));
+        questionsHyperlink.setText(messages.getString("user_questions"));
+        accountsHyperlink.setText(messages.getString("accounts"));
+        accountSettingsHyperlink1.setText(messages.getString("account_settings"));
+        signOutHyperlink1.setText(messages.getString("sign_out"));
+
         var admin = RequesterAdmin.getInstance();
         Map<Long, String> map = admin.getPendingRequests();
         noRequestsLabel.setVisible(false);

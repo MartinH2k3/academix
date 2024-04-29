@@ -16,10 +16,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.awt.*;
 import java.net.URI;
+import java.util.ResourceBundle;
 
 public class CatalogFacultyController {
     @FXML
@@ -35,6 +37,8 @@ public class CatalogFacultyController {
     @FXML
     private ImageView nextPageImage;
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
     @FXML
     private Hyperlink myFacultyHyperlink;
@@ -68,8 +72,22 @@ public class CatalogFacultyController {
     private Button SelectButton2;
     @FXML
     private BorderPane pane;
+
+    @FXML
     public void initialize() {
-                loadStuff();
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        searchTextField.setPromptText(messages.getString("search"));
+
+        loadStuff();
     }
 
     @FXML

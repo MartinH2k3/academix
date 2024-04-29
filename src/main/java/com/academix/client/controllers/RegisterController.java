@@ -13,10 +13,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RegisterController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
     @FXML
     private TextField usernameTextfield;
@@ -36,9 +42,20 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLoginHyperlink;
 
-    
+    @FXML
     private void initialize() {
         // You can add initialization logic here if needed
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+
+        registerButton.setText(messages.getString("register"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        schoolEmployeeCheckbox.setText(messages.getString("employee_toggle"));
     }
     @FXML
     private void switchToLogin(ActionEvent actionEvent) {
@@ -93,8 +110,24 @@ public class RegisterController {
     }
     @FXML
     private void skLanguage() {
+        localeManager.setLocale(new Locale("SK"));
+        updateUI();
     }
     @FXML
     private void enLanguage() {
+        localeManager.setLocale(new Locale("EN"));
+        updateUI();
     }
+    private void updateUI() {
+        ResourceBundle messages = localeManager.getMessages();
+
+        usernameTextfield.setPromptText(messages.getString("username"));
+        passwordPasswordField.setPromptText(messages.getString("password"));
+        confirmPasswordField.setPromptText(messages.getString("confirmpassword"));
+
+        registerButton.setText(messages.getString("register"));
+        goToLoginHyperlink.setText(messages.getString("account"));
+        schoolEmployeeCheckbox.setText(messages.getString("employee_toggle"));
+    }
+
 }

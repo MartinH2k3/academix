@@ -8,10 +8,15 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class HomeStudentController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
     @FXML
     private HBox navigationBar;
@@ -72,6 +77,19 @@ public class HomeStudentController {
 
     @FXML
     private void initialize() {
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        takeALookText.setText(messages.getString("take_look"));
+        belongText.setText(messages.getString("belong_to"));
+        takeQuizButton.setText(messages.getString("quiz_button"));
     }
 
     @FXML

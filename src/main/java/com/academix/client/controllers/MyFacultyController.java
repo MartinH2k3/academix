@@ -8,9 +8,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class MyFacultyController {
 
@@ -43,6 +45,8 @@ public class MyFacultyController {
     @FXML
     private RadioButton infRadioButton;
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     private String back;
     @FXML
     private TextField facultyTextfield;
@@ -92,21 +96,58 @@ public class MyFacultyController {
     @FXML
     private TextField averageTextfield;
 
+    @FXML
+    private Text text3;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    private Button saveButton;
+
     private final Map<RadioButton, String> radioButtonMap = new HashMap<>();
 
-    public void init(){
-        radioButtonMap.put(vetMedRadioButton, "veterinary_medicine");
-        radioButtonMap.put(bioRadioButton, "biology");
-        radioButtonMap.put(physRadioButton, "physics");
-        radioButtonMap.put(matRadioButton, "mathematics");
-        radioButtonMap.put(medRadioButton, "medicine");
-        radioButtonMap.put(ecoRadioButton, "economics");
-        radioButtonMap.put(psyRadioButton, "psychology");
-        radioButtonMap.put(socRadioButton, "sociology");
-        radioButtonMap.put(lawRadioButton, "law");
-        radioButtonMap.put(busRadioButton, "business");
-        radioButtonMap.put(marRadioButton, "marketing");
-        radioButtonMap.put(infRadioButton, "informatics");
+    @FXML
+    public void initialize(){
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        myFacultyHyperlink.setText(messages.getString("my_faculty"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+        text.setText(messages.getString("basic"));
+
+        facultyTextfield.setPromptText(messages.getString("faculty"));
+        universityTextfield.setPromptText(messages.getString("university"));
+        averageTextfield.setPromptText(messages.getString("average_grade"));
+
+        radioButtonMap.put(vetMedRadioButton, messages.getString("veterinary"));
+        radioButtonMap.put(bioRadioButton, messages.getString("biology"));
+        radioButtonMap.put(physRadioButton, messages.getString("physics"));
+        radioButtonMap.put(matRadioButton, messages.getString("math"));
+        radioButtonMap.put(medRadioButton, messages.getString("medicine"));
+        radioButtonMap.put(ecoRadioButton, messages.getString("economics"));
+        radioButtonMap.put(psyRadioButton, messages.getString("psych"));
+        radioButtonMap.put(socRadioButton, messages.getString("sociology"));
+        radioButtonMap.put(lawRadioButton, messages.getString("law"));
+        radioButtonMap.put(busRadioButton, messages.getString("business"));
+        radioButtonMap.put(marRadioButton, messages.getString("marketing"));
+        radioButtonMap.put(infRadioButton, messages.getString("informatics"));
+
+        urlTextfield.setPromptText(messages.getString("school_url"));
+        galleryUrlTextfield.setPromptText(messages.getString("gallery_url"));
+
+        text2.setText(messages.getString("short_description"));
+        text3.setText(messages.getString("catalog_text"));
+
+        shortDescriptionTextfield.setPromptText(messages.getString("short_description"));
+
+        cancelButton.setText(messages.getString("cancel"));
+        saveButton.setText(messages.getString("save"));
+
     }
 
 
@@ -154,7 +195,7 @@ public class MyFacultyController {
 
     @FXML
     private void save(ActionEvent actionEvent) {
-        init();
+        initialize();
         String facultyField = getSelectedFacultyType();
         RequesterFaculty.getInstance().createFaculty(mainApplication.getLoggedInUser(), universityTextfield.getText(), facultyTextfield.getText(), shortDescriptionTextfield.getText(), facultyField, averageTextfield.getText(),urlTextfield.getText() ,galleryUrlTextfield.getText());
     }

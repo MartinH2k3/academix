@@ -44,7 +44,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="SelectButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="School Page" textFill="WHITE">
+                        <Button fx:id="selectButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#schoolInfo" prefHeight="16.0" prefWidth="150.0" style="-fx-background-color: #3b5e87;" text="School Page" textFill="WHITE">
                            <font>
                               <Font name="Avenir Book" size="12.0" />
                            </font>

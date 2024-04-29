@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
 
 import java.net.URI;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.awt.Desktop;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class CatalogStudentController {
     @FXML
@@ -37,6 +39,8 @@ public class CatalogStudentController {
     @FXML
     private TextField pageTextField;
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
 
 
     @FXML
@@ -55,8 +59,22 @@ public class CatalogStudentController {
     private Hyperlink signOutHyperlink;
     @FXML
     private BorderPane pane;
+
+    @FXML
     public void initialize() {
-                loadStuff();
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        searchTextField.setPromptText(messages.getString("search"));
+
+        loadStuff();
     }
 
     @FXML

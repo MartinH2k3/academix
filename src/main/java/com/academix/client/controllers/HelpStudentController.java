@@ -8,10 +8,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import language.LocaleManager;
 import server.logging.Logging;
+
+import java.util.ResourceBundle;
 
 public class HelpStudentController {
     private MainApplication mainApplication;
+
+    private LocaleManager localeManager;
     @FXML
     private Hyperlink pastResultHyperlink;
 
@@ -45,8 +50,33 @@ public class HelpStudentController {
     @FXML
     private TextField subjectTextField;
 
+    @FXML
+    private Button switcher;
+
+
+    @FXML
     public void initialize() {
         sentSuccessfullyText.setVisible(false);
+
+        localeManager = LocaleManager.getInstance();
+
+        ResourceBundle messages = localeManager.getMessages();
+
+        takeQuizHyperlink.setText(messages.getString("take_quiz"));
+        catalogHyperlink.setText(messages.getString("uni_catalog"));
+        accountSettingsHyperlink.setText(messages.getString("account_settings"));
+        helpHyperlink.setText(messages.getString("help"));
+        signOutHyperlink.setText(messages.getString("sign_out"));
+
+        subjectTextField.setPromptText(messages.getString("help_subject"));
+        messageTextField.setPromptText(messages.getString("help_message"));
+        takeALookText.setText(messages.getString("help_contact_admin"));
+
+        sendMessageButton.setText(messages.getString("send_button"));
+        switcher.setText(messages.getString("switcher"));
+
+        // Here I(podmo) will create GET to http to load data into the corresponding fields
+
     }
 
     @FXML

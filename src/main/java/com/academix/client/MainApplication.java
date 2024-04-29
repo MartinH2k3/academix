@@ -9,10 +9,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import language.LocaleManager;
 
 import javax.xml.transform.Result;
 import java.awt.Desktop;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainApplication extends Application {
@@ -25,6 +27,8 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            LocaleManager localeManager = LocaleManager.getInstance();
+            localeManager.setLocale(new Locale("SK"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Pane loginPane = loader.load();
             LoginController loginController = loader.getController();
@@ -197,7 +201,7 @@ public class MainApplication extends Application {
         Parent ans = loader.load();
         AnswerFacultyController answerFacultyController = loader.getController();
         answerFacultyController.setMainApp(this);
-        answerFacultyController.lateInit();
+        answerFacultyController.initialize();
         root.setCenter(ans);
     }
     public void loadAnswerStudent() throws Exception{
